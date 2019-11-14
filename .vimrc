@@ -109,10 +109,10 @@ nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
 
 " RSpec.vim mappings
-"map <Leader>t :call RunCurrentSpecFile()<CR>
-"map <Leader>s :call RunNearestSpec()<CR>
-"map <Leader>l :call RunLastSpec()<CR>
-"map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " For Running plain Ruby test scripts
 "nnoremap <leader>r :RunSpec<CR>
@@ -161,3 +161,12 @@ call pathogen#helptags()
 inoremap jk <esc>
 vnoremap jk <esc>
 
+" For vim-powerline
+set laststatus=2
+
+if !has('gui_running')
+  set t_Co=256
+endif
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }

@@ -182,3 +182,8 @@ nnoremap td  :tabclose<CR>
 "Always new tab
 autocmd VimEnter * tab all
 autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }

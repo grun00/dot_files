@@ -170,3 +170,15 @@ endif
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ }
+"Tab Navigation
+nnoremap tk  :tabfirst<CR>
+nnoremap tl  :tabnext<CR>
+nnoremap th  :tabprev<CR>
+nnoremap tj  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn :tabnew<CR>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+"Always new tab
+autocmd VimEnter * tab all
+autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'

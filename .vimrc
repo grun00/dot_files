@@ -11,9 +11,9 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'ycm-core/YouCompleteMe'
-
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'file:///home/grun/.vimpkg/bundle/vim-signature'
+Plugin 'file:///home/grun/.vimpkg/bundle/YouCompleteMe'
 
 Plugin 'tpope/vim-endwise' 
 Plugin 'tpope/vim-fugitive' 
@@ -28,6 +28,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'vim-scripts/tComment'
 
 Plugin 'itchyny/lightline.vim'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required

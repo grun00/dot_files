@@ -1,10 +1,36 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off
 
-" source ~/.vimrc.before if it exists.
-if filereadable(expand("~/.vimrc.before"))
-source ~/.vimrc.before
-endif
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+
+" ================ Plugins ================ 
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'ycm-core/YouCompleteMe'
+
+Plugin 'jiangmiao/auto-pairs'
+
+Plugin 'tpope/vim-endwise' 
+Plugin 'tpope/vim-fugitive' 
+Plugin 'tpope/vim-surround'
+
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'Yggdroot/indentLine'
+
+Plugin 'thoughtbot/vim-rspec'
+
+Plugin 'vim-scripts/tComment'
+
+Plugin 'itchyny/lightline.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " ================ General Config ====================
 set number relativenumber                     "Line numbers are good
@@ -86,13 +112,6 @@ set linebreak    "Wrap lines at convenient points
 
 " ================ Custom Settings ========================
 
-" Window pane resizing
-nnoremap <silent> <Leader>[ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>] :exe "resize " . (winheight(0) * 2/3)<CR>
-
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 "For copying between files
 map <Leader>y "*y
 map <Leader>p "*p
@@ -129,16 +148,16 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " <F6> Spell-check
 map <F6> :set spell spelllang=en_us
 
-" HTML auto complete
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html.erb set omnifunc=htmlcomplete#CompleteTags
-"HTML auto complete with spacebar
-:iabbrev </ </<C-X><C-O>
+"Copy Paste with <C-c> <C-v>
 vmap <C-c> "+y     " Yank current selection into system clipboard
 nmap <C-c> "+Y     " Yank current line into system clipboard (if nothing is selected)
 nmap <C-v> "+p     " Paste from system clipboard
-nnoremap <buffer> k gk
-nnoremap <buffer> j gj
+" Navigation of lines
+nnoremap  k gk
+nnoremap  j gj
+vnoremap  k gk
+vnoremap  j gj
+
 
 "Cursor 
 let &t_SI = "\e[6 q"
@@ -153,9 +172,6 @@ augroup END
 
 
 runtime macros/matchit.vim 
-execute pathogen#infect()
-call pathogen#helptags()
-
 
 "Remap ESC to jk
 inoremap jk <esc>

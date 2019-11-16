@@ -113,10 +113,16 @@ set linebreak    "Wrap lines at convenient points
 
 " ================ Custom Settings ========================
 
+runtime macros/matchit.vim 
+
 "For copying between files
 map <Leader>y "*y
 map <Leader>p "*p
 map <Leader>d "*d
+"Copy Paste with <Leader-c> <Leader-v>
+vmap <Leader>c "+y     " Yank current selection into system clipboard
+nmap <Leader>v "+Y     " Yank current line into system clipboard (if nothing is selected)
+nmap <Leaver>v "+p     " Paste from system clipboard
 
 let g:tmux_navigator_no_mappings = 1
 
@@ -149,44 +155,29 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " <F6> Spell-check
 map <F6> :set spell spelllang=en_us
 
-"Copy Paste with <C-c> <C-v>
-vmap <C-c> "+y     " Yank current selection into system clipboard
-nmap <C-c> "+Y     " Yank current line into system clipboard (if nothing is selected)
-nmap <C-v> "+p     " Paste from system clipboard
 " Navigation of lines
 nnoremap  k gk
 nnoremap  j gj
 vnoremap  k gk
 vnoremap  j gj
 
-
 "Cursor 
 let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-" optional reset cursor on start:
+let &t_EI = "\e[2 q" 
 augroup myCmds
 au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
 
-
-
-runtime macros/matchit.vim 
-
-"Remap ESC to jk
-inoremap jk <esc>
-vnoremap jk <esc>
-
 " For vim-powerline
-set laststatus=2
-
+set laststatus=2 
 if !has('gui_running')
   set t_Co=256
 endif
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ }
+
 "Tab Navigation
 nnoremap tk  :tabfirst<CR>
 nnoremap tl  :tabnext<CR>
@@ -199,7 +190,7 @@ nnoremap td  :tabclose<CR>
 "Always new tab
 autocmd VimEnter * tab all
 autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
-
+"ctrlp opens in new tab
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
     \ 'AcceptSelection("t")': ['<cr>'],

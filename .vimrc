@@ -12,7 +12,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'file:///home/grun/.vimpkg/bundle/vim-signature'
 Plugin 'file:///home/grun/.vimpkg/bundle/YouCompleteMe'
 
 Plugin 'tpope/vim-endwise' 
@@ -29,6 +28,7 @@ Plugin 'vim-scripts/tComment'
 
 Plugin 'itchyny/lightline.vim'
 
+Plugin 'vimwiki/vimwiki'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -187,7 +187,19 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn :tabnew<CR>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+" Switch tab with Tab
+nmap <S-Tab> :tabprev<Return>
+nmap <Tab> :tabnext<Return>
 "Always new tab
 autocmd VimEnter * tab all
 autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
+" Split window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w" Move window
+map sh <C-w>h
+map sk <C-w>k
+map sj <C-w>j
+map sl <C-w>l
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 

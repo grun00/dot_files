@@ -1,0 +1,25 @@
+#!/bin/zsh 
+
+BASE_PATH="/home/grun/Documents/Projetos/"
+SUB_PATH=$1
+PASSED=$BASE_PATH$SUB_PATH
+if test -d "${PASSED}"
+then
+  cd $PASSED
+else
+  cd $BASE_PATH
+fi
+
+cd $PASSED
+tmux new-session -d -s 'IDE' 
+tmux rename-window '[Testing]'
+tmux select-window -t 'IDE':0
+tmux new-window
+tmux split-window -h
+tmux rename-window '[Coding]'
+tmux new-window
+tmux rename-window '[Server]'
+tmux new-window
+tmux rename-window '[Misc]'
+tmux -2 attach-session -t 'IDE'
+cd $HOME

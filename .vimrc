@@ -51,10 +51,7 @@ set hidden
 "turn on syntax highlighting
 syntax on
 
-" Change leader to a comma because the backslash is too far away
-" That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all 
-" the plugins.
+" Leader <space>
 let mapleader=" "
 set timeout timeoutlen=1500
 
@@ -75,14 +72,14 @@ endif
 
 " ================ Folds ============================
 
-"set foldmethod=indent   "fold based on indent
+set foldmethod=indent   "fold based on indent
 set foldnestmax=5      "deepest fold is 5 levels
 set nofoldenable        "dont fold by default
 
 "
 " ================ Scrolling ========================
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=10         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -140,12 +137,6 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
-" For Running plain Ruby test scripts
-"nnoremap <leader>r :RunSpec<CR>
-"nnoremap <leader>l :RunSpecLine<CR>
-"nnoremap <leader>e :RunSpecLastRun<CR>
-"nnoremap <leader>cr :RunSpecCloseResult<CR>
-
 " For ruby block selections
 runtime macros/matchit.vim
 
@@ -179,10 +170,8 @@ let g:lightline = {
       \ }
 
 "Tab Navigation
-nnoremap tk  :tabfirst<CR>
-nnoremap tl  :tabnext<CR>
-nnoremap th  :tabprev<CR>
-nnoremap tj  :tablast<CR>
+nnoremap th  :tabfirst<CR>
+nnoremap tl  :tablast<CR>
 nnoremap tt  :tabedit<Space>
 nnoremap tn :tabnew<CR>
 nnoremap tm  :tabm<Space>

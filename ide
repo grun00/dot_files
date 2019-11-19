@@ -7,12 +7,9 @@ if test -d "${PASSED}"
 then
   cd $PASSED 
   tmux new-session -d -s 'IDE'
-  tmux rename-window '[Testing]' 
+  tmux rename-window '[Coding]' 
   tmux split-window -h 'rspec' 
   tmux select-window -t 'IDE':0
-  tmux new-window
-  tmux split-window -h
-  tmux rename-window '[Coding]'
   tmux new-window 'rails s'
   tmux split-window -h
   tmux rename-window '[Server]' 
@@ -22,12 +19,9 @@ then
 else
   cd $BASE_PATH
   tmux new-session -d -s 'IDE' 
-  tmux rename-window '[Testing]' 
-  tmux split-window -h 'neofetch'
-  tmux select-window -t 'IDE':0
-  tmux new-window 
+  tmux rename-window '[Coding]' 
   tmux split-window -h 
-  tmux rename-window '[Coding]'
+  tmux select-window -t 'IDE':0
   tmux new-window 
   tmux rename-window '[Server]'
   tmux new-window 

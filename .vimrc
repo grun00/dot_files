@@ -29,7 +29,9 @@ Plugin 'vim-scripts/tComment'
 Plugin 'itchyny/lightline.vim'
 
 Plugin 'vimwiki/vimwiki'
+
 Plugin 'vifm/vifm'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -182,9 +184,6 @@ nnoremap td  :tabclose<CR>
 " Switch tab with Tab
 nmap <S-Tab> :tabprev<Return>
 nmap <Tab> :tabnext<Return>
-"Always new tab
-autocmd VimEnter * tab all
-autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
 
 " Split window
 nmap ss :split<Return><C-w>w

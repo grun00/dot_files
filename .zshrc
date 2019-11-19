@@ -71,7 +71,7 @@ COMPLETION_WAITING_DOTS="true"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/ # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rvm tmux rails)
+plugins=(git rvm rails )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,7 +110,6 @@ alias rs="rails s"
 alias rc="rails c"
 alias vim="vim -p"
 alias ra="ranger"
-alias begin="cd ~/Documents/Projetos && tmux"
 
 export PATH=$PATH:/home/grun/.scripts:/home/grun/.cargo/bin:/home/grun/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:/home/grun/.rvm/gems/ruby-2.6.3/bin:/home/grun/.rvm/gems/ruby-2.6.3@global/bin:/home/grun/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.vimpkg/bin:/home/grun/.local/lib
 
@@ -154,6 +153,3 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-#TMUX PLUGING
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=true

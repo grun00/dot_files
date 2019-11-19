@@ -29,6 +29,7 @@ Plugin 'vim-scripts/tComment'
 Plugin 'itchyny/lightline.vim'
 
 Plugin 'vimwiki/vimwiki'
+Plugin 'vifm/vifm'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -144,7 +145,9 @@ runtime macros/matchit.vim
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " <F6> Spell-check
+map <F5> :set spell spelllang=pt_BR
 map <F6> :set spell spelllang=en_us
+map <F7> :set spell spelllang=de_de
 
 " Navigation of lines
 nnoremap  k gk
@@ -192,3 +195,4 @@ map sj <C-w>j
 map sl <C-w>l
 
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
+

@@ -12,7 +12,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'file:///home/grun/.vimpkg/bundle/YouCompleteMe'
 
 Plugin 'tpope/vim-endwise' 
 Plugin 'tpope/vim-fugitive' 
@@ -32,6 +31,10 @@ Plugin 'vimwiki/vimwiki'
 
 Plugin 'vifm/vifm'
 
+Plugin 'mileszs/ack.vim'
+
+Plugin 'pangloss/vim-javascript'
+Plugin 'moll/vim-node' 
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -54,7 +57,7 @@ set hidden
 "turn on syntax highlighting
 syntax on
 
-" Leader <space>
+" Leader " " 
 let mapleader=" "
 set timeout timeoutlen=1500
 
@@ -82,7 +85,7 @@ set nofoldenable        "dont fold by default
 "
 " ================ Scrolling ========================
 
-set scrolloff=10         "Start scrolling when we're 8 lines away from margins
+set scrolloff=2
 set sidescrolloff=15
 set sidescroll=1
 
@@ -135,10 +138,10 @@ nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
 let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
 
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+map <Leader>rt :call RunCurrentSpecFile()<CR>
+map <Leader>rs :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>ra :call RunAllSpecs()<CR>
 
 " For ruby block selections
 runtime macros/matchit.vim
@@ -147,9 +150,7 @@ runtime macros/matchit.vim
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " <F6> Spell-check
-map <F5> :set spell spelllang=pt_BR
 map <F6> :set spell spelllang=en_us
-map <F7> :set spell spelllang=de_de
 
 " Navigation of lines
 nnoremap  k gk
@@ -175,15 +176,14 @@ let g:lightline = {
       \ }
 
 "Tab Navigation
-nnoremap th  :tabfirst<CR>
-nnoremap tl  :tablast<CR>
+nnoremap tj  :tabfirst<CR>
+nnoremap tk  :tablast<CR>
+nnoremap th :tabprev<Return>
+nnoremap tl :tabnext<Return>
 nnoremap tt  :tabedit<Space>
 nnoremap tn :tabnew<CR>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
-" Switch tab with Tab
-nmap <S-Tab> :tabprev<Return>
-nmap <Tab> :tabnext<Return>
 
 " Split window
 nmap ss :split<Return><C-w>w
@@ -193,5 +193,31 @@ map sk <C-w>k
 map sj <C-w>j
 map sl <C-w>l
 
+" Buffer nav
+nmap <S-Tab> :bp<CR>
+nmap <Tab> :bn<CR>
+noremap <leader>d :bd<CR>
+
+"Markers
+nnoremap <leader>m `
+
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
+
+"It's hard to press ^ in my keyboard
+nnoremap <leader>ç ^
+vnoremap <leader>ç ^
+
+" Saving
+nmap <leader>w :w!<enter>
+nmap <leader>wq :wq!<cr> 
+
+"For a better future
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 

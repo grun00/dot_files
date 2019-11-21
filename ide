@@ -19,13 +19,8 @@ then
 else
   cd $BASE_PATH
   tmux new-session -d -s 'IDE' 
-  tmux rename-window '[Coding]' 
+  tmux rename-window '[Misc]' 
   tmux split-window -h 
-  tmux select-window -t 'IDE':0
-  tmux new-window 
-  tmux rename-window '[Server]'
-  tmux new-window 
-  tmux rename-window '[Misc]'
   tmux -2 attach-session -t 'IDE'
 fi
 

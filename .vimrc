@@ -57,7 +57,7 @@ set hidden
 "turn on syntax highlighting
 syntax on
 
-" Leader " " 
+" Leader <space>
 let mapleader=" "
 set timeout timeoutlen=1500
 
@@ -68,24 +68,22 @@ set nobackup
 set nowb
 
 " ================ Persistent Undo ==================
-" Keep undo history across sessions, by storing in file.
-" Only works all the time.
+
 if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
+silent !mkdir ~/.vim/backups " > /dev/null 2>&1
 set undodir=~/.vim/backups
 set undofile
 endif
 
 " ================ Folds ============================
 
-set foldmethod=indent   "fold based on indent
 set foldnestmax=5      "deepest fold is 5 levels
 set nofoldenable        "dont fold by default
 
 "
 " ================ Scrolling ========================
 
-set scrolloff=2
+set scrolloff=3
 set sidescrolloff=15
 set sidescroll=1
 
@@ -124,7 +122,6 @@ map <Leader>p "*p
 map <Leader>d "*d
 "Copy Paste with <Leader-c> <Leader-v>
 vmap <Leader>c "+y     " Yank current selection into system clipboard
-nmap <Leader>v "+Y     " Yank current line into system clipboard (if nothing is selected)
 nmap <Leaver>v "+p     " Paste from system clipboard
 
 let g:tmux_navigator_no_mappings = 1

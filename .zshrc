@@ -108,13 +108,17 @@ alias ps="ps auxf --forest"
 alias rpy="python3"
 alias rs="rails s"
 alias rc="rails c"
-alias vim="vim -p"
+alias vi="vim -p"
+alias vim="nvim -p"
 alias ra="ranger"
+
 
 export PATH=$PATH:/home/grun/.scripts:/home/grun/.cargo/bin:/home/grun/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:/home/grun/.rvm/gems/ruby-2.6.3/bin:/home/grun/.rvm/gems/ruby-2.6.3@global/bin:/home/grun/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.vimpkg/bin:/home/grun/.local/lib
 
-
+#Fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 50% --border'
+export FZF_COMPLETION_TRIGGER='çç'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -4,7 +4,7 @@ filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim 
-
+set rtp+=~/.fzf
 " ================ Plugins ================ 
 call vundle#begin()
 "Installation of plugins
@@ -21,7 +21,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'vim-scripts/tComment' 
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim' 
-
+Plugin 'junegunn/fzf.vim'
 "Ruby Plugins
 Plugin 'thoughtbot/vim-rspec' 
 Plugin 'tpope/vim-endwise' 
@@ -34,6 +34,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 " ================ General Config ====================
+
 set number relativenumber               "Line numbers are good
 set backspace=indent,eol,start          "Allow backspace in insert mode
 set history=1000                        "Store lots of :cmdline history
@@ -65,8 +66,9 @@ set softtabstop=2
 set tabstop=2
 set expandtab 
 set linebreak    "Wrap lines at convenient points
+set gdefault
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] " Optimization for ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
 
 let mapleader=" "                       " Leader <space>
 set timeout timeoutlen=1500 
@@ -107,8 +109,10 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Buffer navigation
-nmap <S-Tab> :bp<CR>
-nmap <Tab> :bn<CR>
+set wildcharm=<Tab>
+set wildmenu
+set wildmode=full
+nnoremap <leader><Tab> :buffer<Space><Tab>
 noremap <leader>d :bd<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 
@@ -116,8 +120,8 @@ nnoremap <leader>ba :buffers<CR>:buffer<Space>
 runtime macros/matchit.vim 
 
 "For copying between files
-map <Leader>y "*y
-map <Leader>p "*p
+vmap <Leader>y "*y
+nmap <Leader>p "*p
 
 "Copy from system clipboard
 vmap <Leader>c "+y
@@ -148,16 +152,15 @@ map <Leader>rl :call RunLastSpec()<CR>
 map <Leader>ra :call RunAllSpecs()<CR>
 
 " Scrolling Faster
-nnoremap <C-e> 2<C-e>
-nnoremap <C-y> 2<C-y>
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 "Persistent Undos
 set undodir=~/.vim/undodir
 set undofile
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:>-,trail:·,eol:$
-nmap <silent> <leader>T :set nolist!<CR>
+set list listchars=tab:\ \ ,trail:·
 
 " <F6> Spell-check
 map <F6> :set spell spelllang=en_us 
@@ -188,3 +191,4 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+

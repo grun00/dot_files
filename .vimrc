@@ -76,6 +76,9 @@ filetype indent on
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
+" Always start in same position when opening file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 "<Ctrl-l> redraws the screen and removes any search highlight
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
@@ -115,7 +118,6 @@ runtime macros/matchit.vim
 "For copying between files
 map <Leader>y "*y
 map <Leader>p "*p
-map <Leader>d "*d
 
 "Copy from system clipboard
 vmap <Leader>c "+y

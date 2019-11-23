@@ -11,6 +11,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 "General 
+
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'tpope/vim-fugitive' 
 Plugin 'itchyny/lightline.vim'
 Plugin 'vimwiki/vimwiki' 
@@ -22,6 +24,7 @@ Plugin 'vim-scripts/tComment'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim' 
 Plugin 'junegunn/fzf.vim'
+Plugin 'christoomey/vim-tmux-navigator'
 "Ruby Plugins
 Plugin 'thoughtbot/vim-rspec' 
 Plugin 'tpope/vim-endwise' 
@@ -133,16 +136,16 @@ nnoremap ç ^
 vnoremap ç ^
 
 " Saving
-nmap <leader>w :w!<enter>
+nmap <leader>W :w!<enter>
 nmap <leader>wq :wq!<cr> 
 
 "Tmux General
 let g:tmux_navigator_no_mappings = 1 
-nnoremap <silent> {Left-mapping} :TmuxNavigateLeft<cr>
-nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
-nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
-nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
-nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr> 
+let g:tmux_navigator_disable_when_zoomed = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 "Rspec 
 let g:spec_runner_dispatcher = "VtrSendCommand! {command}" 

@@ -17,6 +17,8 @@ Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki' 
 Plug 'yuttie/comfortable-motion.vim'
 
+"Color
+Plug 'ajmwagar/vim-deus'
 
 "Ruby Plugs
 Plug 'thoughtbot/vim-rspec' 
@@ -71,6 +73,17 @@ set timeout timeoutlen=1500
 filetype plugin on
 filetype indent on
 
+"Color
+"
+set t_Co=256
+set termguicolors
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set background=dark    " Setting dark mode
+colorscheme deus
+let g:deus_termcolors=256
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
@@ -81,7 +94,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "<Ctrl-m> redraws the screen and removes any search highlight
-nnoremap <silent> <C-m> :nohl<CR><C-l>
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Navigation of lines
 nnoremap  j gj
@@ -136,10 +149,10 @@ nmap <leader>wq :wq!<cr>
 "Tmux General
 let g:tmux_navigator_no_mappings = 1 
 let g:tmux_navigator_disable_when_zoomed = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+"nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 
 "Rspec 
 let g:spec_runner_dispatcher = "VtrSendCommand! {command}" 
@@ -153,7 +166,7 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 "Persistent Undos
-set undodir=~/.configs/nvim/.backups
+set undodir=~/.config/nvim/.backups
 set undofile
 
 " Display tabs and trailing spaces visually

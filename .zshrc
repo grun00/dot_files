@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh" 
 alias sl="exa"
 alias ls="exa"
-alias cat="bat"
+#alias cat="bat"
 alias cd..="cd .."
 alias ps="ps auxf --forest"
 alias rpy="python3"

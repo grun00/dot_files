@@ -1,9 +1,9 @@
-set clipboard+=unnamedplus 
-
 set rtp+=~/.fzf
+
 call plug#begin('~/.local/share/nvim/plugged') 
 
 "General 
+Plug 'Yggdroot/indentLine' 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs' 
@@ -11,12 +11,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround' 
-Plug 'vifm/vifm' 
 Plug 'vim-scripts/tComment' 
 Plug 'vimwiki/vimwiki' 
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'Yggdroot/indentLine' 
+
 
 "Ruby Plugs
 Plug 'thoughtbot/vim-rspec' 
@@ -32,48 +32,50 @@ call plug#end()
 
 " ================ General Config ====================
 
-set number relativenumber               
-set backspace=indent,eol,start          "Allow backspace in insert mode
-set history=1000
-set showcmd                             "Show incomplete cmds down the bottom
-set autoread                            "Reload files changed outside vim
-set hidden                              " http://items.sjbach.com/319/configuring-vim-right
-set ruler                               " Can always see where you are in file 
-set incsearch                           " Find the next match as we type the search
-set hlsearch                            " Highlight searches by default
-set ignorecase
-set smartcase
-set scrolloff=5
-set sidescrolloff=15
-set sidescroll=1
+set autoindent
+set autoread
+set backspace=indent,eol,start
+set clipboard+=unnamedplus 
+set cmdheight=2
+set expandtab 
 set foldnestmax=5
+set gdefault
+set hidden
+set history=1000
+set hlsearch
+set ignorecase
+set incsearch
+set linebreak  
+set nobackup
 set nofoldenable
 set noswapfile
-set nobackup
-set nowritebackup
 set nowb
-set autoindent
+set nowritebackup
+set number relativenumber
+set ruler
+set scrolloff=5
+set shiftwidth=2
+set showcmd
+set sidescroll=1
+set sidescrolloff=15
+set signcolumn=yes
+set smartcase
 set smartindent
 set smarttab
-set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab 
-set linebreak  
-set gdefault
-set cmdheight=2
 set updatetime=300
-set signcolumn=yes
-
-" Optminization for ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
 
 let mapleader=" "                       " Leader <space>
 set timeout timeoutlen=1500 
 filetype plugin on
 filetype indent on
 
+
 " ======================= Navigations, tabs, buffers, copy and custom commands
+
+" Optminization for ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
 
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -82,10 +84,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nnoremap <silent> <C-m> :nohl<CR><C-l>
 
 " Navigation of lines
-nnoremap  k gk
 nnoremap  j gj
-vnoremap  k gk
+nnoremap  k gk
 vnoremap  j gj
+vnoremap  k gk
 
 "Tab Navigation
 nnoremap tj  :tabfirst<CR>
@@ -110,6 +112,8 @@ set wildcharm=<Tab>
 set wildmenu
 set wildmode=full
 nnoremap <leader><Tab> :buffer<Space><Tab>
+nnoremap <leader>bn :bn<Return>
+nnoremap <leader>bp :bp<Return>
 noremap <leader>d :bd<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 
@@ -171,8 +175,9 @@ set laststatus=2
 if !has('gui_running')
   set t_Co=256
 endif
+
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'deus',
       \ }
 
 "For a better future
@@ -196,3 +201,7 @@ function! s:check_back_space() abort
   let col = col('.') - 1 
   return !col || getline('.')[col - 1]  =~# '\s' 
 endfunction
+
+"comfortable-motion adjustments
+let g:comfortable_motion_friction = 200.0 
+let g:comfortable_motion_air_drag = 3.0

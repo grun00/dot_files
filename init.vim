@@ -19,7 +19,8 @@ Plug 'yuttie/comfortable-motion.vim'
 
 "Color
 Plug 'ajmwagar/vim-deus'
-
+Plug 'cocopon/iceberg.vim'
+Plug 'NLKNguyen/papercolor-theme'
 "Ruby Plugs
 Plug 'thoughtbot/vim-rspec' 
 Plug 'tpope/vim-endwise' 
@@ -80,9 +81,16 @@ set termguicolors
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"
+"Type of Background
+set background=dark  
+" set background=light
 
-set background=dark    " Setting dark mode
+"Color schemes
 colorscheme deus
+" colorscheme iceberg
+" colorscheme PaperColor
+"Misc
 let g:deus_termcolors=256
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
@@ -93,7 +101,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-"<Ctrl-m> redraws the screen and removes any search highlight
+"<Ctrl-l> redraws the screen and removes any search highlight
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Navigation of lines

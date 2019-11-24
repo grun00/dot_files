@@ -47,10 +47,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+- split h
+bindsym $mod+p split h
 
 # split in vertical orientation
-bindsym $mod+/ split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -161,4 +161,4 @@ smart_borders on
 
 #================ Custom ==================
 # For browser
-bindsym $mod+shit+b exec firefox
+bindsym $mod+F2 exec firefox

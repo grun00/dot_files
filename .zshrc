@@ -10,7 +10,8 @@ export TERM=xterm-256color
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="gnzh"
 #ZSH_THEME="af-magic"
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="wedisagree"
 #ZSH_THEME="aussiegeek"
 #ZSH_THEME="xiong-chiamiov-plus"
 

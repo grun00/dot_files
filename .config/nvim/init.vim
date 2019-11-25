@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'junegunn/goyo.vim'
 
 "Color
 Plug 'ajmwagar/vim-deus'
@@ -24,7 +25,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'artanikin/vim-synthwave84'
 Plug 'cliuj/vim-dark-meadow'
 Plug 'jdsimcoe/abstract.vim'
-
+Plug 'nightsense/strawberry'
 
 
 "Ruby Plugs
@@ -96,8 +97,9 @@ set background=dark
 "colorscheme deus
 "colorscheme dark-meadow
 "colorscheme abstract
-colorscheme synthwave84
-" colorscheme iceberg
+"colorscheme synthwave84
+"colorscheme strawberry-dark
+"colorscheme iceberg
 " colorscheme PaperColor
 "Misc
 let g:deus_termcolors=256

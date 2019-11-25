@@ -1,34 +1,40 @@
 set rtp+=~/.fzf
 
-call plug#begin('~/.local/share/nvim/plugged') 
+call plug#begin('~/.local/share/nvim/plugged')
 
-"General 
-Plug 'Yggdroot/indentLine' 
+"General
+Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
-Plug 'jiangmiao/auto-pairs' 
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'kien/ctrlp.vim' 
+Plug 'kien/ctrlp.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-surround' 
-Plug 'vim-scripts/tComment' 
-Plug 'vimwiki/vimwiki' 
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/tComment'
+Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim'
 
 "Color
 Plug 'ajmwagar/vim-deus'
 Plug 'cocopon/iceberg.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'artanikin/vim-synthwave84'
+Plug 'cliuj/vim-dark-meadow'
+Plug 'jdsimcoe/abstract.vim'
+
+
+
 "Ruby Plugs
-Plug 'thoughtbot/vim-rspec' 
-Plug 'tpope/vim-endwise' 
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-endwise'
 
 "JavaScript plugins
 Plug 'editorconfig/editorconfig-vim'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'moll/vim-node' 
+Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
 
 call plug#end()
@@ -38,9 +44,9 @@ call plug#end()
 set autoindent
 set autoread
 set backspace=indent,eol,start
-set clipboard+=unnamedplus 
+set clipboard+=unnamedplus
 set cmdheight=2
-set expandtab 
+set expandtab
 set foldnestmax=5
 set gdefault
 set hidden
@@ -48,7 +54,7 @@ set history=1000
 set hlsearch
 set ignorecase
 set incsearch
-set linebreak  
+set linebreak
 set nobackup
 set nofoldenable
 set noswapfile
@@ -70,7 +76,7 @@ set tabstop=2
 set updatetime=300
 
 let mapleader=" "                       " Leader <space>
-set timeout timeoutlen=1500 
+set timeout timeoutlen=1500
 filetype plugin on
 filetype indent on
 
@@ -83,11 +89,14 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 "
 "Type of Background
-set background=dark  
-" set background=light
+set background=dark
+"set background=light
 
 "Color schemes
-colorscheme deus
+"colorscheme deus
+"colorscheme dark-meadow
+"colorscheme abstract
+colorscheme synthwave84
 " colorscheme iceberg
 " colorscheme PaperColor
 "Misc
@@ -96,7 +105,7 @@ let g:deus_termcolors=256
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
 " Optminization for ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -139,11 +148,11 @@ noremap <leader>d :bd<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 
 "For matching if/ends/do/ends/whatever blocks
-runtime macros/matchit.vim 
+runtime macros/matchit.vim
 
 "For copying between files
 vmap <Leader>y "*y
-nmap <Leader>p "*p 
+nmap <Leader>p "*p
 
 " ` and ^ are kinda hard on my keyboard
 nnoremap <leader>ç `
@@ -152,18 +161,18 @@ vnoremap ç ^
 
 " Saving
 nmap <leader>w :w!<enter>
-nmap <leader>wq :wq!<cr> 
+nmap <leader>wq :wq!<cr>
 
 "Tmux General
-let g:tmux_navigator_no_mappings = 1 
+let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 " nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 " nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 " nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 "nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 
-"Rspec 
-let g:spec_runner_dispatcher = "VtrSendCommand! {command}" 
+"Rspec
+let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
 map <Leader>rt :call RunCurrentSpecFile()<CR>
 map <Leader>rs :call RunNearestSpec()<CR>
 map <Leader>rl :call RunLastSpec()<CR>
@@ -181,18 +190,18 @@ set undofile
 set list listchars=tab:\ \ ,trail:·
 
 " <F6> Spell-check
-map <F6> :set spell spelllang=en_us 
+map <F6> :set spell spelllang=en_us
 
-"Cursor 
+"Cursor
 let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q" 
+let &t_EI = "\e[2 q"
 augroup myCmds
 au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
 
 " For vim-powerline
-set laststatus=2 
+set laststatus=2
 if !has('gui_running')
   set t_Co=256
 endif
@@ -212,17 +221,17 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 " coc auto complete with <tab>
-inoremap <silent><expr> <TAB> 
-      \ pumvisible() ? "\<C-n>" : 
-      \ <SID>check_back_space() ? "\<TAB>" : 
-      \ coc#refresh() 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>" 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort 
-  let col = col('.') - 1 
-  return !col || getline('.')[col - 1]  =~# '\s' 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 "comfortable-motion adjustments
-let g:comfortable_motion_friction = 200.0 
+let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0

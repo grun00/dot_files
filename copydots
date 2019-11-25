@@ -4,6 +4,6 @@ cp ~/.vimrc /home/grun/configs/dot_files
 cp ~/.zshrc /home/grun/configs/dot_files
 cp ~/.tmux.conf /home/grun/configs/dot_files
 cp ~/.config/nvim/init.vim /home/grun/configs/dot_files
-cp ~/.config/i3/config /home/grun/configs/dot_files
+cp ~/.config/kitty/kitty.conf /home/grun/configs/dot_files
 cp ~/.scripts/copydots /home/grun/configs/dot_files
 

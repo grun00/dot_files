@@ -12,7 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 "General 
 
-Plugin 'ycm-core/YouCompleteMe'
+"Plugin 'ycm-core/YouCompleteMe'
 Plugin 'tpope/vim-fugitive' 
 Plugin 'itchyny/lightline.vim'
 Plugin 'vimwiki/vimwiki' 

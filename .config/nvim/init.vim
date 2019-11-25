@@ -155,6 +155,10 @@ runtime macros/matchit.vim
 "For copying between files
 vmap <Leader>y "*y
 nmap <Leader>p "*p
+"
+"For copying to/from clipboard
+vmap <Leader>y "+y
+nmap <Leader>p "+p
 
 " ` and ^ are kinda hard on my keyboard
 nnoremap <leader>ç `
@@ -237,3 +241,17 @@ endfunction
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
+
+"so I can access system clipboard with xclip
+let g:clipboard = {
+  \   'name': 'xclip',
+  \   'copy': {
+  \      '+': 'xclip -selection clipboard',
+  \      '*': 'xclip -selection clipboard',
+  \    },
+  \   'paste': {
+  \      '+': 'xclip -selection clipboard -o',
+  \      '*': 'xclip -selection clipboard -o',
+  \   },
+  \   'cache_enabled': 1,
+  \ }

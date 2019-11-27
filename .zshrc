@@ -121,6 +121,7 @@ export PATH=$PATH:/home/grun/.scripts:/home/grun/.rustup:/home/grun/.cargo/bin:/
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_COMPLETION_TRIGGER='çç'
+export FZF_DEFAULT_COMMAND='find -L'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

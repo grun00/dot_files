@@ -8,7 +8,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
@@ -20,14 +19,14 @@ Plug 'junegunn/goyo.vim'
 Plug 'rust-lang/rust.vim'
 
 "Color
-Plug 'ajmwagar/vim-deus'
-Plug 'cocopon/iceberg.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'ajmwagar/vim-deus'
 Plug 'artanikin/vim-synthwave84'
 Plug 'cliuj/vim-dark-meadow'
+Plug 'cocopon/iceberg.vim'
 Plug 'jdsimcoe/abstract.vim'
-Plug 'nightsense/strawberry'
-
+Plug 'joshdick/onedark.vim'
+Plug 'nightsense/strawberry' 
 
 "Ruby Plugs
 Plug 'thoughtbot/vim-rspec'
@@ -94,21 +93,10 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark
 "set background=light
 
-"Color schemes
-"colorscheme deus
-"colorscheme dark-meadow
-"colorscheme abstract
-"colorscheme synthwave84
-"colorscheme strawberry-dark
-"colorscheme iceberg
-" colorscheme PaperColor
 "Misc
 let g:deus_termcolors=256
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
-
-" Optminization for ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -141,10 +129,10 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Buffer navigation
-set wildcharm=<Tab>
-set wildmenu
-set wildmode=full
-nnoremap <leader><Tab> :buffer<Space><Tab>
+" set wildcharm=<Tab>
+" set wildmenu
+" set wildmode=full
+" nnoremap <leader><Tab> :buffer<Space><Tab>
 nnoremap <leader>bn :bn<Return>
 nnoremap <leader>bp :bp<Return>
 noremap <leader>d :bd<CR>
@@ -158,8 +146,8 @@ vmap <Leader>y "*y
 nmap <Leader>p "*p
 "
 "For copying to/from clipboard
-vmap <Leader>y "+y
-nmap <Leader>p "+p
+vmap <Leader>c "+y
+nmap <Leader>V "+p
 
 " ` and ^ are kinda hard on my keyboard
 nnoremap <leader>ç `
@@ -173,10 +161,6 @@ nmap <leader>wq :wq!<cr>
 "Tmux General
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_disable_when_zoomed = 1
-" nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-" nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-" nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-"nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 
 "Rspec
 let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
@@ -214,7 +198,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-      \ 'colorscheme': 'deus',
+      \ 'colorscheme': 'onedark',
       \ }
 
 "For a better future
@@ -256,3 +240,36 @@ let g:clipboard = {
   \   },
   \   'cache_enabled': 1,
   \ }
+
+"FZF configs
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+"Open file in split
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+"Open file in VSplit
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
+
+"Buffers searching
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction 
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction 
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>

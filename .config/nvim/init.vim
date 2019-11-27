@@ -4,6 +4,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 "General
 Plug 'Yggdroot/indentLine'
+Plug 'kien/ctrlp.vim' 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
@@ -98,6 +99,10 @@ let g:deus_termcolors=256
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
+" Optminization for ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
+let g:ctrlp_show_hidden = 1
+
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -133,8 +138,8 @@ map sl <C-w>l
 " set wildmenu
 " set wildmode=full
 " nnoremap <leader><Tab> :buffer<Space><Tab>
-nnoremap <leader>bn :bn<Return>
-nnoremap <leader>bp :bp<Return>
+nnoremap <leader><Tab> :bn<Return>
+nnoremap <leader><S-Tab> :bp<Return>
 noremap <leader>d :bd<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 

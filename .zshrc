@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 #
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -103,21 +104,21 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh" 
 alias sl="exa"
 alias ls="exa"
-#alias cat="bat"
+alias cat="bat"
 alias cd..="cd .."
 alias ps="ps auxf --forest"
-alias rpy="python3"
 alias rs="rails s"
 alias rc="rails c"
 alias vi="vim -p"
 alias vim="nvim -p"
-alias ra="ranger"
+alias cmatrix="cmatrix -C magenta"
 
 
-export PATH=$PATH:/home/grun/.scripts:/home/grun/.cargo/bin:/home/grun/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:/home/grun/.rvm/gems/ruby-2.6.3/bin:/home/grun/.rvm/gems/ruby-2.6.3@global/bin:/home/grun/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.vimpkg/bin:/home/grun/.local/lib
+
+export PATH=$PATH:/home/grun/.scripts:/home/grun/.rustup:/home/grun/.cargo/bin:/home/grun/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:/home/grun/.rvm/gems/ruby-2.6.3/bin:/home/grun/.rvm/gems/ruby-2.6.3@global/bin:/home/grun/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.vimpkg/bin:/home/grun/.local/lib
 
 #Fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_COMPLETION_TRIGGER='çç'
 

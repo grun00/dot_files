@@ -6,6 +6,7 @@ cp ~/.tmux.conf /home/grun/configs/dot_files
 cp ~/.config/nvim/init.vim /home/grun/configs/dot_files/.config/nvim
 cp ~/.config/kitty/kitty.conf /home/grun/configs/dot_files/.config/kitty
 cp ~/.config/i3/config /home/grun/configs/dot_files/.config/i3
-cp ~/.config/polybar/config.ini /home/grun/configs/dot_files/.config/polybar
-cp ~/.scripts/copydots /home/grun/configs/dot_files
+cp ~/.config/polybar/config.ini /home/grun/configs/dot_files/.config/polybar 
+cp ~/.scripts/sf /home/grun/configs/dot_files/.scripts
+cp ~/.scripts/copydots /home/grun/configs/dot_files/.scripts
 

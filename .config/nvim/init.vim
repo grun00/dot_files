@@ -17,6 +17,7 @@ Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'rust-lang/rust.vim'
 
 "Color
 Plug 'ajmwagar/vim-deus'
@@ -242,7 +243,7 @@ endfunction
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
 
-"so I can access system clipboard with xclip
+"System Clipboard Access
 let g:clipboard = {
   \   'name': 'xclip',
   \   'copy': {

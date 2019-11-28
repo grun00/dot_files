@@ -4,30 +4,20 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 "General
 Plug 'Yggdroot/indentLine'
-Plug 'kien/ctrlp.vim' 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'kien/ctrlp.vim' 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
-Plug 'yuttie/comfortable-motion.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'rust-lang/rust.vim'
-
-"Color
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'ajmwagar/vim-deus'
-Plug 'artanikin/vim-synthwave84'
-Plug 'cliuj/vim-dark-meadow'
-Plug 'cocopon/iceberg.vim'
-Plug 'jdsimcoe/abstract.vim'
-Plug 'joshdick/onedark.vim'
-Plug 'nightsense/strawberry' 
+Plug 'yuttie/comfortable-motion.vim' 
 
 "Ruby Plugs
 Plug 'thoughtbot/vim-rspec'
@@ -82,20 +72,16 @@ set timeout timeoutlen=1500
 filetype plugin on
 filetype indent on
 
-"Color
-"
+"Color 
 set t_Co=256
 set termguicolors
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"
+
 "Type of Background
 set background=dark
 "set background=light
-
-"Misc
-let g:deus_termcolors=256
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
@@ -203,7 +189,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'deus',
       \ }
 
 "For a better future

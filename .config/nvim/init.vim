@@ -18,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
+Plug 'pbrisbin/vim-mkdir'
 
 "Ruby Plugs
 Plug 'thoughtbot/vim-rspec'

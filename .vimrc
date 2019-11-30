@@ -1,39 +1,38 @@
-" This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype off
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim 
 set rtp+=~/.fzf
 " ================ Plugins ================ 
-call vundle#begin()
-"Installation of plugins
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged') 
+"General
+Plug 'Yggdroot/indentLine'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'kien/ctrlp.vim' 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/tComment'
+Plug 'vimwiki/vimwiki'
+Plug 'yuttie/comfortable-motion.vim' 
+Plug 'pbrisbin/vim-mkdir'
 
-"General 
-
-"Plugin 'ycm-core/YouCompleteMe'
-Plugin 'tpope/vim-fugitive' 
-Plugin 'itchyny/lightline.vim'
-Plugin 'vimwiki/vimwiki' 
-Plugin 'vifm/vifm' 
-Plugin 'jiangmiao/auto-pairs' 
-Plugin 'tpope/vim-surround' 
-Plugin 'Yggdroot/indentLine' 
-Plugin 'vim-scripts/tComment' 
-Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim' 
-Plugin 'junegunn/fzf.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-"Ruby Plugins
-Plugin 'thoughtbot/vim-rspec' 
-Plugin 'tpope/vim-endwise' 
+"Ruby Plugs
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 
 "JavaScript plugins
-Plugin 'pangloss/vim-javascript'
-Plugin 'moll/vim-node' 
+Plug 'editorconfig/editorconfig-vim'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'moll/vim-node'
+Plug 'pangloss/vim-javascript'
 
-call vundle#end()            " required
+call plug#end()
 filetype plugin indent on    " required
 
 " ================ General Config ====================
@@ -71,8 +70,6 @@ set expandtab
 set linebreak    "Wrap lines at convenient points
 set gdefault
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
-
 let mapleader=" "                       " Leader <space>
 set timeout timeoutlen=1500 
 syntax on                               "turn on syntax highlighting
@@ -81,6 +78,10 @@ filetype indent on
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
+" Optminization for ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
+let g:ctrlp_show_hidden = 1
+
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -88,10 +89,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Navigation of lines
-nnoremap  k gk
 nnoremap  j gj
-vnoremap  k gk
+nnoremap  k gk
 vnoremap  j gj
+vnoremap  k gk
 
 "Tab Navigation
 nnoremap tj  :tabfirst<CR>
@@ -112,43 +113,41 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Buffer navigation
-set wildcharm=<Tab>
-set wildmenu
-set wildmode=full
-nnoremap <leader><Tab> :buffer<Space><Tab>
+" set wildcharm=<Tab>
+" set wildmenu
+" set wildmode=full
+" nnoremap <leader><Tab> :buffer<Space><Tab>
+nnoremap <leader><Tab> :bn<Return>
+nnoremap <leader><S-Tab> :bp<Return>
 noremap <leader>d :bd<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 
 "For matching if/ends/do/ends/whatever blocks
-runtime macros/matchit.vim 
+runtime macros/matchit.vim
 
 "For copying between files
 vmap <Leader>y "*y
 nmap <Leader>p "*p
-
-"Copy from system clipboard
+"
+"For copying to/from clipboard
 vmap <Leader>c "+y
-nmap <Leaver>v "+p
+nmap <Leader>V "+p
 
 " ` and ^ are kinda hard on my keyboard
-nnoremap <leader>m ` 
+nnoremap <leader>ç `
 nnoremap ç ^
 vnoremap ç ^
 
 " Saving
-nmap <leader>W :w!<enter>
-nmap <leader>wq :wq!<cr> 
+nmap <leader>w :w!<enter>
+nmap <leader>wq :wq!<cr>
 
 "Tmux General
-let g:tmux_navigator_no_mappings = 1 
+let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_disable_when_zoomed = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
-"Rspec 
-let g:spec_runner_dispatcher = "VtrSendCommand! {command}" 
+"Rspec
+let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
 map <Leader>rt :call RunCurrentSpecFile()<CR>
 map <Leader>rs :call RunNearestSpec()<CR>
 map <Leader>rl :call RunLastSpec()<CR>
@@ -159,30 +158,31 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 "Persistent Undos
-set undodir=~/.vim/undodir
+set undodir=~/.vim/backups
 set undofile
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
 " <F6> Spell-check
-map <F6> :set spell spelllang=en_us 
+map <F6> :set spell spelllang=en_us
 
-"Cursor 
+"Cursor
 let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q" 
+let &t_EI = "\e[2 q"
 augroup myCmds
 au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
 
 " For vim-powerline
-set laststatus=2 
+set laststatus=2
 if !has('gui_running')
   set t_Co=256
 endif
+
 let g:lightline = {
-      \ 'colorscheme': 'seoul256',
+      \ 'colorscheme': 'deus',
       \ }
 
 "For a better future
@@ -195,3 +195,51 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" coc auto complete with <tab>
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+"comfortable-motion adjustments
+let g:comfortable_motion_friction = 200.0
+let g:comfortable_motion_air_drag = 3.0
+
+"FZF configs
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+"Open file in split
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+"Open file in VSplit
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
+
+"Buffers searching
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction 
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction 
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>

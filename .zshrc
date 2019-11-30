@@ -36,8 +36,8 @@ alias cd..="cd .."
 alias ps="ps auxf --forest"
 alias rs="rails s"
 alias rc="rails c"
-alias vi="vim -p"
 alias vim="nvim -p"
+#alias vi="vim -p"
 alias cmatrix="cmatrix -C magenta" 
 
 

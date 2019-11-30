@@ -13,16 +13,16 @@ Plug 'kien/ctrlp.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
 Plug 'pbrisbin/vim-mkdir'
+Plug 'janko/vim-test'
 
 "Ruby Plugs
-Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 
 "JavaScript plugins
 Plug 'editorconfig/editorconfig-vim'
@@ -154,12 +154,13 @@ nmap <leader>wq :wq!<cr>
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 
-"Rspec
-let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
-map <Leader>rt :call RunCurrentSpecFile()<CR>
-map <Leader>rs :call RunNearestSpec()<CR>
-map <Leader>rl :call RunLastSpec()<CR>
-map <Leader>ra :call RunAllSpecs()<CR>
+" Substitute for vim-rspec
+nmap <silent> <Leader>rs :TestNearest<CR>
+nmap <silent> <Leader>rf :TestFile<CR>
+nmap <silent> <Leader>ra :TestSuite<CR>
+nmap <silent> <Leader>rl :TestLast<CR>
+nmap <silent> <Leader>rt :TestVisit<CR>
+let test#neovim#term_position = "leftabove"
 
 " Scrolling Faster
 nnoremap <C-e> 3<C-e>
@@ -170,7 +171,8 @@ set undodir=~/.config/nvim/.backups
 set undofile
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
+"set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:»·,trail:·,nbsp:·
 
 " <F6> Spell-check
 map <F6> :set spell spelllang=en_us
@@ -265,3 +267,18 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options': '+m',
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
+
+" create <%= foo %> erb tags using Ctrl-k in edit mode
+imap <silent> <C-K> <%=  %><Esc>2hi
+
+" create <%= foo %> erb tags using Ctrl-j in edit mode
+imap <silent> <C-J> <%  %><Esc>2hi
+
+"For a better Future
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Always use vertical diffs
+set diffopt+=vertical

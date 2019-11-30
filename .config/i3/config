@@ -163,4 +163,5 @@ exec --no-startup-id /usr/bin/feh --bg-scale --random ~/Pictures/Wallpapers/*
 bindsym $mod+shift+x exec i3lock
 # xcompmgr
 exec --no-startup-id xcompmgr
-
+# Mouse is really weird for me
+focus_follows_mouse no

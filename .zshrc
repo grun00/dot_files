@@ -32,7 +32,6 @@ export EDITOR='nvim'
 # For a full list of active aliases, run `alias`.  
 alias sl="exa"
 alias ls="exa"
-alias cat="bat"
 alias cd..="cd .."
 alias ps="ps auxf --forest"
 alias rs="rails s"

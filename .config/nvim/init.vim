@@ -20,6 +20,9 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'janko/vim-test'
 
+"Colors 
+Plug 'morhetz/gruvbox'
+
 "Ruby Plugs
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
@@ -68,7 +71,7 @@ set softtabstop=2
 set tabstop=2
 set updatetime=300
 
-let mapleader=" "                       " Leader <space>
+let mapleader=" "
 set timeout timeoutlen=1500
 filetype plugin on
 filetype indent on
@@ -80,9 +83,24 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+let g:gruvbox_italic=1
 "Type of Background
-set background=dark
+"set background=dark
 "set background=light
+
+"Colorschemes
+colorscheme gruvbox
+
+"For changing backgroud color
+let hr = (strftime('%H'))
+if hr >= 18 
+set background=dark
+elseif hr >= 8
+set background=light
+elseif hr >= 0
+set background=dark
+endif
+
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
@@ -192,7 +210,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-      \ 'colorscheme': 'deus',
+      \ 'colorscheme': 'gruvbox',
       \ }
 
 "For a better future

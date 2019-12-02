@@ -5,9 +5,10 @@ export TERM=xterm-256color
 #ZSH_THEME="gnzh"
 #ZSH_THEME="af-magic"
 #ZSH_THEME="agnoster"
-ZSH_THEME="wedisagree"
+#ZSH_THEME="wedisagree"
 #ZSH_THEME="aussiegeek"
 #ZSH_THEME="xiong-chiamiov-plus" 
+ZSH_THEME=powerlevel10k/powerlevel10k
 
 CASE_SENSITIVE="true" 
 DISABLE_UPDATE_PROMPT="true" 
@@ -89,3 +90,6 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

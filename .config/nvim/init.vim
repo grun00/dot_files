@@ -6,19 +6,19 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
+Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'kien/ctrlp.vim' 
+Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'pbrisbin/vim-mkdir'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
-Plug 'pbrisbin/vim-mkdir'
-Plug 'janko/vim-test'
 
 "Colors 
 Plug 'morhetz/gruvbox'
@@ -32,6 +32,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
+
+"Not Programming
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -194,6 +198,7 @@ set list listchars=tab:»·,trail:·,nbsp:·
 
 " <F6> Spell-check
 map <F6> :set spell spelllang=en_us
+map <F7> :set spell spelllang=pt
 
 "Cursor
 let &t_SI = "\e[6 q"
@@ -300,3 +305,11 @@ nnoremap <Down> :echoe "Use j"<CR>
 
 " Always use vertical diffs
 set diffopt+=vertical
+
+"For Goyo/Limelight integration
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+nnoremap <Leader>gy :Goyo<CR>
+
+"Compatibility with vim-latex
+let g:vimtex_compiler_progname = 'nvr'

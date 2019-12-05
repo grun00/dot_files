@@ -21,6 +21,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
+Plug 'easymotion/vim-easymotion'
 
 "Colors 
 Plug 'morhetz/gruvbox'
@@ -208,7 +209,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'deus',
       \ }
 
 "For a better future

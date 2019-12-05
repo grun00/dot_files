@@ -190,9 +190,10 @@ set undofile
 "set list listchars=tab:\ \ ,trail:·
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" <F6> Spell-check
+"Spell-check
 map <F6> :set spell spelllang=en_us
 map <F7> :set spell spelllang=pt
+map <F8> :set spell spelllang=de
 
 "Cursor
 let &t_SI = "\e[6 q"

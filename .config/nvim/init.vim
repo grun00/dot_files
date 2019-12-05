@@ -1,8 +1,10 @@
+set encoding=utf-8
 set rtp+=~/.fzf
 
 call plug#begin('~/.local/share/nvim/plugged')
 
 "General
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
@@ -89,21 +91,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:gruvbox_italic=1
 "Type of Background
-"set background=dark
+set background=dark
 "set background=light
 
 "Colorschemes
 colorscheme gruvbox
 
-"For changing backgroud color
-let hr = (strftime('%H'))
-if hr >= 18 
-set background=dark
-elseif hr >= 8
-set background=light
-elseif hr >= 0
-set background=dark
-endif
 
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
@@ -292,10 +285,10 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \ })<CR>
 
 " create <%= foo %> erb tags using Ctrl-k in edit mode
-imap <silent> <C-K> <%=  %><Esc>2hi
+imap <silent> <C-L> <%=  %><Esc>2hi
 
 " create <%= foo %> erb tags using Ctrl-j in edit mode
-imap <silent> <C-J> <%  %><Esc>2hi
+imap <silent> <C-H> <%  %><Esc>2hi
 
 "For a better Future
 nnoremap <Left> :echoe "Use h"<CR>
@@ -313,3 +306,4 @@ nnoremap <Leader>gy :Goyo<CR>
 
 "Compatibility with vim-latex
 let g:vimtex_compiler_progname = 'nvr'
+

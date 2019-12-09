@@ -17,7 +17,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" 
 ZSH_CUSTOM=~/.config/zsh_configs 
 
-plugins=(git rvm rails vi-mode vundle web-search zsh_reload)
+plugins=(archlinux git rvm rails vi-mode web-search zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,7 +46,7 @@ alias sdcvale="sdcv -u \"German - Portuguese\""
 alias sdcvger="sdcv -u \"German - English\""
 alias sdcvpot="sdcv -u \"Portuguese - German\""
 
-export PATH=$PATH:/home/grun/.scripts:/home/grun/.rustup:/home/grun/.cargo/bin:/home/grun/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:/home/grun/.rvm/gems/ruby-2.6.3/bin:/home/grun/.rvm/gems/ruby-2.6.3@global/bin:/home/grun/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/grun/.vimpkg/bin:/home/grun/.local/lib
+export PATH=$PATH:~/.configs/Anaconda3/bin:~/.configs/Anaconda3/condabin:~/.scripts:~/.rustup:~/.cargo/bin:~/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:~/.rvm/gems/ruby-2.6.3/bin:~/.rvm/gems/ruby-2.6.3@global/bin:~/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib
 
 #Fuzzy finder
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh

@@ -157,10 +157,8 @@ nmap <Leader>p "*p
 vmap <Leader>c "+y
 nmap <Leader>V "+p
 
-" ` and ^ are kinda hard on my keyboard
-nnoremap <leader>ç `
-nnoremap ç ^
-vnoremap ç ^
+" ` is kinda hard on my keyboard
+nnoremap ç `
 
 " Saving
 nmap <leader>w :w!<enter>

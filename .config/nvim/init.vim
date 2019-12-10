@@ -7,6 +7,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -21,7 +22,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
-Plug 'easymotion/vim-easymotion'
+Plug 'dense-analysis/ale'
 
 "Colors 
 Plug 'morhetz/gruvbox'
@@ -174,7 +175,13 @@ nmap <silent> <Leader>rf :TestFile<CR>
 nmap <silent> <Leader>ra :TestSuite<CR>
 nmap <silent> <Leader>rl :TestLast<CR>
 nmap <silent> <Leader>rt :TestVisit<CR>
-let test#neovim#term_position = "leftabove"
+let g:test#strategy = "neovim"
+let g:neoterm_shell = '$SHELL -l' " use the login shell
+let g:neoterm_keep_term_open = 0 
+let g:neoterm_autoscroll = 1 
+tmap <leader>o <C-\><C-n>
+let test#neovim#term_position = "vert topleft"
+
 
 " Scrolling Faster
 nnoremap <C-e> 3<C-e>
@@ -307,3 +314,8 @@ nnoremap <Leader>gy :Goyo<CR>
 "Compatibility with vim-latex
 let g:vimtex_compiler_progname = 'nvr'
 
+"Ale configs
+packloadall
+silent! helptags ALL
+
+"Testing

@@ -42,9 +42,11 @@ alias vim="nvim"
 alias cmatrix="cmatrix -C magenta" 
 alias ghc="ghc -dynamic"
 #For sdcv
-alias sdcvale="sdcv -u \"German - Portuguese\""
-alias sdcvger="sdcv -u \"German - English\""
-alias sdcvpot="sdcv -u \"Portuguese - German\""
+alias tlGP="sdcv -u \"German - Portuguese\""
+alias tlPG="sdcv -u \"Portuguese - German\""
+alias tlGE="sdcv -u \"German - English\""
+alias tlPE="sdcv -u \"Portuguese - English\""
+alias rm="rm -i"
 
 export PATH=$PATH:~/.configs/Anaconda3/bin:~/.configs/Anaconda3/condabin:~/.scripts:~/.rustup:~/.cargo/bin:~/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:~/.rvm/gems/ruby-2.6.3/bin:~/.rvm/gems/ruby-2.6.3@global/bin:~/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib
 

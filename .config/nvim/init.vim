@@ -36,6 +36,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'moll/vim-node'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 "Not Programming
 Plug 'junegunn/goyo.vim'
@@ -153,17 +154,12 @@ runtime macros/matchit.vim
 "For copying between files
 vmap <Leader>y "*y
 nmap <Leader>p "*p
-"
-"For copying to/from clipboard
-vmap <Leader>c "+y
-nmap <Leader>V "+p
 
 " ` is kinda hard on my keyboard
 nnoremap ç `
 
 " Saving
 nmap <leader>w :w!<enter>
-nmap <leader>wq :wq!<cr>
 
 "Tmux General
 let g:tmux_navigator_no_mappings = 1
@@ -176,9 +172,9 @@ nmap <silent> <Leader>ra :TestSuite<CR>
 nmap <silent> <Leader>rl :TestLast<CR>
 nmap <silent> <Leader>rt :TestVisit<CR>
 let g:test#strategy = "neovim"
-let g:neoterm_shell = '$SHELL -l' " use the login shell
-let g:neoterm_keep_term_open = 0 
-let g:neoterm_autoscroll = 1 
+let g:neoterm_shell = '$SHELL -l'
+let g:neoterm_keep_term_open = 0
+let g:neoterm_autoscroll = 1
 tmap <leader>o <C-\><C-n>
 let test#neovim#term_position = "vert topleft"
 
@@ -318,4 +314,3 @@ let g:vimtex_compiler_progname = 'nvr'
 packloadall
 silent! helptags ALL
 
-"Testing

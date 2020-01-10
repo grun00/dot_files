@@ -17,7 +17,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true" 
 ZSH_CUSTOM=~/.config/zsh_configs 
 
-plugins=(archlinux git rvm rails vi-mode web-search zsh_reload)
+#plugins=(archlinux git rvm rails vi-mode web-search zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 

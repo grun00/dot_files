@@ -10,7 +10,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 "General
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'easymotion/vim-easymotion'

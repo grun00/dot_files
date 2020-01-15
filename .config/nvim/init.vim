@@ -280,3 +280,9 @@ let g:vimtex_compiler_progname = 'nvr'
 packloadall
 silent! helptags ALL
 
+"file system
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+

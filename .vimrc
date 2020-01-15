@@ -8,50 +8,51 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 set rtp+=~/.fzf
-" ================ Plugins ================ 
-call plug#begin('~/.vim/plugged') 
-"General
+" ================ Plugins ================
+call plug#begin('~/.vim/plugged')
+
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'kien/ctrlp.vim' 
+Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
-Plug 'pbrisbin/vim-mkdir'
-
-"Ruby Plugs
-Plug 'thoughtbot/vim-rspec'
+Plug 'pbrisbin/vim-mkdir' 
+Plug 'janko/vim-test'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails' 
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 call plug#end()
-filetype plugin indent on    " required
-
+filetype plugin indent on 
+let g:deoplete#enable_at_startup = 1
 " ================ General Config ====================
 
 set paste
-set number relativenumber               "Line numbers are good
-set backspace=indent,eol,start          "Allow backspace in insert mode
-set history=1000                        "Store lots of :cmdline history
-set showcmd                             "Show incomplete cmds down the bottom
-set showmode                            "Show current mode down the bottom
-set gcr=a:blinkon0                      "Disable cursor blink
-set visualbell                          "No sounds
-set autoread                            "Reload files changed outside vim
-set t_vb=                               "Remove Annoying Beep
-set hidden                              " http://items.sjbach.com/319/configuring-vim-right
-set ruler                               " Can always see where you are in file 
-set incsearch                           " Find the next match as we type the search
-set hlsearch                            " Highlight searches by default
-set ignorecase                          " Ignore case when searching...
-set smartcase                           " ...unless we type a capital
-set scrolloff=5                         " Scrolling from 5 up/down
+set number relativenumber
+set backspace=indent,eol,start
+set history=1000
+set showcmd
+set showmode
+set gcr=a:blinkon0
+set visualbell
+set autoread
+set t_vb=
+set hidden
+set ruler
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set scrolloff=5
 set sidescrolloff=15
 set sidescroll=1
-set foldnestmax=5                      "deepest fold is 5 levels
-set nofoldenable                       "dont fold by default
+set foldnestmax=5
+set nofoldenable
 set noswapfile
 set nobackup
 set nowb
@@ -61,20 +62,20 @@ set smarttab
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
-set expandtab 
-set linebreak    "Wrap lines at convenient points
+set expandtab
+set linebreak
 set gdefault
 
-let mapleader=" "                       " Leader <space>
-set timeout timeoutlen=1500 
-syntax on                               "turn on syntax highlighting
+let mapleader=" "
+set timeout timeoutlen=1500
+syntax on
 filetype plugin on
 filetype indent on
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
 " Optminization for ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_show_hidden = 1
 
 " Always start in same position when opening file
@@ -135,12 +136,12 @@ nnoremap ç `
 let g:tmux_navigator_no_mappings = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 
-"Rspec
-let g:spec_runner_dispatcher = "VtrSendCommand! {command}"
-map <Leader>rt :call RunCurrentSpecFile()<CR>
-map <Leader>rs :call RunNearestSpec()<CR>
-map <Leader>rl :call RunLastSpec()<CR>
-map <Leader>ra :call RunAllSpecs()<CR>
+" Substitute for vim-rspec
+nmap <silent> <Leader>rs :TestNearest<CR>
+nmap <silent> <Leader>rf :TestFile<CR>
+nmap <silent> <Leader>ra :TestSuite<CR>
+nmap <silent> <Leader>rl :TestLast<CR>
+nmap <silent> <Leader>rt :TestVisit<CR>
 
 " Scrolling Faster
 nnoremap <C-e> 3<C-e>
@@ -201,11 +202,11 @@ function! s:buflist()
   silent ls
   redir END
   return split(ls, '\n')
-endfunction 
+endfunction
 
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction 
+endfunction
 
 nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'source':  reverse(<sid>buflist()),

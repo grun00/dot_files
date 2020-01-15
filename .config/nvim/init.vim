@@ -1,16 +1,9 @@
 set encoding=utf-8
 set rtp+=~/.fzf
 
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 "General
-"Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'Yggdroot/indentLine'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'easymotion/vim-easymotion'
@@ -19,10 +12,7 @@ Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim' 
-Plug 'lervag/vimtex'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pbrisbin/vim-mkdir'
-Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
@@ -37,12 +27,9 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 
-"JavaScript plugins
-Plug 'editorconfig/editorconfig-vim'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'moll/vim-node'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
 
 "Not Programming
 Plug 'junegunn/goyo.vim'
@@ -219,18 +206,6 @@ endif
 let g:lightline = {
       \ 'colorscheme': 'deus',
       \ } 
-
-" coc auto complete with <tab>
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0

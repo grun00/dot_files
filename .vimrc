@@ -1,24 +1,24 @@
 set nocompatible
 filetype off
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 set rtp+=~/.fzf
 " ================ Plugins ================ 
 call plug#begin('~/.vim/plugged') 
 "General
 Plug 'Yggdroot/indentLine'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'kien/ctrlp.vim' 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
-Plug 'vimwiki/vimwiki'
-Plug 'yuttie/comfortable-motion.vim' 
 Plug 'pbrisbin/vim-mkdir'
 
 "Ruby Plugs
@@ -26,17 +26,12 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 
-"JavaScript plugins
-Plug 'editorconfig/editorconfig-vim'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'moll/vim-node'
-Plug 'pangloss/vim-javascript'
-
 call plug#end()
 filetype plugin indent on    " required
 
 " ================ General Config ====================
 
+set paste
 set number relativenumber               "Line numbers are good
 set backspace=indent,eol,start          "Allow backspace in insert mode
 set history=1000                        "Store lots of :cmdline history
@@ -134,13 +129,7 @@ vmap <Leader>c "+y
 nmap <Leader>V "+p
 
 " ` and ^ are kinda hard on my keyboard
-nnoremap <leader>ç `
-nnoremap ç ^
-vnoremap ç ^
-
-" Saving
-nmap <leader>w :w!<enter>
-nmap <leader>wq :wq!<cr>
+nnoremap ç `
 
 "Tmux General
 let g:tmux_navigator_no_mappings = 1
@@ -163,9 +152,6 @@ set undofile
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
-
-" <F6> Spell-check
-map <F6> :set spell spelllang=en_us
 
 "Cursor
 let &t_SI = "\e[6 q"
@@ -194,22 +180,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-
-" coc auto complete with <tab>
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-"comfortable-motion adjustments
-let g:comfortable_motion_friction = 200.0
-let g:comfortable_motion_air_drag = 3.0
 
 "FZF configs
 let g:fzf_buffers_jump = 1
@@ -247,4 +217,5 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 if &diff
     syntax off
 endif
+
 

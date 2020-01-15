@@ -127,8 +127,8 @@ vnoremap  j gj
 vnoremap  k gk
 
 "Tab Navigation
-nnoremap tj  :tabfirst<CR>
-nnoremap tk  :tablast<CR>
+nnoremap tk  :tabfirst<CR>
+nnoremap tj  :tablast<CR>
 nnoremap th :tabprev<Return>
 nnoremap tl :tabnext<Return>
 nnoremap tt  :tabedit<Space>
@@ -283,11 +283,6 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
 
-" create <%= foo %> erb tags using Ctrl-k in edit mode
-imap <silent> <C-L> <%=  %><Esc>2hi
-
-" create <%= foo %> erb tags using Ctrl-j in edit mode
-imap <silent> <C-H> <%  %><Esc>2hi
 
 "For a better Future
 nnoremap <Left> :echoe "Use h"<CR>

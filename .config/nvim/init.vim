@@ -1,35 +1,34 @@
 set encoding=utf-8
 set rtp+=~/.fzf
 
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 "General
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Yggdroot/indentLine'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox' 
 Plug 'pbrisbin/vim-mkdir'
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails' 
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
-Plug 'dense-analysis/ale'
-
-"Colors 
-Plug 'morhetz/gruvbox'
-
-"Ruby Plugs
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rails'
-
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-
+Plug 'iCyMind/NeoSolarized'
 "Not Programming
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -80,18 +79,17 @@ filetype indent on
 "Color 
 set t_Co=256
 set termguicolors
-
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:gruvbox_italic=1
 "Type of Background
-set background=dark
-"set background=light
+"set background=dark
+set background=light
 
 "Colorschemes
-colorscheme gruvbox
-
+"colorscheme gruvbox
+colorscheme NeoSolarized
 
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
@@ -145,9 +143,6 @@ nmap <Leader>p "*p
 
 " ` is kinda hard on my keyboard
 nnoremap ç `
-
-" Saving
-nmap <leader>w :w!<enter>
 
 "Tmux General
 let g:tmux_navigator_no_mappings = 1
@@ -223,6 +218,8 @@ let g:clipboard = {
 "FZF configs
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-s> :Rg<Cr>
 
 "Open file in split
 nnoremap <silent> <Leader>s :call fzf#run({
@@ -253,13 +250,6 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
 
-
-"For a better Future
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " Always use vertical diffs
 set diffopt+=vertical
 
@@ -267,9 +257,6 @@ set diffopt+=vertical
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 nnoremap <Leader>gy :Goyo<CR>
-
-"Compatibility with vim-latex
-let g:vimtex_compiler_progname = 'nvr'
 
 "Ale configs
 packloadall
@@ -279,8 +266,10 @@ silent! helptags ALL
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 25
+let g:netrw_winsize = 25 
 
-nnoremap <C-p> :Files<Cr>
-nnoremap <C-s> :Rg<Cr>
-
+"For a better Future
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>

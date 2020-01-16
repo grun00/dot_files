@@ -28,7 +28,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
-Plug 'iCyMind/NeoSolarized'
+Plug 'altercation/vim-colors-solarized'
 "Not Programming
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -84,12 +84,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 let g:gruvbox_italic=1
 "Type of Background
-"set background=dark
-set background=light
+set background=dark
+"set background=light
 
 "Colorschemes
 "colorscheme gruvbox
-colorscheme NeoSolarized
+colorscheme solarized
 
 
 " ======================= Navigations, tabs, buffers, copy and custom commands

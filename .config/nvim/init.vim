@@ -11,7 +11,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'kien/ctrlp.vim' 
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -96,10 +95,6 @@ colorscheme gruvbox
 
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
-
-" Optminization for ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard'] 
-let g:ctrlp_show_hidden = 1
 
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -285,4 +280,7 @@ let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
+
+nnoremap <C-p> :Files<Cr>
+nnoremap <C-s> :Rg<Cr>
 

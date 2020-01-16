@@ -125,10 +125,6 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Buffer navigation
-" set wildcharm=<Tab>
-" set wildmenu
-" set wildmode=full
-" nnoremap <leader><Tab> :buffer<Space><Tab>
 nnoremap <leader><Tab> :bn<Return>
 nnoremap <leader><S-Tab> :bp<Return>
 noremap <leader>d :bd<CR>
@@ -143,10 +139,6 @@ nmap <Leader>p "*p
 
 " ` is kinda hard on my keyboard
 nnoremap ç `
-
-"Tmux General
-let g:tmux_navigator_no_mappings = 1
-let g:tmux_navigator_disable_when_zoomed = 1
 
 " Substitute for vim-rspec
 nmap <silent> <Leader>rs :TestNearest<CR>
@@ -267,9 +259,11 @@ let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 25 
+nnoremap <leader>ç :Vexplore<CR>
 
 "For a better Future
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+

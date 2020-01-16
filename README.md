@@ -11,4 +11,5 @@ nvim
 * <leader><Enter> fzf open buffers
 * <C-p> searches directory with fzf
 * <C-s> grep directory with ripgrep 
+* <leader>ç opens netrw
 

@@ -12,13 +12,13 @@ Generic mappins
 * Navigation Inside splits is done with s + motion 
 * \<leader\>Tab/<leader><S-Tab> cycle through buffers
 * \<leader\><Enter> fzf open buffers
-* <C-p> searches directory with fzf
-* <C-s> grep directory with ripgrep 
+* \<C-p\> searches directory with fzf
+* \<C-s\> grep directory with ripgrep 
 * \<leader\>+/- resizes horizontal split
 * \<leader\></> resizes vertical split 
 * \<leader\>ç opens netrw
 * tab navigation is done with tX -> X is the motion
-* Scrolling \<C-d\>/<C-u> with easy motion
+* Scrolling \<C-d\>/\<C-u\> with easy motion
 
 Fugitive
 ========
@@ -44,7 +44,7 @@ vim-tests
 Tmux
 ====
 
-* Prefix <C-a>
+* Prefix \<C-a\>
 * Split Horizontal Prefix - 
 * Split Vertical Prefix /
 

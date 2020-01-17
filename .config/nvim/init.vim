@@ -75,6 +75,7 @@ set tabstop=2
 set updatetime=300
 
 let mapleader=" "
+nnoremap , @@
 set timeout timeoutlen=1500
 filetype plugin on
 filetype indent on

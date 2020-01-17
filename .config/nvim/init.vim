@@ -26,7 +26,8 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim' 
 Plug 'vim-scripts/VisIncr'
-Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch' 
+Plug 'alvan/vim-closetag'
 
 "Colors
 Plug 'morhetz/gruvbox' 
@@ -303,3 +304,6 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>z :ZoomToggle<CR>
+
+" HTML
+let g:closetag_filenames = '*.html,*.xhtml,*.html.erb'

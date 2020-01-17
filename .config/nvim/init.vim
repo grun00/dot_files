@@ -28,7 +28,7 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-scripts/VisIncr'
 Plug 'tpope/vim-dispatch' 
 Plug 'alvan/vim-closetag'
-
+Plug 'idanarye/vim-merginal'
 "Colors
 Plug 'morhetz/gruvbox' 
 Plug 'altercation/vim-colors-solarized'
@@ -289,6 +289,7 @@ nnoremap <leader>gpl :Gpull
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gcb :Merginal<CR>
 
 "Zoom / Restore window.  
 function! s:ZoomToggle() abort

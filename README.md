@@ -37,6 +37,7 @@ Fugitive
 * \<leader\>gps :Gpush
 * \<leader\>gs :Gstatus
 * \<leader\>gw :Gwrite
+* \<leader\>gcb :Merginal
 
 vim-tests
 =========

@@ -56,9 +56,12 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 #EXTRA
 #History Files
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.config/zsh_configs/hist/history
 #Vi Mode
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 export KEYTIMEOUT=1
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char

@@ -25,6 +25,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim' 
+Plug 'vim-scripts/VisIncr'
 
 "Colors
 Plug 'morhetz/gruvbox' 
@@ -280,7 +281,7 @@ nnoremap <leader>> <C-w>><CR>
 "Vim Fugitive
 nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gl :Gllog<CR>
 nnoremap <leader>gm :Gmerge

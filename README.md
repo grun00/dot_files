@@ -1,7 +1,7 @@
 nvim
 ====
 
-* Leader key is <space>
+* Leader key is " " (space)
 
 Generic mappins
 ===============

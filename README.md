@@ -30,7 +30,6 @@ Fugitive
 * \<leader\>gl :Gllog
 * \<leader\>gl :Gread
 * \<leader\>gm :Gmerge
-* \<leader\>gp :Gpush
 * \<leader\>gpl :Gpull
 * \<leader\>gps :Gpush
 * \<leader\>gs :Gstatus

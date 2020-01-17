@@ -41,3 +41,11 @@ vim-tests
 * <Leader>rl :TestLast -> Last test
 * <Leader>rv :TestVisit -> Opens last test in buffer
 
+Tmux
+====
+
+* Prefix <C-a>
+* Split Horizontal Prefix - 
+* Split Vertical Prefix /
+
+

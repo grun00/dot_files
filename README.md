@@ -44,6 +44,12 @@ vim-tests
 * \<leader\>rl :TestLast -> Last test
 * \<leader\>rv :TestVisit -> Opens last test in buffer
 
+VisIncr
+=======
+
+Use \<C-v\> for visual more and call:
+* :I increment all selected by 1 as a default, but takes a number as a step argument 
+
 Tmux
 ====
 

@@ -154,7 +154,7 @@ nmap <silent> <Leader>rs :TestNearest<CR>
 nmap <silent> <Leader>rf :TestFile<CR>
 nmap <silent> <Leader>ra :TestSuite<CR>
 nmap <silent> <Leader>rl :TestLast<CR>
-nmap <silent> <Leader>rt :TestVisit<CR>
+nmap <silent> <Leader>rv :TestVisit<CR>
 let g:test#strategy = "neovim"
 let g:neoterm_shell = '$SHELL -l'
 let g:neoterm_keep_term_open = 0

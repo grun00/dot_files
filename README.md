@@ -39,5 +39,5 @@ vim-tests
 * <Leader>rf :TestFile -> Whole file
 * <Leader>ra :TestSuite -> All tests
 * <Leader>rl :TestLast -> Last test
-* <Leader>rt :TestVisit -> Opens last test in buffer
+* <Leader>rv :TestVisit -> Opens last test in buffer
 

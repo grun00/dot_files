@@ -19,6 +19,7 @@ Generic mappins
 * \<leader\>ç opens netrw
 * tab navigation is done with tX -> X is the motion
 * Scrolling \<C-d\>/\<C-u\> with easy motion
+* zf/zo closing and opening folds
 
 Fugitive
 ========

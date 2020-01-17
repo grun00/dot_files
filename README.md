@@ -23,14 +23,18 @@ Generic mappins
 Fugitive
 ========
 * \<leader\>gX is the general form
-* \<leader\>gs :Gstatus
+* \<leader\>ga :Git add . -> Addes all changes to staging
 * \<leader\>gb :Gblame
 * \<leader\>gc :Gcommit
-* \<leader\>gp :Gpush
-* \<leader\>gP :Gpull
-* \<leader\>gw :Gwrite
 * \<leader\>gd :Gdiff
-* \<leader\>ga :Git add . -> Addes all changes to staging
+* \<leader\>gl :Gllog
+* \<leader\>gl :Gread
+* \<leader\>gm :Gmerge
+* \<leader\>gp :Gpush
+* \<leader\>gpl :Gpull
+* \<leader\>gps :Gpush
+* \<leader\>gs :Gstatus
+* \<leader\>gw :Gwrite
 
 vim-tests
 =========

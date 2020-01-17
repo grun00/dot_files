@@ -278,11 +278,15 @@ nnoremap <leader>< <C-w><<CR>
 nnoremap <leader>> <C-w>><CR>
 
 "Vim Fugitive
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush
-nnoremap <leader>gP :Gpull
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gl :Gllog<CR>
+nnoremap <leader>gm :Gmerge
+nnoremap <leader>gps :Gpush
+nnoremap <leader>gpl :Gpull
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gw :Gwrite<CR>
+

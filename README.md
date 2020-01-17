@@ -20,6 +20,7 @@ Generic mappins
 * tab navigation is done with tX -> X is the motion
 * Scrolling \<C-d\>/\<C-u\> with easy motion
 * zf/zo closing and opening folds
+* repeating macros is done with ,
 
 Fugitive
 ========

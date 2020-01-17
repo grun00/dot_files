@@ -14,24 +14,27 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Yggdroot/indentLine'
 Plug 'dense-analysis/ale'
-Plug 'easymotion/vim-easymotion'
 Plug 'itchyny/lightline.vim'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox' 
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails' 
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
-Plug 'vimwiki/vimwiki'
 Plug 'yuttie/comfortable-motion.vim' 
+
+"Colors
+Plug 'morhetz/gruvbox' 
 Plug 'altercation/vim-colors-solarized'
+
 "Not Programming
+Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -233,7 +236,7 @@ endfunction
 
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction 
+endfunction
 
 nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'source':  reverse(<sid>buflist()),
@@ -258,7 +261,7 @@ silent! helptags ALL
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_winsize = 25 
+let g:netrw_winsize = 20
 nnoremap <leader>ç :Vexplore<CR>
 
 "For a better Future
@@ -267,3 +270,17 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" Resizing panes
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <leader>< <C-w><<CR>
+nnoremap <leader>> <C-w><<CR>
+
+"Vim Fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gP :Gpull<CR>
+nnoremap <leader>ga :Gwrite<CR>
+nnoremap <leader>gd :Gdiff<CR>

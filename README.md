@@ -21,6 +21,7 @@ Generic mappins
 * Scrolling \<C-d\>/\<C-u\> with easy motion
 * zf/zo closing and opening folds
 * repeating macros is done with ,
+* \<leader\>z togles zoom on splits
 
 Fugitive
 ========

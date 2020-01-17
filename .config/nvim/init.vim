@@ -26,6 +26,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim' 
 Plug 'vim-scripts/VisIncr'
+Plug 'tpope/vim-dispatch'
 
 "Colors
 Plug 'morhetz/gruvbox' 
@@ -50,7 +51,7 @@ set expandtab
 set foldnestmax=5
 set gdefault
 set hidden
-set history=1000
+set history=10000
 set hlsearch
 set ignorecase
 set incsearch
@@ -145,24 +146,21 @@ nnoremap <leader>ba :buffers<CR>:buffer<Space>
 runtime macros/matchit.vim
 
 "For copying between files
-vmap <Leader>y "*y
-nmap <Leader>p "*p
+vmap <leader>y "*y
+nmap <leader>p "*p
 
 " ` is kinda hard on my keyboard
 nnoremap ç `
 
 " Substitute for vim-rspec
-nmap <silent> <Leader>rs :TestNearest<CR>
-nmap <silent> <Leader>rf :TestFile<CR>
-nmap <silent> <Leader>ra :TestSuite<CR>
-nmap <silent> <Leader>rl :TestLast<CR>
-nmap <silent> <Leader>rv :TestVisit<CR>
-let g:test#strategy = "neovim"
+nmap <silent> <leader>rs :TestNearest<CR>
+nmap <silent> <leader>rf :TestFile<CR>
+nmap <silent> <leader>ra :TestSuite<CR>
+nmap <silent> <leader>rl :TestLast<CR>
+nmap <silent> <leader>rv :TestVisit<CR>
+let g:test#strategy = "dispatch"
 let g:neoterm_shell = '$SHELL -l'
-let g:neoterm_keep_term_open = 0
-let g:neoterm_autoscroll = 1
-tmap <leader>o <C-\><C-n>
-let test#neovim#term_position = "vert topleft"
+tmap <leader>o <C-\><C-n> 
 
 
 " Scrolling Faster
@@ -291,3 +289,17 @@ nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 
+"Zoom / Restore window.  
+function! s:ZoomToggle() abort
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <leader>z :ZoomToggle<CR>

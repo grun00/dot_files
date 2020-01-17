@@ -282,5 +282,6 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpush
 nnoremap <leader>gP :Gpull
-nnoremap <leader>ga :Gwrite
+nnoremap <leader>gw :Gwrite
+nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gd :Gdiff<CR>

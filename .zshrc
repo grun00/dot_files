@@ -50,12 +50,7 @@ alias rm="rm -i"
 
 export PATH=$PATH:~/.configs/Anaconda3/bin:~/.configs/Anaconda3/condabin:~/.scripts:~/.rustup:~/.cargo/bin:~/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:~/.rvm/gems/ruby-2.6.3/bin:~/.rvm/gems/ruby-2.6.3@global/bin:~/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib
 
-#Fuzzy finder
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-export FZF_DEFAULT_OPTS='--height 50% --border'
-export FZF_COMPLETION_TRIGGER='çç'
-#export FZF_DEFAULT_COMMAND='find -L' 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -71,6 +66,12 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+
+#Fuzzy finder
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+export FZF_DEFAULT_OPTS='--height 50% --border'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_COMPLETION_TRIGGER='çç'
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {

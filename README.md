@@ -28,8 +28,9 @@ Fugitive
 * <leader>gc :Gcommit
 * <leader>gp :Gpush
 * <leader>gP :Gpull
-* <leader>ga :Gwrite
+* <leader>gw :Gwrite
 * <leader>gd :Gdiff
+* <leader>ga :Git add . -> Addes all changes to staging
 
 vim-tests
 =========

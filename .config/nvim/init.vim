@@ -97,6 +97,12 @@ colorscheme solarized
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
+"For a better Future
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
 " Always start in same position when opening file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -264,23 +270,17 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize = 20
 nnoremap <leader>ç :Vexplore<CR>
 
-"For a better Future
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " Resizing panes
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <leader>< <C-w><<CR>
-nnoremap <leader>> <C-w><<CR>
+nnoremap <leader>> <C-w>><CR>
 
 "Vim Fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gP :Gpull<CR>
-nnoremap <leader>ga :Gwrite<CR>
+nnoremap <leader>gp :Gpush
+nnoremap <leader>gP :Gpull
+nnoremap <leader>ga :Gwrite
 nnoremap <leader>gd :Gdiff<CR>

@@ -1,12 +1,12 @@
 set encoding=utf-8
 set rtp+=~/.fzf
 
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ~/.config/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
 endif
-
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -21,16 +21,18 @@ Plug 'junegunn/fzf.vim'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails' 
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
-Plug 'yuttie/comfortable-motion.vim' 
+Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-scripts/VisIncr'
-Plug 'tpope/vim-dispatch' 
+Plug 'tpope/vim-dispatch'
 Plug 'alvan/vim-closetag'
 Plug 'idanarye/vim-merginal'
+Plug 'chrisbra/csv.vim'
+
 "Colors
-Plug 'morhetz/gruvbox' 
+Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 
 "Not Programming
@@ -54,7 +56,6 @@ set gdefault
 set hidden
 set history=10000
 set hlsearch
-set ignorecase
 set incsearch
 set linebreak
 set nobackup
@@ -83,7 +84,7 @@ set timeout timeoutlen=1500
 filetype plugin on
 filetype indent on
 
-"Color 
+"Color
 set t_Co=256
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -132,10 +133,10 @@ nnoremap td  :tabclose<CR>
 " Split window and split navigation
 nmap ss :split<Return><C-w>w
 nmap sv :vsplit<Return><C-w>w" Move window
-map sh <C-w>h
-map sk <C-w>k
-map sj <C-w>j
-map sl <C-w>l
+map <C-h> <C-w>h
+map <C-k> <C-w>k
+map <C-j> <C-w>j
+map <C-l> <C-w>l
 
 " Buffer navigation
 nnoremap <leader><Tab> :bn<Return>
@@ -150,6 +151,10 @@ runtime macros/matchit.vim
 vmap <leader>y "*y
 nmap <leader>p "*p
 
+"So removing text doesn't kill my clipboard
+nnoremap c "_c
+nnoremap C "_C
+
 " ` is kinda hard on my keyboard
 nnoremap ç `
 
@@ -161,7 +166,7 @@ nmap <silent> <leader>rl :TestLast<CR>
 nmap <silent> <leader>rv :TestVisit<CR>
 let g:test#strategy = "dispatch"
 let g:neoterm_shell = '$SHELL -l'
-tmap <leader>o <C-\><C-n> 
+tmap <leader>o <C-\><C-n>
 
 
 " Scrolling Faster
@@ -197,7 +202,7 @@ endif
 
 let g:lightline = {
       \ 'colorscheme': 'deus',
-      \ } 
+      \ }
 
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
@@ -224,12 +229,12 @@ nnoremap <C-p> :Files<Cr>
 nnoremap <C-s> :Rg<Cr>
 
 "Open file in split
-nnoremap <silent> <Leader>s :call fzf#run({
+nnoremap <silent> <Leader>S :call fzf#run({
 \   'down': '40%',
 \   'sink': 'botright split' })<CR>
 
 "Open file in VSplit
-nnoremap <silent> <Leader>v :call fzf#run({
+nnoremap <silent> <Leader>V :call fzf#run({
 \   'right': winwidth('.') / 2,
 \   'sink':  'vertical botright split' })<CR>
 
@@ -239,7 +244,7 @@ function! s:buflist()
   silent ls
   redir END
   return split(ls, '\n')
-endfunction 
+endfunction
 
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
@@ -265,7 +270,7 @@ packloadall
 silent! helptags ALL
 
 "file system
-let g:netrw_browse_split = 2
+"let g:netrw_browse_split = 2
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 20
@@ -291,7 +296,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gcb :Merginal<CR>
 
-"Zoom / Restore window.  
+"Zoom / Restore window.
 function! s:ZoomToggle() abort
   if exists('t:zoomed') && t:zoomed
     execute t:zoom_winrestcmd
@@ -306,5 +311,19 @@ endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>z :ZoomToggle<CR>
 
-" HTML
+" HTML autocomplete
 let g:closetag_filenames = '*.html,*.xhtml,*.html.erb'
+
+" Rails
+nnoremap <leader>em :Emodel
+nnoremap <leader>ev :Eview
+nnoremap <leader>ec :Econtroller
+nnoremap <leader>vm :Vmodel
+nnoremap <leader>vv :Vview
+nnoremap <leader>vc :Vcontroller
+nnoremap <leader>sm :Smodel
+nnoremap <leader>sv :Sview
+nnoremap <leader>sc :Scontroller
+
+" Automatically deletes all trailing whitespace on save.
+	autocmd BufWritePre * %s/\s\+$//e

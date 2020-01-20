@@ -9,13 +9,13 @@ Generic mappins
 * ss splits screen horizontally
 * sv splits screen vertically
 * \<leader\>s/v fzf for a file and opens it in a split
-* Navigation Inside splits is done with s + motion 
+* Navigation Inside splits is done with s + motion
 * \<leader\>Tab/<leader><S-Tab> cycle through buffers
 * \<leader\><Enter> fzf open buffers
 * \<C-p\> searches directory with fzf
-* \<C-s\> grep directory with ripgrep 
+* \<C-s\> grep directory with ripgrep
 * \<leader\>+/- resizes horizontal split
-* \<leader\></> resizes vertical split 
+* \<leader\></> resizes vertical split
 * \<leader\>ç opens netrw
 * tab navigation is done with tX -> X is the motion
 * Scrolling \<C-d\>/\<C-u\> with easy motion
@@ -52,13 +52,25 @@ VisIncr
 =======
 
 Use \<C-v\> for visual more and call:
-* :I increment all selected by 1 as a default, but takes a number as a step argument 
+* :I increment all selected by 1 as a default, but takes a number as a step argument
+
+vim-rails
+=========
+
+* \<leader\>em :Emodel
+* \<leader\>ev :Eview
+* \<leader\>ec :Econtroller
+* \<leader\>vm :Vmodel
+* \<leader\>vv :Vview
+* \<leader\>vc :Vcontroller
+* \<leader\>sm :Smodel
+* \<leader\>sv :Sview
+* \<leader\>sc :Scontroller
 
 Tmux
 ====
 
 * Prefix \<C-a\>
-* Split Horizontal Prefix - 
+* Split Horizontal Prefix -
 * Split Vertical Prefix /
-
 

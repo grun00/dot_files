@@ -8,8 +8,8 @@ Generic mappins
 
 * ss splits screen horizontally
 * sv splits screen vertically
-* \<leader\>s/v fzf for a file and opens it in a split
-* Navigation Inside splits is done with s + motion
+* \<leader\>S/V fzf for a file and opens it in a split
+* Navigation Inside splits is done with <C-x> x: hjkl
 * \<leader\>Tab/<leader><S-Tab> cycle through buffers
 * \<leader\><Enter> fzf open buffers
 * \<C-p\> searches directory with fzf

@@ -30,7 +30,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'alvan/vim-closetag'
 Plug 'idanarye/vim-merginal'
 Plug 'chrisbra/csv.vim'
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 "Colors
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
@@ -112,7 +112,7 @@ nnoremap <Down> :echoe "Use j"<CR>
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "<Ctrl-l> redraws the screen and removes any search highlight
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+nnoremap <silent> <leader>l :nohl<CR><C-l>
 
 " Navigation of lines
 nnoremap  j gj
@@ -141,7 +141,7 @@ map <C-l> <C-w>l
 " Buffer navigation
 nnoremap <leader><Tab> :bn<Return>
 nnoremap <leader><S-Tab> :bp<Return>
-noremap <leader>d :bd<CR>
+noremap <leader>d :Bclose<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 
 "For matching if/ends/do/ends/whatever blocks
@@ -327,3 +327,80 @@ nnoremap <leader>sc :Scontroller
 
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
+
+" Delete buffer while keeping window layout (don't close buffer's windows).
+" Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
+if v:version < 700 || exists('loaded_bclose') || &cp
+  finish
+endif
+let loaded_bclose = 1
+if !exists('bclose_multiple')
+  let bclose_multiple = 1
+endif
+
+" Display an error message.
+function! s:Warn(msg)
+  echohl ErrorMsg
+  echomsg a:msg
+  echohl NONE
+endfunction
+
+" Command ':Bclose' executes ':bd' to delete buffer in current window.
+" The window will show the alternate buffer (Ctrl-^) if it exists,
+" or the previous buffer (:bp), or a blank buffer if no previous.
+" Command ':Bclose!' is the same, but executes ':bd!' (discard changes).
+" An optional argument can specify which buffer to close (name or number).
+function! s:Bclose(bang, buffer)
+  if empty(a:buffer)
+    let btarget = bufnr('%')
+  elseif a:buffer =~ '^\d\+$'
+    let btarget = bufnr(str2nr(a:buffer))
+  else
+    let btarget = bufnr(a:buffer)
+  endif
+  if btarget < 0
+    call s:Warn('No matching buffer for '.a:buffer)
+    return
+  endif
+  if empty(a:bang) && getbufvar(btarget, '&modified')
+    call s:Warn('No write since last change for buffer '.btarget.' (use :Bclose!)')
+    return
+  endif
+  " Numbers of windows that view target buffer which we will delete.
+  let wnums = filter(range(1, winnr('$')), 'winbufnr(v:val) == btarget')
+  if !g:bclose_multiple && len(wnums) > 1
+    call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
+    return
+  endif
+  let wcurrent = winnr()
+  for w in wnums
+    execute w.'wincmd w'
+    let prevbuf = bufnr('#')
+    if prevbuf > 0 && buflisted(prevbuf) && prevbuf != btarget
+      buffer #
+    else
+      bprevious
+    endif
+    if btarget == bufnr('%')
+      " Numbers of listed buffers which are not the target to be deleted.
+      let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val) && v:val != btarget')
+      " Listed, not target, and not displayed.
+      let bhidden = filter(copy(blisted), 'bufwinnr(v:val) < 0')
+      " Take the first buffer, if any (could be more intelligent).
+      let bjump = (bhidden + blisted + [-1])[0]
+      if bjump > 0
+        execute 'buffer '.bjump
+      else
+        execute 'enew'.a:bang
+      endif
+    endif
+  endfor
+  execute 'bdelete'.a:bang.' '.btarget
+  execute wcurrent.'wincmd w'
+endfunction
+command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
+nnoremap <silent> <Leader>bd :Bclose<CR>
+
+"Markdown
+nmap <C-m> :MarkdownPreview
+let g:mkdp_browser = 'chromium'

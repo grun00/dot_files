@@ -7,15 +7,15 @@ export TERM=xterm-256color
 #ZSH_THEME="agnoster"
 #ZSH_THEME="wedisagree"
 #ZSH_THEME="aussiegeek"
-#ZSH_THEME="xiong-chiamiov-plus" 
+#ZSH_THEME="xiong-chiamiov-plus"
 ZSH_THEME=powerlevel10k/powerlevel10k
 
-CASE_SENSITIVE="true" 
-DISABLE_UPDATE_PROMPT="true" 
-export UPDATE_ZSH_DAYS=15 
+CASE_SENSITIVE="true"
+DISABLE_UPDATE_PROMPT="true"
+export UPDATE_ZSH_DAYS=15
 COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true" 
-ZSH_CUSTOM=~/.config/zsh_configs 
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+ZSH_CUSTOM=~/.config/zsh_configs
 
 #plugins=(archlinux git rvm rails vi-mode web-search zsh_reload)
 
@@ -30,7 +30,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-# For a full list of active aliases, run `alias`.  
+# For a full list of active aliases, run `alias`.
 alias sl="exa"
 alias ls="exa"
 alias cd..="cd .."
@@ -39,7 +39,7 @@ alias rs="rails s"
 alias rc="rails c"
 alias vim="nvim -p"
 #alias vi="vim -p"
-alias cmatrix="cmatrix -C magenta" 
+alias cmatrix="cmatrix -C magenta"
 alias ghc="ghc -dynamic"
 #For sdcv
 alias tlGP="sdcv -u \"German - Portuguese\""

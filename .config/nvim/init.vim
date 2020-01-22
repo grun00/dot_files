@@ -31,6 +31,10 @@ Plug 'alvan/vim-closetag'
 Plug 'idanarye/vim-merginal'
 Plug 'chrisbra/csv.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdtree'
+Plug 'mhinz/vim-startify'
+
 "Colors
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
@@ -140,7 +144,7 @@ map <C-l> <C-w>l
 
 " Buffer navigation
 nnoremap <leader><Tab> :bn<Return>
-nnoremap <leader><S-Tab> :bp<Return>
+"nnoremap <leader><S-Tab> :bp<Return>
 noremap <leader>d :Bclose<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
 
@@ -275,6 +279,28 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 20
 nnoremap <leader>ç :Vexplore<CR>
+"Nerdtree
+map <C-n> :NERDTreeToggle<CR>
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('ru', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('lock', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('rb', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " Resizing panes
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -315,17 +341,6 @@ nnoremap <silent> <leader>z :ZoomToggle<CR>
 
 " HTML autocomplete
 let g:closetag_filenames = '*.html,*.xhtml,*.html.erb'
-
-" Rails
-nnoremap <leader>em :Emodel
-nnoremap <leader>ev :Eview
-nnoremap <leader>ec :Econtroller
-nnoremap <leader>vm :Vmodel
-nnoremap <leader>vv :Vview
-nnoremap <leader>vc :Vcontroller
-nnoremap <leader>sm :Smodel
-nnoremap <leader>sv :Sview
-nnoremap <leader>sc :Scontroller
 
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
@@ -404,5 +419,5 @@ command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-ar
 nnoremap <silent> <Leader>bd :Bclose<CR>
 
 "Markdown
-nmap <C-m> :MarkdownPreview
 let g:mkdp_browser = 'chromium'
+

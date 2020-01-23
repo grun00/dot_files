@@ -100,8 +100,9 @@ set background=dark
 "set background=light
 
 "Colorschemes
-"colorscheme gruvbox
-colorscheme solarized
+colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
+"colorscheme solarized
 
 
 " ======================= Navigations, tabs, buffers, copy and custom commands

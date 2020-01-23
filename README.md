@@ -54,23 +54,16 @@ VisIncr
 Use \<C-v\> for visual more and call:
 * :I increment all selected by 1 as a default, but takes a number as a step argument
 
-vim-rails
-=========
-
-* \<leader\>em :Emodel
-* \<leader\>ev :Eview
-* \<leader\>ec :Econtroller
-* \<leader\>vm :Vmodel
-* \<leader\>vv :Vview
-* \<leader\>vc :Vcontroller
-* \<leader\>sm :Smodel
-* \<leader\>sv :Sview
-* \<leader\>sc :Scontroller
-
 Tmux
 ====
 
 * Prefix \<C-a\>
 * Split Horizontal Prefix -
 * Split Vertical Prefix /
+
+i3wm
+====
+
+Mostly using vimkeys to move around and kept a lot of the Manjaro-i3 configs
+
 

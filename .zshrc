@@ -31,11 +31,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 # For a full list of active aliases, run `alias`.
-
-# alias sl="exa"
-# alias ls="exa"
-alias ls="/opt/coreutils/bin/ls"
-alias sl="/opt/coreutils/bin/ls"
+alias sl="exa"
+alias ls="exa"
 alias cd..="cd .."
 alias ps="ps auxf --forest"
 alias rs="rails s"
@@ -50,6 +47,7 @@ alias tlPG="sdcv -u \"Portuguese - German\""
 alias tlGE="sdcv -u \"German - English\""
 alias tlPE="sdcv -u \"Portuguese - English\""
 alias rm="rm -i"
+alias mux="tmuxinator"
 
 export PATH=$PATH:~/.configs/Anaconda3/bin:~/.configs/Anaconda3/condabin:~/.scripts:~/.rustup:~/.cargo/bin:~/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:~/.rvm/gems/ruby-2.6.3/bin:~/.rvm/gems/ruby-2.6.3@global/bin:~/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib
 

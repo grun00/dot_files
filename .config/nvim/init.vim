@@ -34,6 +34,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
+Plug 'bagrat/vim-buffet'
 
 "Colors
 Plug 'morhetz/gruvbox'
@@ -100,9 +101,8 @@ set background=dark
 "set background=light
 
 "Colorschemes
-colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE
-"colorscheme solarized
+"colorscheme gruvbox
+colorscheme solarized
 
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
@@ -207,6 +207,9 @@ endif
 
 let g:lightline = {
       \ 'colorscheme': 'deus',
+      \ 'enable': {
+      \   'tabline': 0
+      \ }
       \ }
 
 "comfortable-motion adjustments
@@ -299,9 +302,8 @@ call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('rb', 'Magenta', 'none', '#ff00ff', '#151515')
+call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
 
 " Resizing panes
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
@@ -422,3 +424,10 @@ nnoremap <silent> <Leader>bd :Bclose<CR>
 "Markdown
 let g:mkdp_browser = 'chromium'
 
+"buffet
+let g:buffet_show_index = 1
+let g:buffet_max_plug = 10
+let g:buffet_powerline_separators = 1
+let g:buffet_tab_icon = "\uf004"
+let g:buffet_left_trunc_icon = "\uf0a8"
+let g:buffet_right_trunc_icon = "\uf0a9"

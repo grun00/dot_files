@@ -39,6 +39,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec xrandr --auto --output eDP1 --mode 1366x768 --left-of HDMI1
 exec xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
+exec mount /dev/sda1 /run/mount/hd_int
 focus_follows_mouse no
 font pango:Fira Code Light 12
 

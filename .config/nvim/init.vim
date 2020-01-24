@@ -423,6 +423,8 @@ nnoremap <silent> <Leader>bd :Bclose<CR>
 
 "Markdown
 let g:mkdp_browser = 'firefox'
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_toggle=2
 
 "buffet
 let g:buffet_show_index = 1

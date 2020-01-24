@@ -54,7 +54,7 @@ export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 export FZF_COMPLETION_TRIGGER='çç'
 
-#LFCD
+#For directory navigation
 lfcd () {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"

@@ -71,9 +71,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-export PATH=$PATH:~/.configs/Anaconda3/bin:~/.configs/Anaconda3/condabin:~/.scripts:~/.rustup:~/.cargo/bin:~/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:~/.rvm/gems/ruby-2.6.3/bin:~/.rvm/gems/ruby-2.6.3@global/bin:~/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib
+export PATH=$PATH:~/.scripts:~/.gem/ruby/2.6.4/bin:/root/.gem/ruby/2.6.4/bin:/usr/share/rvm/bin:~/.rvm/gems/ruby-2.6.3/bin:~/.rvm/gems/ruby-2.6.3@global/bin:~/.rvm/rubies/ruby-2.6.3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib
 export PATH="$PATH:$HOME/.rvm/bin"
 
 source ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
-# Load zsh-syntax-highlighting; should be last.
 source ~/powerlevel10k/powerlevel10k.zsh-theme

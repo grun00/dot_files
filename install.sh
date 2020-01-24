@@ -1,14 +1,18 @@
 #!/bin/bash
-
 # After install
+
+#Find fastest mirrors and update
 sudo pacman-mirrors --fasttrack --noconfirm && sudo pacman -Syyu --noconfirm
 
+#Programs I like to have
 sudo pacman -Sy --noconfirm neovim python3 asciiquarium calcurse calibre chromium cmatrix clisp  docker entr gcc make git curl wget gparted htop jre8-openjdk neovim nodejs npm yarn python-pip ruby ruby-irb ttf-fira-code veracrypt vlc virtualbox virtualbox-sdk zathura zathura-pdf-mupdf zip zsh tmux xclip fzf ripgrep
 
 cd ~
 
+#This repository
 git clone git@github.com:grun00/dot_files.git
 
+#For neovim support
 pip install --user pynvim
 
 mkdir ~/.config/nvim
@@ -27,10 +31,14 @@ cd st
 sudo make install
 cd ~
 rm -rf st
+
 #Nerd Fonts for Icons
 git clone https://aur.archlinux.org/nerd-fonts-complete.git
 cd nerd-fonts-complete
 makepkg -si
 cd ..
 rm -rf nerd-fonts-complete
+
+#For syntax highligh in zsh
+git clone https://github.com/zdharma/fast-syntax-highlighting ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
 

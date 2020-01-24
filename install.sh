@@ -7,8 +7,6 @@ sudo pacman -Sy --noconfirm neovim python3 asciiquarium calcurse calibre chromiu
 
 cd ~
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -s --batch
-
 git clone git@github.com:grun00/dot_files.git
 
 pip install --user pynvim
@@ -29,11 +27,10 @@ cd st
 sudo make install
 cd ~
 rm -rf st
+#Nerd Fonts for Icons
 git clone https://aur.archlinux.org/nerd-fonts-complete.git
 cd nerd-fonts-complete
 makepkg -si
 cd ..
 rm -rf nerd-fonts-complete
-
-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 

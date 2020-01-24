@@ -6,10 +6,6 @@ gaps inner 15
 gaps outer 15
 set $term --no-startup-id st
 set $mod Mod4
-set $shutdown sudo -A shutdown -h now
-set $reboot sudo -A reboot
-set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
-set $hibernate sudo -A systemctl suspend
 
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter.
@@ -41,7 +37,8 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec xrandr --auto --output eDP1 --mode 1366x768 --left-of HDMI1 && xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
+exec xrandr --auto --output eDP1 --mode 1366x768 --left-of HDMI1
+exec xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
 focus_follows_mouse no
 font pango:Fira Code Light 12
 
@@ -110,8 +107,6 @@ bindsym $mod+space		focus mode_toggle
 bindsym $mod+i exec st -e htop
 
 # bindsym $mod+BackSpace
-bindsym $mod+<F12> exec --no-startup-id prompt "Reboot computer?" "$reboot"
-bindsym $mod+Shift+x exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use

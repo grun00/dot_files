@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo pacman-mirrors --fasttrack && sudo pacman -Syyu asciiquarium make gcc bat calcurse calibre chromium clisp cmatrix code coreutils discord dmenu docker emacs nvim exa feh firefox gparted java-environment-common jre8-openjdk krita gzip htop lolcat lynx netctl nethack nodejs npm yarn powerline-fonts python python2 ranger ruby ruby-irb screenfetch sdcv sed spotify st-manjaro telegram-desktop tlp tmux transmission-qt ttf-inconsolata veracrypt vi vim vlc xclip youtube-dl zathura zathura-dpf-mudpf

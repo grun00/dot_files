@@ -1,0 +1,19 @@
+#!/bin/bash
+
+tmux new -s Study -d
+tmux rename-window -t Study [CalCurses]
+tmux send-keys -t Study 'calcurse' C-m
+cd ~/Documents/Books/
+tmux new-window -t Study 
+tmux rename-window -t Study [Books]
+tmux new-window -t Study 
+tmux rename-window -t Study [Programming] 
+cd ~/Documents/Projetos/
+tmux send-keys -t Study 'vim' C-m
+tmux split-window -h -t Study
+tmux split-window -v -t Study
+cd ~
+tmux new-window -t Study 
+tmux rename-window -t Study [Misc] 
+tmux send-keys -t Study 'hi "Welcome back :)"' C-m
+tmux attach -t Study

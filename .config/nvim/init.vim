@@ -420,5 +420,5 @@ command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-ar
 nnoremap <silent> <Leader>bd :Bclose<CR>
 
 "Markdown
-let g:mkdp_browser = 'chromium'
+let g:mkdp_browser = 'firefox'
 

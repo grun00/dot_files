@@ -5,7 +5,7 @@
 sudo pacman-mirrors --fasttrack --noconfirm && sudo pacman -Syyu --noconfirm
 
 #Programs I like to have
-sudo pacman -Sy --noconfirm neovim python3 asciiquarium calcurse calibre chromium cmatrix clisp  docker entr gcc make git curl wget gparted htop jre8-openjdk neovim nodejs npm yarn python-pip ruby ruby-irb ttf-fira-code veracrypt vlc virtualbox virtualbox-sdk zathura zathura-pdf-mupdf zip zsh tmux xclip fzf ripgrep
+sudo pacman -Sy --noconfirm neovim python3 asciiquarium calcurse calibre chromium cmatrix clisp  docker entr gcc make git curl wget gparted htop jre8-openjdk neovim nodejs npm yarn python-pip ruby ruby-irb ttf-fira-code veracrypt vlc virtualbox virtualbox-sdk zathura zathura-pdf-mupdf zip zsh tmux xclip fzf ripgrep clang
 
 cd ~
 
@@ -43,3 +43,16 @@ rm -rf nerd-fonts-complete
 #For syntax highligh in zsh
 git clone https://github.com/zdharma/fast-syntax-highlighting ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
 
+#Pretty ls
+git clone https://github.com/sebastiencs/icons-in-terminal.git
+cd icons-in-terminal
+./install.sh
+cd
+git@github.com:sebastiencs/ls-icons.git
+cd ls-icons
+./bootstrap
+export CC=clang CXX=clang++
+./configure --prefix=/opt/coreutils
+make
+make install
+/opt/coreutils/bin/ls

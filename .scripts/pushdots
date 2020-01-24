@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+CP=$(pwd)
+cd ~/dot_files
+copydots
+git push
+cd $CP

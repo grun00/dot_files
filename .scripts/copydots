@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+CP=$(pwd)
 cp ~/.zshrc ~/dot_files
 cp ~/.tmux.conf ~/dot_files
 cp ~/.config/nvim/init.vim ~/dot_files/.config/nvim
@@ -11,3 +12,5 @@ cp ~/.scripts/* ~/dot_files/.scripts
 cd ~/dot_files
 git add .
 git commit -m "Done at: $(date)"
+echo "dot files copied!"
+cd $CP

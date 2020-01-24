@@ -24,6 +24,7 @@ cp ~/dot_files/.config/nvim/init.vim ~/.config/nvim/
 cp ~/dot_files/.zshrc ~
 cp ~/dot_files/.tmux.conf ~
 cp ~/dot_files/.gitconfig ~
+cp ~/dot_files/aliasrc ~/.config
 
 #Thanks Luke
 git clone https://github.com/LukeSmithxyz/st

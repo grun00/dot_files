@@ -1,5 +1,6 @@
 autoload -U colors && colors
 export TERM=xterm-256color
+export EDITOR="nvim"
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
@@ -8,6 +9,7 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
+
 
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)

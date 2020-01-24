@@ -1,0 +1,20 @@
+alias ls="/opt/coreutils/bin/ls"
+alias sl="/opt/coreutils/bin/ls"
+alias cd..="cd .."
+alias ps="ps auxf --forest"
+alias rs="rails s"
+alias rc="rails c"
+alias vim="nvim -p"
+alias cmatrix="cmatrix -C magenta"
+alias rm="rm -i"
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir="mkdir -pv"
+alias ping="ping -c 5"
+alias l='ls -lFh'
+alias la='ls -lAFh'
+alias ll='ls -l'
+alias ldot='ls -ld .*'
+alias lr='ls -tRFh'
+alias zshrc='${=EDITOR} ~/.zshrc'
+alias nvimrc='${=EDITOR} ~/.config/nvim/init.vim'

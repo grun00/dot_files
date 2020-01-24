@@ -66,4 +66,7 @@ i3wm
 
 Mostly using vimkeys to move around and kept a lot of the Manjaro-i3 configs
 
+install.sh
+==========
 
+This is just a small script to install most of the things I need in a new arch/manjaro install.

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+case "${SRANDRD_OUTPUT} ${SRANDRD_EVENT}" in
+  "HDMI1 connected") xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1;;
+  #"eDP1 connected") xrandr --auto --output eDP1 --mode 1366x768 --left-of HDMI1;;
+esac

@@ -1,3 +1,4 @@
+
 autoload -U colors && colors
 export TERM=xterm-256color
 export EDITOR="nvim"
@@ -6,12 +7,12 @@ export KEYTIMEOUT=1
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
+
 autoload -U compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
 compinit
-
-# Include hidden files in autocomplete:
 _comp_options+=(globdots)
 
 # Use vim keys in tab complete menu:
@@ -54,7 +55,6 @@ export FZF_DEFAULT_OPTS='--height 50% --border'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 export FZF_COMPLETION_TRIGGER='çç'
 
-#For directory navigation
 lfcd () {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
@@ -92,3 +92,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 source ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+

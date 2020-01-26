@@ -20,7 +20,7 @@ for_window [instance="dropdown_dropdowncalc"] border pixel 2
 for_window [instance="dropdown_*"] move position center
 
 #Startup
-exec --no-startup-id feh --bg-fill ~/Pictures/wp3.jpg
+exec --no-startup-id feh --randomize --bg-fill ~/Pictures/
 exec --no-startup-id xmodmap ~/.xmodmap
 exec --no-startup-id sh ~/.fehbg
 exec --no-startup-id volumeicon
@@ -37,7 +37,7 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec xrandr --auto --output eDP1 --mode 1366x768 --left-of HDMI1
+exec xrandr --auto --output eDP1 --mode 1366x768 --primary
 exec xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
 exec mount /dev/sda1 /run/mount/hd_int
 focus_follows_mouse no
@@ -226,10 +226,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym l resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym h resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -322,11 +322,6 @@ bindsym $mod+m bar mode toggle
 #############################
 ### settings for i3-gaps: ###
 #############################
-
-# Set inner/outer gaps
-gaps inner 14
-gaps outer -2
-
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

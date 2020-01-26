@@ -20,10 +20,11 @@ alias ll='ls -l'
 alias ldot='ls -ld .*'
 alias lr='ls -tRFh'
 
-
+alias neofetch="neofetch --ascii \"$(fortune | cowsay -W 30)\""
 
 
 alias i3rc='${=EDITOR} ~/.i3/config'
 alias tmuxrc='${=EDITOR} ~/.tmux.conf'
 alias zshrc='${=EDITOR} ~/.zshrc'
 alias nvimrc='${=EDITOR} ~/.config/nvim/init.vim'
+alias aliasrc='${=EDITOR} ~/.config/aliasrc'

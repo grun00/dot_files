@@ -3,5 +3,8 @@
 CP=$(pwd)
 cd ~/dot_files
 copydots
+git add .
+git commit -m "Done at: $(date)"
 git push
+echo "Dots pushed to github"
 cd $CP

@@ -10,7 +10,5 @@ cp ~/.Xresources ~/dot_files
 cp ~/.config/aliasrc ~/dot_files
 cp ~/.scripts/* ~/dot_files/.scripts
 cd ~/dot_files
-git add .
-git commit -m "Done at: $(date)"
 echo "dot files copied!"
 cd $CP

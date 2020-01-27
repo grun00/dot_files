@@ -2,6 +2,7 @@ nvim
 ====
 
 * Leader key is " " (space)
+* I changed my capslock key to an ESC key. The configs for that are in the .xmodmap file.
 
 Generic mappins
 ===============

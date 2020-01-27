@@ -66,6 +66,12 @@ i3wm
 
 Mostly using vimkeys to move around and kept a lot of the Manjaro-i3 configs
 
+ZSH
+===
+
+* ctrl + e to open command in vim mode for editing
+* ctrl + o to open file navigation
+
 install.sh
 ==========
 

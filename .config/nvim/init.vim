@@ -35,6 +35,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 Plug 'bagrat/vim-buffet'
+Plug 'PotatoesMaster/i3-vim-syntax'
 
 "Colors
 Plug 'morhetz/gruvbox'

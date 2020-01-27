@@ -1,23 +1,13 @@
-# vim: filetype=i3
-
 # #---Basic Definitions---# #
 for_window [class="^.*"] border pixel 2
 gaps inner 15
 gaps outer 15
 set $term --no-startup-id st
 set $mod Mod4
-
-# #---Dropdown Windows---# #
-# General dropdown window traits. The order can matter.
-for_window [instance="dropdown_*"] floating enable
-for_window [instance="dropdown_*"] move scratchpad
-for_window [instance="dropdown_*"] sticky enable
-for_window [instance="dropdown_*"] scratchpad show
-for_window [instance="dropdown_tmuxdd"] resize set 625 450
-for_window [instance="dropdown_dropdowncalc"] resize set 800 300
-for_window [instance="dropdown_tmuxdd"] border pixel 3
-for_window [instance="dropdown_dropdowncalc"] border pixel 2
-for_window [instance="dropdown_*"] move position center
+set $shutdown sudo -A shutdown -h now
+set $reboot sudo -A reboot
+set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
+set $hibernate sudo -A systemctl suspend
 
 #Startup
 exec --no-startup-id feh --randomize --bg-fill ~/Pictures/
@@ -43,11 +33,6 @@ exec mount /dev/sda1 /run/mount/hd_int
 focus_follows_mouse no
 font pango:Fira Code Light 12
 
-bindsym $mod+Return exec st
-bindsym $mod+q kill
-bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+z exec --no-startup-id morc_menu
-
 ################################################################################################
 #Pending Things
 ################################################################################################
@@ -63,56 +48,43 @@ bindsym $mod+z exec --no-startup-id morc_menu
 #bindsym $mod+minus scratchpad show
 ################################################################################################
 
+
+bindsym $mod+Return 		exec $term
+bindsym $mod+Shift+Return	exec --no-startup-id samedir
+bindsym $mod+q kill
+bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+z exec --no-startup-id morc_menu
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu' #Information
-bindsym $mod+F2 exec firefox
-bindsym $mod+F3 exec st -e ranger
+bindsym $mod+w exec --no-startup-id firefox
+bindsym $mod+Shift+w exec --no-startup-id chromium
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Print exec --no-startup-id i3-scrot
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-############################################################################3
 
 #Movement
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30
 bindsym $mod+Ctrl+h move workspace to output left
-
 bindsym $mod+j focus down
 bindsym $mod+Shift+j move down 30
 bindsym $mod+Ctrl+j move workspace to output down
-
 bindsym $mod+k focus up
 bindsym $mod+Shift+k move up 30
 bindsym $mod+Ctrl+k move workspace to output up
-
 bindsym $mod+l focus right
 bindsym $mod+Shift+l move right 30
 bindsym $mod+Ctrl+l move workspace to output right
 
-
-
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-bindsym $mod+s split toggle
 bindsym $mod+f fullscreen toggle
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+w layout tabbed
-bindsym $mod+Shift+w layout toggle split
-# toggle tiling / floating
+bindsym $mod+Shift+p layout toggle split
+bindsym $mod+p split toggle
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+space		focus mode_toggle
-#navigate workspaces next / previous
-#bindsym $mod+Ctrl+l workspace next
-#bindsym $mod+Ctrl+h workspace prev
-bindsym $mod+i exec st -e htop
+bindsym $mod+space focus mode_toggle
+bindsym $mod+s gaps inner current plus 5
+bindsym $mod+Shift+s		gaps inner current minus 5
 
-# bindsym $mod+BackSpace
-
-# Workspace names
-# to display names or symbols instead of plain workspace numbers you can use
-# something like: set $ws1 1:mail
-#                 set $ws2 2:
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -152,15 +124,7 @@ bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
-# Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
-
-# Open specific applications in floating mode
-#
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 for_window [title="alsamixer"] floating enable border pixel 0
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
@@ -177,14 +141,12 @@ for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
@@ -311,14 +273,25 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000
+client.focused          #556064 #df42d1 #80FFF9 #FDF6E3
+client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000
 
-  client.background       #2B2C2B
+client.background       #2B2C2B
 
+# #---Dropdown Windows---# #
+# General dropdown window traits. The order can matter.
+for_window [instance="dropdown_*"] floating enable
+for_window [instance="dropdown_*"] move scratchpad
+for_window [instance="dropdown_*"] sticky enable
+for_window [instance="dropdown_*"] scratchpad show
+for_window [instance="dropdown_tmuxdd"] resize set 625 450
+for_window [instance="dropdown_dropdowncalc"] resize set 800 300
+for_window [instance="dropdown_tmuxdd"] border pixel 3
+for_window [instance="dropdown_dropdowncalc"] border pixel 2
+for_window [instance="dropdown_*"] move position center
 #############################
 ### settings for i3-gaps: ###
 #############################
@@ -371,3 +344,5 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# vim: filetype=i3

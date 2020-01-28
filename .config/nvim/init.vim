@@ -39,7 +39,6 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 
 "Colors
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
 
 "Not Programming
 Plug 'easymotion/vim-easymotion'
@@ -283,7 +282,7 @@ silent! helptags ALL
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 20
-nnoremap <leader>ç :Vexplore<CR>
+"nnoremap <leader>ç :Vexplore<CR>
 "Nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
@@ -437,3 +436,4 @@ let g:buffet_right_trunc_icon = "\uf0a9"
 
 highlight Normal guibg=none
 highlight NonText guibg=none
+

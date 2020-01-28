@@ -11,34 +11,40 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 "General
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Yggdroot/indentLine'
+Plug 'alvan/vim-closetag'
+Plug 'bagrat/vim-buffet'
+Plug 'chrisbra/csv.vim'
 Plug 'dense-analysis/ale'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'idanarye/vim-merginal'
 Plug 'itchyny/lightline.vim'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
 Plug 'pbrisbin/vim-mkdir'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
+Plug 'vim-scripts/VisIncr'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'vim-scripts/VisIncr'
-Plug 'tpope/vim-dispatch'
-Plug 'alvan/vim-closetag'
-Plug 'idanarye/vim-merginal'
-Plug 'chrisbra/csv.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdtree'
-Plug 'mhinz/vim-startify'
-Plug 'bagrat/vim-buffet'
-Plug 'PotatoesMaster/i3-vim-syntax'
+
+"Deoplete & Snippets
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 "Colors
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 "Not Programming
 Plug 'easymotion/vim-easymotion'
@@ -90,10 +96,12 @@ filetype plugin on
 filetype indent on
 
 "Color
+syntax on
 set t_Co=256
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:gruvbox_italic=1
 "Type of Background
@@ -101,9 +109,8 @@ set background=dark
 "set background=light
 
 "Colorschemes
-colorscheme gruvbox
-"colorscheme solarized
-
+"colorscheme gruvbox
+colorscheme onedark
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
@@ -125,14 +132,21 @@ nnoremap  k gk
 vnoremap  j gj
 vnoremap  k gk
 
+"Terminal NeoTerm
+let g:neoterm_default_mod = 'vertical'
+let g:neoterm_automap_keys = ',tt'
+let g:neoterm_autoinsert = 1
+nnoremap <silent> <leader>th :Tclose<cr>
+nnoremap <silent> <leader>tl :Tclear<cr>
+nnoremap <silent> <leader>tc :Tkill<cr>
+
+nnoremap <leader>t :vsplit<CR> :term<CR>
+nnoremap <leader>T :split<CR> :term<CR>
+
 "Tab Navigation
-nnoremap tk  :tabfirst<CR>
-nnoremap tj  :tablast<CR>
 nnoremap th :tabprev<Return>
 nnoremap tl :tabnext<Return>
-nnoremap tt  :tabedit<Space>
 nnoremap tn :tabnew<CR>
-nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
 " Split window and split navigation
@@ -206,7 +220,7 @@ if !has('gui_running')
 endif
 
 let g:lightline = {
-      \ 'colorscheme': 'deus',
+      \ 'colorscheme': 'onedark',
       \ 'enable': {
       \   'tabline': 0
       \ }
@@ -235,6 +249,19 @@ let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-s> :Rg<Cr>
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 "Open file in split
 nnoremap <silent> <Leader>S :call fzf#run({
@@ -324,8 +351,6 @@ nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gcb :Merginal<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
 
 "Zoom / Restore window.
 function! s:ZoomToggle() abort
@@ -437,3 +462,20 @@ let g:buffet_right_trunc_icon = "\uf0a9"
 highlight Normal guibg=none
 highlight NonText guibg=none
 
+"Snippets
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DEVICE="/dev/$1"
+
+if [ -b $DEVICE ]
+then
+  sudo umount $DEVICE
+  sudo rmdir "/run/media/usb_dev$1"
+else
+  echo "Is not a device"
+fi

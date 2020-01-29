@@ -47,7 +47,7 @@ git clone https://github.com/sebastiencs/icons-in-terminal.git
 cd icons-in-terminal
 ./install.sh
 cd
-git@github.com:sebastiencs/ls-icons.git
+git clone https://github.com/sebastiencs/ls-icons.git
 cd ls-icons
 ./bootstrap
 export CC=clang CXX=clang++
@@ -55,5 +55,11 @@ export CC=clang CXX=clang++
 make
 make install
 /opt/coreutils/bin/ls
+rm -rf ~/ls-icons
+
+git clone https://aur.archlinux.org/lf.git
+cd lf
+makepkg -si
+rm -rf ~/lf && cd
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k

@@ -1,4 +1,3 @@
-
 autoload -U colors && colors
 export TERM=xterm-256color
 export EDITOR="nvim"

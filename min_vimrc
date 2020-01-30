@@ -1,0 +1,86 @@
+set nocompatible
+filetype off
+" ================ General Config ====================
+set paste
+set number relativenumber
+set backspace=indent,eol,start
+set history=1000
+set showcmd
+set showmode
+set gcr=a:blinkon0
+set visualbell
+set autoread
+set t_vb=
+set hidden
+set ruler
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set scrolloff=5
+set sidescrolloff=15
+set sidescroll=1
+set foldnestmax=5
+set nofoldenable
+set noswapfile
+set nobackup
+set nowb
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+set linebreak
+set gdefault
+let mapleader=" "
+set timeout timeoutlen=1500
+set wildcharm=<Tab>
+set wildmenu
+set wildmode=full
+syntax on
+filetype plugin on
+filetype indent on
+runtime macros/matchit.vim
+" ======================= Navigations, tabs, buffers, copy and custom commands
+" Always start in same position when opening file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+"<Ctrl-l> redraws the screen and removes any search highlight
+nnoremap <silent> <C-l> :nohl<CR><C-l>
+" Navigation of lines
+nnoremap  j gj
+nnoremap  k gk
+vnoremap  j gj
+vnoremap  k gk
+"Tab Navigation
+nnoremap th :tabprev<Return>
+nnoremap tl :tabnext<Return>
+nnoremap tn :tabnew<CR>
+nnoremap td  :tabclose<CR>
+" Split window and split navigation
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w" Move window
+map <C-h> <C-w>h
+map <C-k> <C-w>k
+map <C-j> <C-w>j
+map <C-w> <C-w>l
+" Scrolling Faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+"Persistent Undos
+set undodir=~/.vim/backups
+set undofile
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
+"Cursor
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+if &diff
+    syntax off
+endif
+

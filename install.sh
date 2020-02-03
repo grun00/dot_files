@@ -47,6 +47,7 @@ git clone https://github.com/sebastiencs/icons-in-terminal.git
 cd icons-in-terminal
 ./install.sh
 cd
+rm -rf icons-in-terminal
 git clone https://github.com/sebastiencs/ls-icons.git
 cd ls-icons
 ./bootstrap

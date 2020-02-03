@@ -184,8 +184,11 @@ nmap <silent> <leader>rf :TestFile<CR>
 nmap <silent> <leader>ra :TestSuite<CR>
 nmap <silent> <leader>rl :TestLast<CR>
 nmap <silent> <leader>rv :TestVisit<CR>
-let g:test#strategy = "dispatch"
-let g:neoterm_shell = '$SHELL -l'
+let g:test#strategy = "neovim"
+let g:neoterm_keep_term_open = 0
+let g:neoterm_autoscroll = 1
+let test#neovim#term_position = "vert topleft"
+"let g:neoterm_shell = '$SHELL -l'
 tmap <leader>o <C-\><C-n>
 
 

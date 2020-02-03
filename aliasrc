@@ -31,4 +31,5 @@ alias zshrc='${=EDITOR} ~/.zshrc'
 alias nvimrc='${=EDITOR} ~/.config/nvim/init.vim'
 alias aliasrc='${=EDITOR} ~/.config/aliasrc'
 
-
+#Misc
+alias ghc="ghc -dynamic"

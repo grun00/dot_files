@@ -1,27 +1,21 @@
-autoload -U colors && colors
 export TERM=xterm-256color
 export EDITOR="nvim"
 export KEYTIMEOUT=1
-
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-
-
 autoload -U compinit
+autoload -U colors && colors
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
-
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
-
-
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
@@ -36,18 +30,15 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-
 zle-line-init() {
     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-
 # Use beam shape cursor on startup.
 echo -ne '\e[5 q'
 # Use beam shape cursor for each new prompt.
 preexec() { echo -ne '\e[5 q' ;}
-
 #fzf configurations
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_OPTS='--height 50% --border'
@@ -107,7 +98,7 @@ autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
 export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin
-
+eval "$(rbenv init -)"
 source ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 

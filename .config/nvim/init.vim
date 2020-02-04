@@ -8,13 +8,13 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall
 endif
 
+"For matching if/ends/do/ends/whatever blocks
+runtime macros/matchit.vim
 call plug#begin('~/.local/share/nvim/plugged')
-
 "General
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
-Plug 'bagrat/vim-buffet'
 Plug 'chrisbra/csv.vim'
 Plug 'dense-analysis/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -36,23 +36,19 @@ Plug 'vim-scripts/VisIncr'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'kien/rainbow_parentheses.vim'
-
 "Deoplete & Snippets
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-
 "Colors
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
-
 "Not Programming
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
-
 call plug#end()
 
 " ================ General Config ====================
@@ -89,6 +85,10 @@ set smarttab
 set softtabstop=2
 set tabstop=2
 set updatetime=300
+set list listchars=tab:»·,trail:·,nbsp:·
+set undodir=~/.config/nvim/.backups
+set diffopt+=vertical
+set undofile
 
 let mapleader=" "
 nnoremap , @@
@@ -103,15 +103,11 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-let g:gruvbox_italic=1
-"Type of Background
 set background=dark
-"set background=light
-
 "Colorschemes
-"colorscheme gruvbox
 colorscheme onedark
+" Always start in same position when opening file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
@@ -120,19 +116,13 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-" Always start in same position when opening file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-"<Ctrl-l> redraws the screen and removes any search highlight
-nnoremap <silent> <leader>l :nohl<CR><C-l>
-
 " Navigation of lines
 nnoremap  j gj
 nnoremap  k gk
 vnoremap  j gj
 vnoremap  k gk
-
+"<Ctrl-l> redraws the screen and removes any search highlight
+nnoremap <silent> <leader>l :nohl<CR><C-l>
 "Terminal NeoTerm
 let g:neoterm_default_mod = 'vertical'
 let g:neoterm_automap_keys = ',tt'
@@ -140,16 +130,13 @@ let g:neoterm_autoinsert = 1
 nnoremap <silent> <leader>th :Tclose<cr>
 nnoremap <silent> <leader>tl :Tclear<cr>
 nnoremap <silent> <leader>tc :Tkill<cr>
-
 nnoremap <leader>t :vsplit<CR> :term<CR>
 nnoremap <leader>T :split<CR> :term<CR>
-
 "Tab Navigation
 nnoremap th :tabprev<Return>
 nnoremap tl :tabnext<Return>
 nnoremap tn :tabnew<CR>
 nnoremap td  :tabclose<CR>
-
 " Split window and split navigation
 nmap ss :split<Return><C-w>w
 nmap sv :vsplit<Return><C-w>w" Move window
@@ -157,27 +144,16 @@ map <C-h> <C-w>h
 map <C-k> <C-w>k
 map <C-j> <C-w>j
 map <C-l> <C-w>l
-
 " Buffer navigation
 nnoremap <leader><Tab> :bn<Return>
-"nnoremap <leader><S-Tab> :bp<Return>
 noremap <leader>d :Bclose<CR>
 nnoremap <leader>ba :buffers<CR>:buffer<Space>
-
-"For matching if/ends/do/ends/whatever blocks
-runtime macros/matchit.vim
-
 "For copying between files
 vmap <leader>y "*y
 nmap <leader>p "*p
-
 "So removing text doesn't kill my clipboard
 nnoremap c "_c
 nnoremap C "_C
-
-" ` is kinda hard on my keyboard
-nnoremap ç `
-
 " Substitute for vim-rspec
 nmap <silent> <leader>rs :TestNearest<CR>
 nmap <silent> <leader>rf :TestFile<CR>
@@ -188,52 +164,22 @@ let g:test#strategy = "neovim"
 let g:neoterm_keep_term_open = 0
 let g:neoterm_autoscroll = 1
 let test#neovim#term_position = "vert topleft"
-"let g:neoterm_shell = '$SHELL -l'
+let g:neoterm_shell = '$SHELL -l'
 tmap <leader>o <C-\><C-n>
-
-
-" Scrolling Faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-"Persistent Undos
-set undodir=~/.config/nvim/.backups
-set undofile
-
-" Display tabs and trailing spaces visually
-"set list listchars=tab:\ \ ,trail:·
-set list listchars=tab:»·,trail:·,nbsp:·
-
-"Spell-check
-map <F6> :set spell spelllang=en_us
-map <F7> :set spell spelllang=pt
-map <F8> :set spell spelllang=de
-
-"Cursor
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
-
 " For vim-powerline
 set laststatus=2
 if !has('gui_running')
   set t_Co=256
 endif
-
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'enable': {
       \   'tabline': 0
       \ }
       \ }
-
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
-
 "System Clipboard Access
 let g:clipboard = {
   \   'name': 'xclip',
@@ -247,7 +193,6 @@ let g:clipboard = {
   \   },
   \   'cache_enabled': 1,
   \ }
-
 "FZF configs
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -266,17 +211,14 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
 "Open file in split
-nnoremap <silent> <Leader>S :call fzf#run({
+nnoremap <silent> <Leader>s :call fzf#run({
 \   'down': '40%',
 \   'sink': 'botright split' })<CR>
-
 "Open file in VSplit
-nnoremap <silent> <Leader>V :call fzf#run({
+nnoremap <silent> <Leader>v :call fzf#run({
 \   'right': winwidth('.') / 2,
 \   'sink':  'vertical botright split' })<CR>
-
 "Buffers searching
 function! s:buflist()
   redir => ls
@@ -284,45 +226,25 @@ function! s:buflist()
   redir END
   return split(ls, '\n')
 endfunction
-
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
-
 nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'source':  reverse(<sid>buflist()),
 \   'sink':    function('<sid>bufopen'),
 \   'options': '+m',
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
-
-" Always use vertical diffs
-set diffopt+=vertical
-
-"For Goyo/Limelight integration
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
-nnoremap <Leader>gy :Goyo<CR>
-
 "Ale configs
 packloadall
 silent! helptags ALL
-
-"file system
-"let g:netrw_browse_split = 2
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_winsize = 20
-"nnoremap <leader>ç :Vexplore<CR>
 "Nerdtree
 map <C-n> :NERDTreeToggle<CR>
-
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
-
 call NERDTreeHighlightFile('ru', 'green', 'none', 'green', '#151515')
 call NERDTreeHighlightFile('lock', 'yellow', 'none', 'yellow', '#151515')
 call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
@@ -335,13 +257,11 @@ call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
-
 " Resizing panes
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <leader>< <C-w><<CR>
 nnoremap <leader>> <C-w>><CR>
-
 "Vim Fugitive
 nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gb :Gblame<CR>
@@ -355,7 +275,6 @@ nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gcb :Merginal<CR>
-
 "Zoom / Restore window.
 function! s:ZoomToggle() abort
   if exists('t:zoomed') && t:zoomed
@@ -370,13 +289,10 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>z :ZoomToggle<CR>
-
 " HTML autocomplete
 let g:closetag_filenames = '*.html,*.xhtml,*.html.erb'
-
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
-
 " Delete buffer while keeping window layout (don't close buffer's windows).
 " Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
 if v:version < 700 || exists('loaded_bclose') || &cp
@@ -386,14 +302,12 @@ let loaded_bclose = 1
 if !exists('bclose_multiple')
   let bclose_multiple = 1
 endif
-
 " Display an error message.
 function! s:Warn(msg)
   echohl ErrorMsg
   echomsg a:msg
   echohl NONE
 endfunction
-
 " Command ':Bclose' executes ':bd' to delete buffer in current window.
 " The window will show the alternate buffer (Ctrl-^) if it exists,
 " or the previous buffer (:bp), or a blank buffer if no previous.
@@ -449,23 +363,12 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
 nnoremap <silent> <Leader>bd :Bclose<CR>
-
 "Markdown
 let g:mkdp_browser = 'firefox'
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_toggle=2
-
-"buffet
-let g:buffet_show_index = 1
-let g:buffet_max_plug = 10
-let g:buffet_powerline_separators = 1
-let g:buffet_tab_icon = "\uf004"
-let g:buffet_left_trunc_icon = "\uf0a8"
-let g:buffet_right_trunc_icon = "\uf0a9"
-
 highlight Normal guibg=none
 highlight NonText guibg=none
-
 "Rainbow settings
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -491,3 +394,9 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+"Misc
+map <F6> :set spell spelllang=en_us
+map <F7> :set spell spelllang=pt
+map <F8> :set spell spelllang=de
+nnoremap <Leader>gy :Goyo<CR>

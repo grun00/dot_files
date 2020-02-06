@@ -26,7 +26,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec xrandr --auto --output eDP1 --mode 1366x768 --primary
-exec xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
+exec xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1randr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
 focus_follows_mouse no
 font pango:Fira Code Light 12
 #keys

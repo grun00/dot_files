@@ -89,6 +89,7 @@ set list listchars=tab:»·,trail:·,nbsp:·
 set undodir=~/.config/nvim/.backups
 set diffopt+=vertical
 set undofile
+set inccommand=split
 
 let mapleader=" "
 nnoremap , @@

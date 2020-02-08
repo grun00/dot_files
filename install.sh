@@ -2,20 +2,27 @@
 # After install
 
 #Find fastest mirrors and update
-sudo pacman-mirrors --fasttrack --noconfirm && sudo pacman -Syyu --noconfirm
+sudo pacman-mirrors --fasttrack && sudo pacman -Syyu --noconfirm
 
 #Programs I like to have
-sudo pacman -Sy --noconfirm neovim python3 asciiquarium calcurse calibre chromium cmatrix clisp  docker entr gcc make git curl wget gparted htop jre8-openjdk neovim nodejs npm yarn python-pip ruby ruby-irb ttf-fira-code veracrypt vlc virtualbox virtualbox-sdk zathura zathura-pdf-mupdf zip zsh tmux xclip fzf ripgrep clang
+sudo pacman -Sy --noconfirm neovim python3 asciiquarium calcurse calibre chromium cmatrix clisp docker gcc make git curl wget gparted htop jre8-openjdk neovim nodejs npm yarn python-pip ruby ruby-irb ttf-fira-code veracrypt vlc virtualbox virtualbox-sdk zathura zathura-pdf-mupdf zip zsh tmux xclip fzf ripgrep clang
 
 cd ~
 
-#This repository
-git clone git@github.com:grun00/dot_files.git
 #For neovim support
 pip install --user pynvim
 
-mkdir ~/.config/nvim
-mkdir ~/.i3
+if [ ! -d ~/.config/nvim  ]
+then
+  mkdir ~/.config/nvim
+fi
+
+if [ ! -d ~/.i3  ]
+then
+  mkdir ~/.i3
+fi
+
+
 cp ~/dot_files/.i3/config ~/.i3
 cp ~/dot_files/.Xresources ~
 cp ~/dot_files/.xmodmap ~

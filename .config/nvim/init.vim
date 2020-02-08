@@ -36,6 +36,7 @@ Plug 'vim-scripts/VisIncr'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'camspiers/animate.vim'
 "Deoplete & Snippets
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#auto_complete_start_length = 1
@@ -112,11 +113,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " ======================= Navigations, tabs, buffers, copy and custom commands
 
-"For a better Future
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 " Navigation of lines
 nnoremap  j gj
 nnoremap  k gk
@@ -212,6 +208,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
 "Open file in split
 nnoremap <silent> <Leader>s :call fzf#run({
 \   'down': '40%',
@@ -258,11 +255,6 @@ call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
-" Resizing panes
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-nnoremap <leader>< <C-w><<CR>
-nnoremap <leader>> <C-w>><CR>
 "Vim Fugitive
 nnoremap <leader>ga :Git add .<CR>
 nnoremap <leader>gb :Gblame<CR>
@@ -401,3 +393,10 @@ map <F6> :set spell spelllang=en_us
 map <F7> :set spell spelllang=pt
 map <F8> :set spell spelllang=de
 nnoremap <Leader>gy :Goyo<CR>
+
+nnoremap <silent> <Up>    :call animate#window_delta_height(5)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(5)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-5)<CR>
+let g:animate#easing_func = 'animate#ease_out_quad'
+

@@ -31,7 +31,7 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    zle -K viins
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
@@ -41,9 +41,13 @@ echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 #fzf configurations
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-export FZF_DEFAULT_OPTS='--height 50% --border'
+export FZF_DEFAULT_OPTS='--height 40% --border'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 export FZF_COMPLETION_TRIGGER='çç'
+# CTRL-R - Paste the selected command from history into the command line
+zle     -N   fzf-history-widget
+bindkey '^R' fzf-history-widget
+
 #Navigation
 lfcd () {
     tmp="$(mktemp)"
@@ -67,8 +71,10 @@ HISTFILE=~/.config/zsh_configs/hist/history
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+# [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+# [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -97,7 +103,10 @@ zle -N bracketed-paste bracketed-paste-magic
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
-export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin:/usr/share/fzf
+
 eval "$(rbenv init -)"
 source ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme

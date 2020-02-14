@@ -26,7 +26,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec xrandr --auto --output eDP1 --mode 1366x768 --primary
-exec xrandr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1randr --auto --output HDMI1 --mode 1920x1080 --right-of eDP1
+exec xrandr --auto --output HDMI1 --mode 1920x1080 --above eDP1
 focus_follows_mouse no
 font pango:Fira Code Light 12
 #keys
@@ -43,6 +43,8 @@ bindsym $mod+Print exec gnome-screenshot -i
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+9 exec --no-startup-id blurlock
 bindsym $mod+m bar mode toggle
+bindsym $mod+Shift+ç move container to output up
+bindsym $mod+ç move container to output down
 
 #stacking etc
 bindsym $mod+y layout stacking

@@ -285,7 +285,7 @@ endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>z :ZoomToggle<CR>
 " HTML autocomplete
-let g:closetag_filenames = '*.html,*.xhtml,*.html.erb'
+let g:closetag_filenames = '*.html,*.xhtml,*.html.erb,*.erb'
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
 " Delete buffer while keeping window layout (don't close buffer's windows).
@@ -359,7 +359,7 @@ endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
 nnoremap <silent> <Leader>bd :Bclose<CR>
 "Markdown
-let g:mkdp_browser = 'firefox'
+let g:mkdp_browser = 'chromium'
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_toggle=2
 highlight Normal guibg=none

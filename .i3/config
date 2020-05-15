@@ -13,7 +13,7 @@ set $hibernate sudo -A systemctl suspend
 exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
 exec --no-startup-id xmodmap ~/.xmodmap
 exec --no-startup-id sh ~/.fehbg
-exec --no-startup-id volumeicon
+#exec --no-startup-id volumeicon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet

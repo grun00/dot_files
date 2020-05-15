@@ -37,6 +37,7 @@ Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'camspiers/animate.vim'
+Plug 'chrisbra/csv.vim'
 "Deoplete & Snippets
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#auto_complete_start_length = 1
@@ -76,7 +77,7 @@ set nowb
 set nowritebackup
 set number relativenumber
 set ruler
-set scrolloff=5
+set scrolloff=100
 set shiftwidth=2
 set showcmd
 set sidescroll=1

@@ -107,6 +107,7 @@ zle -N self-insert url-quote-magic
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin:/usr/share/fzf
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/
 
 eval "$(rbenv init -)"
 source ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh

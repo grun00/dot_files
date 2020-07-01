@@ -28,7 +28,7 @@ exec_always --no-startup-id fix_xcursor
 exec xrandr --auto --output eDP1 --mode 1366x768 --primary
 exec xrandr --auto --output HDMI1 --mode 1920x1080 --above eDP1
 focus_follows_mouse no
-font pango:Fira Code Light 12
+font pango:Fira Code 10
 #keys
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
@@ -247,9 +247,12 @@ bar {
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-client.focused          #556064 #df42d1 #80FFF9 #FDF6E3
-client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+# client.focused          #556064 #df42d1 #80FFF9 #FDF6E3
+# client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+# client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.focused          #4c7899 #81A1C1 #2E3440 #2e9ef4   #81A1C1
+client.focused_inactive #333333 #5d6678 #ffffff #484e50   #5f676a
+client.unfocused        #333333 #2E3440 #888888 #292d2e   #2E3440
 client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
 client.placeholder      #000000 #0c0c0c #ffffff #000000
 

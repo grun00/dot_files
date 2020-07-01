@@ -87,7 +87,7 @@ cp ~/dot_files/.config/nvim/init.vim ~/.config/nvim/
 
 
 
-printf "%-80s" "Installing Simples Terminal"
+printf "%-80s" "Installing Luke's Simples Terminal"
 git clone https://github.com/LukeSmithxyz/st /tmp
 cd /tmp/st
 sudo make install

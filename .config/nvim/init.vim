@@ -13,6 +13,7 @@ runtime macros/matchit.vim
 call plug#begin('~/.local/share/nvim/plugged')
 "General
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
 Plug 'chrisbra/csv.vim'
@@ -147,7 +148,6 @@ map <C-l> <C-w>l
 " Buffer navigation
 nnoremap <leader><Tab> :bn<Return>
 noremap <leader>d :Bclose<CR>
-nnoremap <leader>ba :buffers<CR>:buffer<Space>
 "For copying between files
 vmap <leader>y "*y
 nmap <leader>p "*p
@@ -358,7 +358,6 @@ function! s:Bclose(bang, buffer)
   execute wcurrent.'wincmd w'
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose(<q-bang>, <q-args>)
-nnoremap <silent> <Leader>bd :Bclose<CR>
 "Markdown
 let g:mkdp_browser = 'chromium'
 let vim_markdown_preview_hotkey='<C-m>'
@@ -432,3 +431,5 @@ function! DoPrettyXML()
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
+
+nnoremap <silent> <Leader>b :TagbarToggle<CR>

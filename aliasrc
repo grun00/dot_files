@@ -33,3 +33,8 @@ alias aliasrc='${=EDITOR} ~/.config/aliasrc'
 
 #Misc
 alias ghc="ghc -dynamic"
+
+
+# AutoSeg
+alias gitdo='~/Documents/Projects/AutoSeg/scripts/gitdo.rb'
+

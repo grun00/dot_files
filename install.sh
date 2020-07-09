@@ -21,7 +21,7 @@ sudo pacman -Sy --noconfirm gcc make curl wget gparted htop jre8-openjdk
 
 
 printf "%-80s" "Installing Devs"
-sudo pacman -Sy --noconfirm nodejs npm yarn python-pip python3
+sudo pacman -Sy --noconfirm nodejs npm yarn python-pip python3 ctags
 [[ $? -eq 0 ]]; then echo -e "[  Ok  ]" ; else echo -e "[ Fail ]" ; exit 90 ;  fi
 
 

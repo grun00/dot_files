@@ -8,7 +8,6 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall
 endif
 
-source ~/.config/nvim/configs/keysets.vim
 source ~/.config/nvim/configs/fzf.vim
 
 "For matching if/ends/do/ends/whatever blocks
@@ -17,6 +16,7 @@ runtime macros/matchit.vim
 call plug#begin('~/.local/share/nvim/plugged')
 "General
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'tpope/vim-eunuch'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
@@ -54,6 +54,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Colors
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
+Plug 'chuling/equinusocio-material.vim'
 "Not Programming
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/goyo.vim'
@@ -117,8 +118,11 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
+"let g:equinusocio_material_style = 'pure'
+set fillchars+=vert:│
 "Colorschemes
 colorscheme gruvbox
+"colorscheme equinusocio_material
 
 " Buffer navigation
 nnoremap <leader><Tab> :bn<Return>
@@ -133,13 +137,12 @@ nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>go :Gllog<CR>
 nnoremap <leader>gm :Gmerge
-nnoremap <leader>gps :Gpush
+nnoremap <leader>gps :Gpush origin HEAD<CR>
 nnoremap <leader>gpl :Gpull
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gcb :Merginal<CR>
 nnoremap <leader>gr :G<CR>
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gl :diffget //2<CR>
+nnoremap <leader>gt :GV<CR>
 
 " Misc Functions
 "Zoom / Restore window.
@@ -307,7 +310,7 @@ if !has('gui_running')
   set t_Co=256
 endif
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'equinusocio_material',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -371,3 +374,123 @@ augroup highlightYankedText
     autocmd!
     autocmd TextYankPost *  silent! lua require'vim.highlight'.on_yank()
 augroup END
+" Navigation of lines
+nnoremap  j gj
+nnoremap  k gk
+vnoremap  j gj
+vnoremap  k gk
+"<Ctrl-l> redraws the screen and removes any search highlight
+nnoremap <silent> <leader>l :nohl<CR><C-l>
+" Split window and split navigation
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w" Move window
+map <C-h> <C-w>h
+map <C-k> <C-w>k
+map <C-j> <C-w>j
+map <C-l> <C-w>l
+"Tab Navigation
+nnoremap th :tabprev<Return>
+nnoremap tl :tabnext<Return>
+nnoremap tn :tabnew<CR>
+nnoremap td  :tabclose<CR>
+"For copying between files
+vmap <leader>y "*y
+nmap <leader>p "*p
+"So removing text doesn't kill my clipboard
+nnoremap c "_c
+nnoremap C "_C
+"Vim Fugitive
+nnoremap <leader>ga :Git add .<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gl :Gllog<CR>
+nnoremap <leader>gm :Gmerge
+nnoremap <leader>gps :Gpush
+nnoremap <leader>gpl :Gpull
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gcb :Merginal<CR>
+nnoremap <leader>gr :G<CR>
+" Split resizing
+nnoremap <silent> <Up>    :call animate#window_delta_height(5)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(5)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-5)<CR>
+let g:animate#easing_func = 'animate#ease_out_quad'
+"Dictionaries
+map <F6> :set spell spelllang=en_us
+map <F7> :set spell spelllang=pt
+map <F8> :set spell spelllang=de
+nnoremap <Leader>gy :Goyo<CR>
+" Display tagbar with CTAGS
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+" Signify for moving through hunks
+nmap <leader>gj <plug>(signify-next-hunk)
+nmap <leader>gk <plug>(signify-prev-hunk)
+" NeoTerminal Navigation
+nnoremap <silent> <leader>th :Tclose<cr>
+nnoremap <silent> <leader>tl :Tclear<cr>
+nnoremap <silent> <leader>tc :Tkill<cr>
+nnoremap <leader>t :vsplit<CR> :term<CR>
+nnoremap <leader>T :split<CR> :term<CR>
+" exit terminal mode
+tmap <leader>o <C-\><C-n>
+" vim-tests commands
+nmap <silent> <leader>rs :TestNearest<CR>
+nmap <silent> <leader>rf :TestFile<CR>
+nmap <silent> <leader>ra :TestSuite<CR>
+nmap <silent> <leader>rl :TestLast<CR>
+nmap <silent> <leader>rv :TestVisit<CR>
+" Eunuch
+nnoremap <leader>mv :Move
+" Substitute word under cursor
+nnoremap <leader>c :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+" FZF
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+" Ctrl-P uses fzf
+nnoremap <C-p> :Files<Cr>
+" Crtl-S greps all files in root
+nnoremap <C-s> :Rg<Cr>
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+"Open file in split
+nnoremap <silent> <Leader>s :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+"Open file in VSplit
+nnoremap <silent> <Leader>v :call fzf#run({
+\   'right': winwidth('.') / 2,
+\   'sink':  'vertical botright split' })<CR>
+"Buffers searching
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>

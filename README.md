@@ -11,34 +11,32 @@ Generic mappins
 * sv splits screen vertically
 * \<leader\>S/V fzf for a file and opens it in a split
 * Navigation Inside splits is done with <C-x> x: hjkl
-* \<leader\>Tab/<leader><S-Tab> cycle through buffers
+* \<leader\>Tab cycle through buffers
 * \<leader\><Enter> fzf open buffers
 * \<C-p\> searches directory with fzf
 * \<C-s\> grep directory with ripgrep
-* \<leader\>+/- resizes horizontal split
-* \<leader\></> resizes vertical split
-* \<leader\>ç opens netrw
 * tab navigation is done with tX -> X is the motion
 * Scrolling \<C-d\>/\<C-u\> with easy motion
-* zf/zo closing and opening folds
 * repeating macros is done with ,
 * \<leader\>z togles zoom on splits
 
 Fugitive
 ========
-* \<leader\>gX is the general form
-* \<leader\>ga :Git add . -> Addes all changes to staging
-* \<leader\>gb :Gblame
-* \<leader\>gc :Gcommit
-* \<leader\>gd :Gdiff
-* \<leader\>gl :Gllog
-* \<leader\>gl :Gread
-* \<leader\>gm :Gmerge
-* \<leader\>gpl :Gpull
-* \<leader\>gps :Gpush
-* \<leader\>gs :Gstatus
-* \<leader\>gw :Gwrite
-* \<leader\>gcb :Merginal
+```vimscript
+ <leader>ga :Git add .<CR>
+ <leader>gb :Gblame<CR>
+ <leader>gc :Gcommit -v -q<CR>
+ <leader>gd :Gdiff<CR>
+ <leader>go :Gllog<CR>
+ <leader>gi :Gread<CR>
+ <leader>gm :Gmerge
+ <leader>gps :Gpush origin HEAD<CR>
+ <leader>gpl :Gpull
+ <leader>gw :Gwrite<CR>
+ <leader>gcb :Merginal<CR>
+ <leader>gr :G<CR>
+ <leader>gt :GV<CR>
+```
 
 vim-tests
 =========

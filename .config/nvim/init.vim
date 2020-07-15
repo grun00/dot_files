@@ -136,7 +136,6 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>go :Gllog<CR>
-nnoremap <leader>gi :Gread<CR>
 nnoremap <leader>gm :Gmerge
 nnoremap <leader>gps :Gpush origin HEAD<CR>
 nnoremap <leader>gpl :Gpull
@@ -406,13 +405,14 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gl :Gllog<CR>
-nnoremap <leader>gm :Gmerge
 nnoremap <leader>gps :Gpush
 nnoremap <leader>gpl :Gpull
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gcb :Merginal<CR>
+nnoremap <leader>gm :Merginal<CR>
 nnoremap <leader>gr :G<CR>
+nnoremap <leader>gi :Gread<CR>
+nnoremap <leader>gt :GV<CR>
 " Split resizing
 nnoremap <silent> <Up>    :call animate#window_delta_height(5)<CR>
 nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>

@@ -27,14 +27,14 @@ Fugitive
  <leader>gb :Gblame<CR>
  <leader>gc :Gcommit -v -q<CR>
  <leader>gd :Gdiff<CR>
- <leader>go :Gllog<CR>
- <leader>gi :Gread<CR>
- <leader>gm :Gmerge
- <leader>gps :Gpush origin HEAD<CR>
+ <leader>gl :Gllog<CR>
+ <leader>gps :Gpush
  <leader>gpl :Gpull
+ <leader>gs :Gstatus<CR>
  <leader>gw :Gwrite<CR>
- <leader>gcb :Merginal<CR>
+ <leader>gm :Merginal<CR>
  <leader>gr :G<CR>
+ <leader>gi :Gread<CR>
  <leader>gt :GV<CR>
 ```
 

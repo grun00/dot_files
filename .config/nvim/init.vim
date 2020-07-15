@@ -136,6 +136,7 @@ nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>go :Gllog<CR>
+nnoremap <leader>gi :Gread<CR>
 nnoremap <leader>gm :Gmerge
 nnoremap <leader>gps :Gpush origin HEAD<CR>
 nnoremap <leader>gpl :Gpull

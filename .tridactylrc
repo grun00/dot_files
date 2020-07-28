@@ -1,0 +1,25 @@
+" vim: filetype=vim
+set newtab about:blank
+
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+set findcase sensitive
+
+set smoothscroll true
+
+bind j scrollline 5
+bind k scrollline -5
+
+bind J tabprev
+bind K tabnext
+bind x tabclose
+unbind d
+bind d hint -t
+
+autocmd DocStart mail.google.com mode ignore
+
+bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank

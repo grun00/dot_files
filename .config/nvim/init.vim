@@ -14,9 +14,10 @@ source ~/.config/nvim/configs/fzf.vim
 runtime macros/matchit.vim
 
 call plug#begin('~/.local/share/nvim/plugged')
-"General
+Plug 'ngmy/vim-rubocop'
+Plug 'unblevable/quick-scope'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-bundler'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 Plug 'alvan/vim-closetag'
@@ -46,8 +47,11 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'camspiers/animate.vim'
 Plug 'chrisbra/csv.vim'
-"Deoplete & Snippets
+Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:AutoPairsMapCR=0
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion with deoplete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -303,7 +307,7 @@ silent! helptags ALL
 " HTML autocomplete
 let g:closetag_filenames = '*.html,*.xhtml,*.html.erb,*.erb'
 " Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
 " For vim-powerline
 set laststatus=2
 if !has('gui_running')
@@ -425,7 +429,7 @@ map <F7> :set spell spelllang=pt
 map <F8> :set spell spelllang=de
 nnoremap <Leader>gy :Goyo<CR>
 " Display tagbar with CTAGS
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
+nnoremap <silent> <c-t> :TagbarToggle<CR>
 " Signify for moving through hunks
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
@@ -438,13 +442,11 @@ nnoremap <leader>T :split<CR> :term<CR>
 " exit terminal mode
 tmap <leader>o <C-\><C-n>
 " vim-tests commands
-nmap <silent> <leader>rs :TestNearest<CR>
-nmap <silent> <leader>rf :TestFile<CR>
-nmap <silent> <leader>ra :TestSuite<CR>
-nmap <silent> <leader>rl :TestLast<CR>
-nmap <silent> <leader>rv :TestVisit<CR>
-" Eunuch
-nnoremap <leader>mv :Move
+" nmap <silent> <leader>rs :TestNearest<CR>
+" nmap <silent> <leader>rf :TestFile<CR>
+" nmap <silent> <leader>ra :TestSuite<CR>
+" nmap <silent> <leader>rl :TestLast<CR>
+" nmap <silent> <leader>rv :TestVisit<CR>
 " Substitute word under cursor
 nnoremap <leader>c :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " FZF
@@ -470,15 +472,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-"Open file in split
-nnoremap <silent> <Leader>s :call fzf#run({
-\   'down': '40%',
-\   'sink': 'botright split' })<CR>
-"Open file in VSplit
-nnoremap <silent> <Leader>v :call fzf#run({
-\   'right': winwidth('.') / 2,
-\   'sink':  'vertical botright split' })<CR>
 "Buffers searching
 function! s:buflist()
   redir => ls
@@ -495,3 +488,37 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options': '+m',
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
+
+" js
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+" Snippets
+imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-e>     <Plug>(neosnippet_expand_target)
+let g:neosnippet#enable_completed_snippet=1
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.config/nvim/configs/snippets'
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" startify
+let g:startify_session_dir = '~/.config/nvim/sessions'
+" Wiki
+let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_diary_months = {
+      \ 1: 'January', 2: 'February', 3: 'March',
+      \ 4: 'April', 5: 'May', 6: 'June',
+      \ 7: 'July', 8: 'August', 9: 'September',
+      \ 10: 'October', 11: 'November', 12: 'December'
+      \ }
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
+let g:qs_max_chars=150
+
+let g:vimrubocop_keymap = 0
+nmap <Leader>r :RuboCop<CR>

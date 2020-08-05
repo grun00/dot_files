@@ -3,7 +3,9 @@ alias ps="ps auxf --forest"
 alias rs="rails s"
 alias rc="rails c"
 alias vim="nvim -p"
+alias rspec="bundle exec rspec"
 alias cmatrix="cmatrix -C magenta"
+alias glog="git log --oneline"
 
 alias rm="rm -i"
 alias cp='cp -i'
@@ -20,10 +22,6 @@ alias ll='ls -l'
 alias ldot='ls -ld .*'
 alias lr='ls -tRFh'
 
-#Rails
-alias rrg='rails routes | grep'
-alias rs='rails server'
-alias railsm='rails db:migrate'
 
 alias i3rc='${=EDITOR} ~/.i3/config'
 alias tmuxrc='${=EDITOR} ~/.tmux.conf'

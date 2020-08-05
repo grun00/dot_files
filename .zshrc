@@ -48,7 +48,7 @@ export FZF_COMPLETION_TRIGGER='çç'
 # CTRL-R - Paste the selected command from history into the command line
 zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget
-
+xmodmap ~/.xmodmap
 #Navigation
 lfcd () {
     tmp="$(mktemp)"

@@ -6,19 +6,19 @@ nvim
 Fugitive
 ========
 ```vimscript
- <leader>ga :Git add .<CR>
- <leader>gb :Gblame<CR>
- <leader>gc :Gcommit -v -q<CR>
- <leader>gd :Gdiff<CR>
- <leader>gl :Gllog<CR>
- <leader>gps :Gpush
- <leader>gpl :Gpull
- <leader>gs :Gstatus<CR>
- <leader>gw :Gwrite<CR>
- <leader>gm :Merginal<CR>
- <leader>gr :G<CR>
- <leader>gi :Gread<CR>
- <leader>gt :GV<CR>
+<leader>ga :Git add .<CR>
+<leader>gb :Gblame<CR>
+<leader>gc :Git commit -v -q<CR>
+<leader>gd :Gdiff<CR>
+<leader>go :Gllog<CR>
+<leader>gs :Gstatus<CR>
+<leader>gm :Git merge
+<leader>gps :Gpush origin HEAD<CR>
+<leader>gpl :Gpull
+<leader>gw :Gwrite<CR>
+<leader>gcb :Merginal<CR>
+<leader>gr :G<CR>
+<leader>gt :GV<CR>
 ```
 Tmux
 ====

@@ -31,4 +31,4 @@ ZSH
 ===
 
 * ctrl + e to open command in vim mode for editing
-* ctrl + o to open file navigation
+* ctrl + o to open file [navigation](navigation)

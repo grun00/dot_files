@@ -41,12 +41,15 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-dispatch'
+Plug 'maximbaz/lightline-ale'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
 Plug 'yuttie/comfortable-motion.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'camspiers/animate.vim'
 Plug 'honza/vim-snippets'
@@ -244,8 +247,12 @@ let g:ale_fixers = {
   \    'html': ['prettier'],
   \    'reason': ['refmt']
 \}
+let g:ale_linters = {
+\   'ruby': ['rubocop'],
+\}
 let g:ale_fix_on_save = 1
-
+let g:ale_linters_explicit = 1
+let g:ale_set_highlights = 0
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
@@ -316,7 +323,8 @@ let g:startify_lists = [
 
 " rubocop
 let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop<CR>
+nmap <Leader>r :RuboCop --auto-correct<CR>
+let g:vimrubocop_config = '/home/grun/.config/.rubocop.yml'
 
 "Markdown previwer
 let g:mkdp_browser = 'chromium'
@@ -376,6 +384,21 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
+      \ }
+let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_infos': 'lightline#ale#infos',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
       \ }
 
 " ================== writing

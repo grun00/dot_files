@@ -7,7 +7,7 @@ alias rspec="bundle exec rspec"
 alias cmatrix="cmatrix -C magenta"
 alias glog="git log --oneline"
 
-alias rm="rm -i"
+alias rm="trash"
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir="mkdir -pv"

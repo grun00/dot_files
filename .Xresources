@@ -3,7 +3,7 @@
 *.st.termname: st-256color
 *.background: #282828
 *.foreground: #ebdbb2
-*.cursorColor: #fe8019
+*.cursorColor: #8f3f71
 
 !! gruvbox: */
 *.color0: #1d2021

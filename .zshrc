@@ -44,7 +44,7 @@ preexec() { echo -ne '\e[5 q' ;}
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_OPTS='--height 40% --border'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
-export FZF_COMPLETION_TRIGGER='çç'
+export FZF_COMPLETION_TRIGGER='~~'
 # CTRL-R - Paste the selected command from history into the command line
 zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget

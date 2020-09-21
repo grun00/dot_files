@@ -14,7 +14,9 @@ runtime macros/matchit.vim
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'yuezk/vim-js'
 Plug 'elixir-editors/vim-elixir'
+Plug 'tpope/vim-eunuch'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'gko/vim-coloresque'
 Plug 'pangloss/vim-javascript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
@@ -28,8 +30,11 @@ Plug 'alvan/vim-closetag'
 Plug 'junegunn/gv.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'mhinz/vim-signify'
-Plug 'dense-analysis/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'w0rp/ale'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'idanarye/vim-merginal'
 Plug 'itchyny/lightline.vim'
 Plug 'neovimhaskell/haskell-vim'
@@ -62,6 +67,7 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Colors
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
 "Not Programming
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/goyo.vim'
@@ -249,10 +255,13 @@ let g:ale_fixers = {
 \}
 let g:ale_linters = {
 \   'ruby': ['rubocop'],
+\   'javascript': ['eslint']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_set_highlights = 0
+let g:ale_sign_error = 'X'
+let g:ale_sign_warning = 'W'
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
@@ -286,54 +295,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gm :Git merge
 nnoremap <leader>gps :Gpush origin HEAD<CR>
 nnoremap <leader>gpl :Gpull
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gcb :Merginal<CR>
-nnoremap <leader>gr :G<CR>
-nnoremap <leader>gt :GV<CR>
-let g:animate#easing_func = 'animate#ease_out_quad'
 
-" Signify for moving through hunks
-nmap <leader>gj <plug>(signify-next-hunk)
-nmap <leader>gk <plug>(signify-prev-hunk)
-
-" javascript
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
-
-" Snippets
-imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-e>     <Plug>(neosnippet_expand_target)
-let g:neosnippet#enable_completed_snippet=1
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.config/nvim/configs/snippets'
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" startify
-let g:startify_session_dir = '~/.config/nvim/sessions'
-let g:startify_lists = [
-          \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
-          \ { 'type': 'files',     'header': ['   Files']            },
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ ]
-
-" rubocop
-let g:vimrubocop_keymap = 0
-nmap <Leader>r :RuboCop --auto-correct<CR>
-let g:vimrubocop_config = '/home/grun/.config/.rubocop.yml'
-
-"Markdown previwer
-let g:mkdp_browser = 'chromium'
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_toggle=2
-highlight Normal guibg=none
-highlight NonText guibg=none
-
-" ======================= aesthetics
 colorscheme gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -369,7 +331,7 @@ let g:qs_max_chars=150
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'deus',
+      \ 'colorscheme': 'PaperColor',
       \   'active': {
       \       'left': [ [ 'mode', 'paste' ],
       \               [ 'gitbranch' ],

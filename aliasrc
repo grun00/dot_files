@@ -5,6 +5,7 @@ alias rc="rails c"
 alias vim="nvim -p"
 alias rspec="bundle exec rspec"
 alias cmatrix="cmatrix -C magenta"
+alias starwars="telnet towel.blinkenlights.nl"
 alias glog="git log --oneline"
 
 alias rm="trash"
@@ -35,4 +36,5 @@ alias ghc="ghc -dynamic"
 
 # AutoSeg
 alias gitdo='~/Documents/Projects/AutoSeg/scripts/gitdo.rb'
+
 

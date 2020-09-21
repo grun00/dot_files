@@ -527,3 +527,6 @@ nnoremap <leader>t :vsplit<CR> :term<CR>
 nnoremap <leader>T :split<CR> :term<CR>
 " exit terminal mode
 tmap <leader>o <C-\><C-n>
+"  Copy Relative Path and Copy Full Path
+nmap crp :let @+=expand("%")<CR>
+nmap cfp :let @+=expand("%:p")<CR>

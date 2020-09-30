@@ -12,6 +12,7 @@ endif
 runtime macros/matchit.vim
 
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'easymotion/vim-easymotion'
 Plug 'yuezk/vim-js'
 Plug 'elixir-editors/vim-elixir'
 Plug 'tpope/vim-eunuch'
@@ -22,7 +23,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'ngmy/vim-rubocop'
 Plug 'vim-ruby/vim-ruby'
-Plug 'unblevable/quick-scope'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
@@ -56,7 +56,6 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'camspiers/animate.vim'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
@@ -67,9 +66,7 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Colors
 Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 "Not Programming
-Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
@@ -175,9 +172,9 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " Ctrl-P uses fzf
-nnoremap <C-p> :Files<Cr>
+nnoremap <C-p> :Files!<Cr>
 " Crtl-S greps all files in root
-nnoremap <C-s> :Rg<Cr>
+nnoremap <C-s> :Rg!<Cr>
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -261,7 +258,7 @@ let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_set_highlights = 0
 let g:ale_sign_error = 'X'
-let g:ale_sign_warning = 'W'
+let g:ale_sign_warning = '!'
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
@@ -286,15 +283,16 @@ call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
 
 "Vim Fugitive
-nnoremap <leader>ga :Git add .<CR>
+nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>go :Gllog<CR>
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gm :Git merge
 nnoremap <leader>gps :Gpush origin HEAD<CR>
-nnoremap <leader>gpl :Gpull
+nnoremap <leader>gm :Gpull origin HEAD<CR>
+nnoremap <leader>gpl :Gpull<CR>
+nnoremap <leader>gcb :Merginal<CR>
 
 colorscheme gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -317,21 +315,9 @@ augroup highlightYankedText
     autocmd TextYankPost *  silent! lua require'vim.highlight'.on_yank()
 augroup END
 
-" Split resizing
-nnoremap <silent> <Up>    :call animate#window_delta_height(5)<CR>
-nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>
-nnoremap <silent> <Left>  :call animate#window_delta_width(5)<CR>
-nnoremap <silent> <Right> :call animate#window_delta_width(-5)<CR>
-
-" Quick scope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#eF5F70' gui=underline ctermfg=81 cterm=underline
-let g:qs_max_chars=150
-
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'gruvbox',
       \   'active': {
       \       'left': [ [ 'mode', 'paste' ],
       \               [ 'gitbranch' ],
@@ -529,4 +515,19 @@ nnoremap <leader>T :split<CR> :term<CR>
 tmap <leader>o <C-\><C-n>
 "  Copy Relative Path and Copy Full Path
 nmap crp :let @+=expand("%")<CR>
-nmap cfp :let @+=expand("%:p")<CR>
+nmap cap :let @+=expand("%:p")<CR>
+map Q q:
+let g:comfortable_motion_no_default_key_mappings = 1
+nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+
+" Split resizing
+nnoremap <silent> <Up>    :call animate#window_delta_height(5)<CR>
+nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>
+nnoremap <silent> <Left>  :call animate#window_delta_width(5)<CR>
+nnoremap <silent> <Right> :call animate#window_delta_width(-5)<CR>
+
+let g:vimwiki_list = [{'path': '~/Documents/Projects/AutoSeg/notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]

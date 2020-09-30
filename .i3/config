@@ -38,8 +38,8 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu' #Information
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+Shift+w exec --no-startup-id chromium
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym $mod+Shift+Print exec --no-startup-id i3-scrot
-bindsym $mod+Print exec gnome-screenshot -i
+bindsym $mod+Shift+p exec --no-startup-id i3-scrot
+bindsym $mod+p exec gnome-screenshot -i
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+9 exec --no-startup-id blurlock
 bindsym $mod+m bar mode toggle
@@ -67,8 +67,6 @@ bindsym $mod+Ctrl+l move workspace to output right
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+p layout toggle split
-bindsym $mod+p split toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+s gaps inner current plus 5

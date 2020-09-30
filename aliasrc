@@ -1,3 +1,6 @@
+alias emacsmode="setxkbmap -option && setxkbmap -option ctrl:nocaps"
+alias vimode="setxkbmap -option && setxkbmap -option caps:escape"
+
 alias cd..="cd .."
 alias ps="ps auxf --forest"
 alias rs="rails s"

@@ -6,8 +6,13 @@ export THOR_MERGE="nvim -d    -c ' w' -c 'wincmd J'"
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 autoload -U compinit
 autoload -U colors && colors
+zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':completion:*' menu select
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
@@ -105,10 +110,11 @@ zle -N self-insert url-quote-magic
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin:/usr/share/fzf
+export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin:/usr/share/fzf:/home/grun/.emacs.d/bin/
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/
 
 eval "$(rbenv init -)"
 source ~/.config/zsh_configs/plugins/fast-syntax-highlighting.plugin.zsh
+source ~/.config/zsh_configs/plugins/zsh256/zsh-256color.plugin.zsh
+source ~/.config/zsh_configs/plugins/fzf-tabs/fzf-tab.plugin.zsh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
-

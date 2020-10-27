@@ -2,7 +2,7 @@
 for_window [class="^.*"] border pixel 2
 gaps inner 15
 gaps outer 15
-set $term --no-startup-id st
+set $term --no-startup-id alacritty
 set $mod Mod4
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
@@ -11,22 +11,20 @@ set $hibernate sudo -A systemctl suspend
 
 #Startup
 exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
-exec --no-startup-id xmodmap ~/.xmodmap
+exec_always --no-startup-id xrdb -load ~/.Xresources
+exec --no-startup-id xmodmap ~/.xmodmap_60
 exec --no-startup-id sh ~/.fehbg
 #exec --no-startup-id volumeicon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
-exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec xrandr --auto --output eDP1 --mode 1366x768 --primary
 exec xrandr --auto --output HDMI1 --mode 1920x1080 --above eDP1
+
 focus_follows_mouse no
 font pango:Fira Code 10
 #keys
@@ -120,8 +118,6 @@ for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
@@ -180,8 +176,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -311,3 +305,4 @@ mode "$mode_gaps_outer" {
 }
 
 # vim: filetype=i3
+

@@ -12,15 +12,17 @@ endif
 runtime macros/matchit.vim
 
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'easymotion/vim-easymotion'
+Plug 'neovim/nvim-lsp'
+Plug 'AndrewRadev/switch.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'vim-syntastic/syntastic'
 Plug 'yuezk/vim-js'
 Plug 'elixir-editors/vim-elixir'
+Plug 'camspiers/animate.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gko/vim-coloresque'
-Plug 'pangloss/vim-javascript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
 Plug 'ngmy/vim-rubocop'
 Plug 'vim-ruby/vim-ruby'
 Plug 'PotatoesMaster/i3-vim-syntax'
@@ -31,13 +33,8 @@ Plug 'junegunn/gv.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'idanarye/vim-merginal'
 Plug 'itchyny/lightline.vim'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -46,7 +43,6 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-dispatch'
-Plug 'maximbaz/lightline-ale'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
@@ -56,20 +52,19 @@ Plug 'yuttie/comfortable-motion.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'honza/vim-snippets'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete-lsp'
 let g:AutoPairsMapCR=0
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion with deoplete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Colors
-Plug 'morhetz/gruvbox'
 "Not Programming
+Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
 
 
@@ -101,7 +96,7 @@ set showcmd
 set sidescroll=1
 set sidescrolloff=15
 set signcolumn=yes
-set ignorecase
+" set ignorecase
 set smartindent
 set smarttab
 set softtabstop=2
@@ -122,7 +117,7 @@ let mapleader=" "
 " For repeating macros
 nnoremap , @@
 
-"<Ctrl-l> redraws the screen and removes any search highlight
+"<leader-l> redraws the screen and removes any search highlight
 nnoremap <silent> <leader>l :nohl<CR><C-l>
 
 " Automatically deletes all trailing whitespace on save.
@@ -148,7 +143,7 @@ let g:clipboard = {
 " change word under cursor
 nnoremap <leader>c :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
-" git
+" git diff
 if &diff
     map <leader>1 :diffget LOCAL<CR>
     map <leader>2 :diffget BASE<CR>
@@ -250,10 +245,6 @@ let g:ale_fixers = {
   \    'html': ['prettier'],
   \    'reason': ['refmt']
 \}
-let g:ale_linters = {
-\   'ruby': ['rubocop'],
-\   'javascript': ['eslint']
-\}
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_set_highlights = 0
@@ -294,7 +285,12 @@ nnoremap <leader>gm :Gpull origin HEAD<CR>
 nnoremap <leader>gpl :Gpull<CR>
 nnoremap <leader>gcb :Merginal<CR>
 
-colorscheme gruvbox
+
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+
+colorscheme tokyonight
+" colorscheme gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -317,7 +313,7 @@ augroup END
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'deus',
       \   'active': {
       \       'left': [ [ 'mode', 'paste' ],
       \               [ 'gitbranch' ],
@@ -332,21 +328,6 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
-      \ }
-let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
       \ }
 
 " ================== writing
@@ -529,5 +510,38 @@ nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(5)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-5)<CR>
 
-let g:vimwiki_list = [{'path': '~/Documents/Projects/AutoSeg/notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [ { 'syntax': 'markdown', 'ext': '.md' }]
+
+" when line is over 120 characters, highlight the character
+highlight ColorColumn ctermbg=0 guibg=magenta
+call matchadd('ColorColumn', '\%120v',120)
+
+" Rubocop
+let g:vimrubocop_config = '/home/grun/.config/rubocop.yml'
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntasti_ruby_rubocop_exec = '/home/grun/.rbenv/shims/rubocop'
+nnoremap <leader>r :RuboCop -a<CR>
+" Rust
+" let g:rustfmt_autosave = 1
+nnoremap <M-r> :RustFmt<CR>
+nnoremap <leader>sc :lclose<CR>
+lua require'nvim_lsp'.rust_analyzer.setup{}
+autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+call deoplete#custom#source('_', 'max_menu_width', 80)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_rust_checkers = ['cargo']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+highlight Cursor guifg=magenta guibg=white
+highlight iCursor guifg=green guibg=white
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR>

@@ -1,24 +1,108 @@
-*.st.alpha: 0.90
-*.st.font: Firacode-12;
-*.st.termname: st-256color
-*.background: #282828
-*.foreground: #ebdbb2
-*.cursorColor: #8f3f71
+! Base16 Dracula
+! Scheme: Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
 
-!! gruvbox: */
-*.color0: #1d2021
-*.color1: #cc241d
-*.color2: #98971a
-*.color3: #d79921
-*.color4: #458588
-*.color5: #b16286
-*.color6: #689d6a
-*.color7: #a89984
-*.color8: #928374
-*.color9: #fb4934
-*.color10: #b8bb26
-*.color11: #fabd2f
-*.color12: #83a598
-*.color13: #d3869b
-*.color14: #8ec07c
-*.color15: #ebdbb2
+! #define base00 #282936
+! #define base01 #3a3c4e
+! #define base02 #4d4f68
+! #define base03 #626483
+! #define base04 #62d6e8
+! #define base05 #e9e9f4
+! #define base06 #f1f2f8
+! #define base07 #f7f7fb
+! #define base08 #ea51b2
+! #define base09 #b45bcf
+! #define base0A #00f769
+! #define base0B #ebff87
+! #define base0C #a1efe4
+! #define base0D #62d6e8
+! #define base0E #b45bcf
+! #define base0F #00f769
+!
+! *.foreground:   base05
+! #ifdef background_opacity
+! *.background:   [background_opacity]base00
+! #else
+! *.background:   base00
+! #endif
+! *.cursorColor:  base05
+!
+! *.color0:       base00
+! *.color1:       base08
+! *.color2:       base0B
+! *.color3:       base0A
+! *.color4:       base0D
+! *.color5:       base0E
+! *.color6:       base0C
+! *.color7:       base05
+!
+! *.color8:       base03
+! *.color9:       base08
+! *.color10:      base0B
+! *.color11:      base0A
+! *.color12:      base0D
+! *.color13:      base0E
+! *.color14:      base0C
+! *.color15:      base07
+!
+! ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! ! use 'shell' template to set these if necessary
+! *.color16:      base09
+! *.color17:      base0F
+! *.color18:      base01
+! *.color19:      base02
+! *.color20:      base04
+! *.color21:      base06
+! Base16 Solarized Dark
+! Scheme: Ethan Schoonover (http://ethanschoonover.com/solarized)
+
+#define base00 #002b36
+#define base01 #073642
+#define base02 #586e75
+#define base03 #657b83
+#define base04 #839496
+#define base05 #93a1a1
+#define base06 #eee8d5
+#define base07 #fdf6e3
+#define base08 #dc322f
+#define base09 #cb4b16
+#define base0A #b58900
+#define base0B #859900
+#define base0C #2aa198
+#define base0D #268bd2
+#define base0E #6c71c4
+#define base0F #d33682
+
+*.foreground:   base05
+#ifdef background_opacity
+*.background:   [background_opacity]base00
+#else
+*.background:   base00
+#endif
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06

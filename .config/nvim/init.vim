@@ -13,6 +13,8 @@ runtime macros/matchit.vim
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'rainerborene/vim-reek'
 Plug 'AndrewRadev/switch.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-syntastic/syntastic'
@@ -45,6 +47,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
@@ -168,6 +171,7 @@ let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 " Ctrl-P uses fzf
 nnoremap <C-p> :Files!<Cr>
+nnoremap <C-P> :Files<Cr>
 " Crtl-S greps all files in root
 nnoremap <C-s> :Rg!<Cr>
 let g:fzf_colors =
@@ -276,21 +280,18 @@ call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
 "Vim Fugitive
 nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gc :Git commit -v -q<CR>
+" nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>go :Gllog<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gps :Gpush origin HEAD<CR>
-nnoremap <leader>gm :Gpull origin HEAD<CR>
-nnoremap <leader>gpl :Gpull<CR>
-nnoremap <leader>gcb :Merginal<CR>
+nnoremap <leader>gpl :GPull origin HEAD<CR>
+nnoremap <leader>gc :GBranch<CR>
+nnoremap <leader>gn :Merginal<CR>
 
+let $FZF_DEFAULT_OPTS='--reverse'
 
-let g:tokyonight_style = 'storm' " available: night, storm
-let g:tokyonight_enable_italic = 1
-
-colorscheme tokyonight
-" colorscheme gruvbox
+colorscheme gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -493,7 +494,7 @@ nnoremap <silent> <leader>tc :Tkill<cr>
 nnoremap <leader>t :vsplit<CR> :term<CR>
 nnoremap <leader>T :split<CR> :term<CR>
 " exit terminal mode
-tmap <leader>o <C-\><C-n>
+tmap <M-o> <C-\><C-n>
 "  Copy Relative Path and Copy Full Path
 nmap crp :let @+=expand("%")<CR>
 nmap cap :let @+=expand("%:p")<CR>
@@ -521,8 +522,13 @@ let g:vimrubocop_config = '/home/grun/.config/rubocop.yml'
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntasti_ruby_rubocop_exec = '/home/grun/.rbenv/shims/rubocop'
 nnoremap <leader>r :RuboCop -a<CR>
+nnoremap <leader>R :RunReek<CR>
+let g:reek_on_loading = 0
+lua <<EOF
+require'nvim_lsp'.solargraph.setup{}
+EOF
 " Rust
-" let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 1
 nnoremap <M-r> :RustFmt<CR>
 nnoremap <leader>sc :lclose<CR>
 lua require'nvim_lsp'.rust_analyzer.setup{}
@@ -545,3 +551,8 @@ set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait10
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR>
+
+nnoremap <M-t> :set rnu!<CR>
+nnoremap <leader>t :terminal<CR>
+nmap <Leader>n :NERDTreeFocus<cr>R<c-w><c-p>
+

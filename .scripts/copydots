@@ -6,6 +6,7 @@ cp ~/.tmux.conf ~/dot_files
 cp ~/.config/nvim/init.vim ~/dot_files/.config/nvim
 cp ~/.i3/config ~/dot_files/.i3/
 cp ~/.xmodmap ~/dot_files
+cp ~/.xmodmap_60 ~/dot_files
 cp ~/.Xresources ~/dot_files
 cp ~/.config/aliasrc ~/dot_files
 cp ~/.scripts/* ~/dot_files/.scripts

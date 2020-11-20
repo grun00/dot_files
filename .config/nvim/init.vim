@@ -282,10 +282,10 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <leader>gb :Gblame<CR>
 " nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>go :Gllog<CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gps :Gpush origin HEAD<CR>
-nnoremap <leader>gpl :GPull origin HEAD<CR>
+nnoremap <leader>gpl :Gpull origin HEAD<CR>
 nnoremap <leader>gc :GBranch<CR>
 nnoremap <leader>gn :Merginal<CR>
 
@@ -525,13 +525,13 @@ nnoremap <leader>r :RuboCop -a<CR>
 nnoremap <leader>R :RunReek<CR>
 let g:reek_on_loading = 0
 lua <<EOF
-require'nvim_lsp'.solargraph.setup{}
+require'lspconfig'.solargraph.setup{}
 EOF
 " Rust
 let g:rustfmt_autosave = 1
 nnoremap <M-r> :RustFmt<CR>
 nnoremap <leader>sc :lclose<CR>
-lua require'nvim_lsp'.rust_analyzer.setup{}
+lua require'lspconfig'.rust_analyzer.setup{}
 autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 call deoplete#custom#source('_', 'max_menu_width', 80)
 set statusline+=%#warningmsg#
@@ -555,4 +555,3 @@ nnoremap <C-w>E :SyntasticCheck<CR>
 nnoremap <M-t> :set rnu!<CR>
 nnoremap <leader>t :terminal<CR>
 nmap <Leader>n :NERDTreeFocus<cr>R<c-w><c-p>
-

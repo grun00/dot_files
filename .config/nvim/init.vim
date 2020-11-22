@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 Plug 'rainerborene/vim-reek'
+Plug 'tpope/vim-rhubarb'
 Plug 'AndrewRadev/switch.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-syntastic/syntastic'
@@ -212,6 +213,11 @@ let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '~'
 let g:signify_sign_show_count = 0
 let g:signify_sign_show_text = 1
+" next/prev hunk
+nmap <leader>j <plug>(signify-next-hunk)
+nmap <leader>k <plug>(signify-prev-hunk)
+
+
 let g:vim_markdown_conceal = 0
 
 "Rainbow settings
@@ -555,3 +561,4 @@ nnoremap <C-w>E :SyntasticCheck<CR>
 nnoremap <M-t> :set rnu!<CR>
 nnoremap <leader>t :terminal<CR>
 nmap <Leader>n :NERDTreeFocus<cr>R<c-w><c-p>
+nnoremap <M-g> :GBrowse<CR>

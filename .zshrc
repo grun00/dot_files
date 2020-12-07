@@ -1,4 +1,3 @@
-export TERM=xterm-256color
 export EDITOR="nvim"
 export KEYTIMEOUT=1
 export THOR_MERGE="nvim -d    -c ' w' -c 'wincmd J'"

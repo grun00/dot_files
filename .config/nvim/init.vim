@@ -57,7 +57,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete-lsp'
+" Plug 'Shougo/deoplete-lsp'
 let g:AutoPairsMapCR=0
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion with deoplete

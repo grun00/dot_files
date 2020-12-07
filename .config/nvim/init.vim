@@ -170,11 +170,20 @@ autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_tags_command = 'ctags -R'
 " Ctrl-P uses fzf
-nnoremap <C-p> :Files!<Cr>
-nnoremap <C-P> :Files<Cr>
+nnoremap <C-p> :Files<Cr>
 " Crtl-S greps all files in root
-nnoremap <C-s> :Rg!<Cr>
+nnoremap <C-s> :Rg<Cr>
+" nnoremap <silent> <Leader><Enter> :Buffers<CR>
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+nnoremap <M-t> :Tags<CR>
+
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -198,12 +207,13 @@ endfunction
 function! s:bufopen(e)
   execute 'buffer' matchstr(a:e, '^[ 0-9]*')
 endfunction
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
+
+" :call fzf#run({
+" \   'source':  reverse(<sid>buflist()),
+" \   'sink':    function('<sid>bufopen'),
+" \   'options': '+m',
+" \   'down':    len(<sid>buflist()) + 2
+" \ })<CR>
 
 " Signify
 set updatetime=100
@@ -283,16 +293,16 @@ call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
 
-"Vim Fugitive
+"Vim fugitive
 nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gb :Gblame<CR>
-" nnoremap <leader>gc :Git commit -v -q<CR>
+nnoremap <leader>gbl :Gblame<CR>
+nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gps :Gpush origin HEAD<CR>
 nnoremap <leader>gpl :Gpull origin HEAD<CR>
-nnoremap <leader>gc :GBranch<CR>
+nnoremap <leader>gbr :GBranch<CR>
 nnoremap <leader>gn :Merginal<CR>
 
 let $FZF_DEFAULT_OPTS='--reverse'
@@ -530,9 +540,9 @@ let g:syntasti_ruby_rubocop_exec = '/home/grun/.rbenv/shims/rubocop'
 nnoremap <leader>r :RuboCop -a<CR>
 nnoremap <leader>R :RunReek<CR>
 let g:reek_on_loading = 0
-lua <<EOF
-require'lspconfig'.solargraph.setup{}
-EOF
+" lua <<EOF
+" require'lspconfig'.solargraph.setup{}
+" EOF
 " Rust
 let g:rustfmt_autosave = 1
 nnoremap <M-r> :RustFmt<CR>
@@ -558,7 +568,7 @@ set guicursor+=i:blinkwait10
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR>
 
-nnoremap <M-t> :set rnu!<CR>
+nnoremap <M-n> :set rnu!<CR>
 nnoremap <leader>t :terminal<CR>
 nmap <Leader>n :NERDTreeFocus<cr>R<c-w><c-p>
 nnoremap <M-g> :GBrowse<CR>

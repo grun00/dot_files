@@ -84,7 +84,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12
+  size: 15
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -102,45 +102,45 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
 # Cyber Punk Neon
-# Source: https://github.com/Roboron3042/Cyberpunk-Neon
+# Source: https://github.com/Roboron3042/Cyberpunk-Neon#
 schemes:
-  cyberpunk: &dark
-  # COLORSCHEME: base16-google-light-256.yml
-  # Default colors
-    primary:
-      background: '0xffffff'
-      foreground: '0x373b41'
-
-  # Normal colors
-    normal:
-      black: '0xffffff'
-      red: '0xcc342b'
-      green: '0x198844'
-      yellow: '0xfba922'
-      blue: '0x3971ed'
-      magenta: '0xa36ac7'
-      cyan: '0x3971ed'
-      white: '0x373b41'
-
-  # Bright colors
-    bright:
-      black: '0xb4b7b4'
-      red: '0xcc342b'
-      green: '0x198844'
-      yellow: '0xfba922'
-      blue: '0x3971ed'
-      magenta: '0xa36ac7'
-      cyan: '0x3971ed'
-      white: '0x1d1f21'
-
-    indexed_colors:
-      - {index: 16, color: '0xf96a38'}
-      - {index: 17, color: '0x3971ed'}
-      - {index: 18, color: '0xe0e0e0'}
-      - {index: 19, color: '0xc5c8c6'}
-      - {index: 20, color: '0x969896'}
-      - {index: 21, color: '0x282a2e'}
+  # Colors (Gruvbox dark)
+  gruvbox-dark: &dark
+    # Colors (Pencil Dark)
+    colors:
+      # Default Colors
+      primary:
+        background: '0x212121'
+        foreground: '0xf1f1f1'
+      # Normal colors
+      normal:
+        black:   '0x212121'
+        red:     '0xc30771'
+        green:   '0x10a778'
+        yellow:  '0xa89c14'
+        blue:    '0x008ec4'
+        magenta: '0x523c79'
+        cyan:    '0x20a5ba'
+        white:   '0xe0e0e0'
+      # Bright colors
+      bright:
+        black:   '0x818181'
+        red:     '0xfb007a'
+        green:   '0x5fd7af'
+        yellow:  '0xf3e430'
+        blue:    '0x20bbfc'
+        magenta: '0x6855de'
+        cyan:    '0x4fb8cc'
+        white:   '0xf1f1f1'
+      indexed_colors:
+        - {index: 16, color: '0xf96a38'}
+        - {index: 17, color: '0x3971ed'}
+        - {index: 18, color: '0xe0e0e0'}
+        - {index: 19, color: '0xc5c8c6'}
+        - {index: 20, color: '0x969896'}
+        - {index: 21, color: '0x282a2e'}
 colors: *dark
+
 
 # Visual Bell
 #
@@ -382,8 +382,8 @@ key_bindings:
   # (Windows, Linux, and BSD only)
   - {key: Key0, mods: Control, action: ResetFontSize}
   - {key: Equals, mods: Control, action: IncreaseFontSize}
-  - {key: Add, mods: Control, action: IncreaseFontSize}
-  - {key: Subtract, mods: Control, action: DecreaseFontSize}
+  - {key: Plus, mods: Control, action: IncreaseFontSize}
+  - {key: NumpadSubtract, mods: Control, action: DecreaseFontSize}
   - {key: Minus, mods: Control, action: DecreaseFontSize}
 
 debug:

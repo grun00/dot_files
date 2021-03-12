@@ -31,13 +31,6 @@ cp ~/dot_files/.tmux.conf ~
 cp ~/dot_files/.gitconfig ~
 cp ~/dot_files/aliasrc ~/.config
 
-#Thanks Luke
-git clone https://github.com/LukeSmithxyz/st
-cd st
-sudo make install
-cd ~
-rm -rf st
-
 #Nerd Fonts for Icons
 git clone https://aur.archlinux.org/nerd-fonts-complete.git
 cd nerd-fonts-complete

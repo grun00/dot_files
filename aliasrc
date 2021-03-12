@@ -18,8 +18,7 @@ alias mkdir="mkdir -pv"
 
 alias ping="ping -c 5"
 
-alias ls="/opt/coreutils/bin/ls"
-alias sl="/opt/coreutils/bin/ls"
+alias sl="ls"
 alias l='ls -lFh'
 alias la='ls -lAFh'
 alias ll='ls -l'
@@ -40,4 +39,6 @@ alias ghc="ghc -dynamic"
 # AutoSeg
 alias gitdo='~/Documents/Projects/AutoSeg/scripts/gitdo.rb'
 
+alias youtube-dl-audio='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
 
+alias vimmod='vim $(git status | grep modified: | sed 's/modified://g')'

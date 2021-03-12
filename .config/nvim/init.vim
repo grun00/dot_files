@@ -13,7 +13,7 @@ runtime macros/matchit.vim
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lsp'
-Plug 'neovim/nvim-lspconfig'
+" Plug 'neovim/nvim-lspconfig'
 Plug 'rainerborene/vim-reek'
 Plug 'tpope/vim-rhubarb'
 Plug 'AndrewRadev/switch.vim'
@@ -45,6 +45,7 @@ Plug 'mhinz/vim-startify'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -295,13 +296,13 @@ call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
 
 "Vim fugitive
 nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gbl :Gblame<CR>
+nnoremap <leader>gbl :Git blame<CR>
 nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gps :Gpush origin HEAD<CR>
-nnoremap <leader>gpl :Gpull origin HEAD<CR>
+nnoremap <leader>gps :Git push origin HEAD<CR>
+nnoremap <leader>gpl :Git pull origin HEAD<CR>
 nnoremap <leader>gbr :GBranch<CR>
 nnoremap <leader>gn :Merginal<CR>
 
@@ -547,8 +548,7 @@ let g:reek_on_loading = 0
 let g:rustfmt_autosave = 1
 nnoremap <M-r> :RustFmt<CR>
 nnoremap <leader>sc :lclose<CR>
-lua require'lspconfig'.rust_analyzer.setup{}
-autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+" autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 call deoplete#custom#source('_', 'max_menu_width', 80)
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -572,3 +572,5 @@ nnoremap <M-n> :set rnu!<CR>
 nnoremap <leader>t :terminal<CR>
 nmap <Leader>n :NERDTreeFocus<cr>R<c-w><c-p>
 nnoremap <M-g> :GBrowse<CR>
+nnoremap <silent> <M-k> :<C-u>exe 'm -' . (v:count1 + 1)<cr>
+nnoremap <silent> <M-j> :<C-u>exe 'm +' . v:count1<cr>

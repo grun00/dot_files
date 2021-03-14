@@ -13,7 +13,7 @@ runtime macros/matchit.vim
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lsp'
-" Plug 'neovim/nvim-lspconfig'
+Plug 'neovim/nvim-lspconfig'
 Plug 'rainerborene/vim-reek'
 Plug 'tpope/vim-rhubarb'
 Plug 'AndrewRadev/switch.vim'
@@ -37,14 +37,15 @@ Plug 'chrisbra/csv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'idanarye/vim-merginal'
-Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'pbrisbin/vim-mkdir'
-Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'preservim/nerdtree'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
@@ -276,23 +277,23 @@ let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
 
 "Nerdtree
-map <C-n> :NERDTreeToggle<CR>
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-call NERDTreeHighlightFile('ru', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('lock', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
+" map <C-n> :NERDTreeToggle<CR>
+" function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+"  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+"  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+" endfunction
+" call NERDTreeHighlightFile('ru', 'green', 'none', 'green', '#151515')
+" call NERDTreeHighlightFile('lock', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+" call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+" call NERDTreeHighlightFile('rb', 'Red', 'none', '#ff00ff', '#151515')
 
 "Vim fugitive
 nnoremap <leader>gw :Gwrite<CR>
@@ -328,25 +329,6 @@ augroup highlightYankedText
     autocmd!
     autocmd TextYankPost *  silent! lua require'vim.highlight'.on_yank()
 augroup END
-
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'deus',
-      \   'active': {
-      \       'left': [ [ 'mode', 'paste' ],
-      \               [ 'gitbranch' ],
-      \               [ 'readonly', 'filetype', 'filename' ]],
-      \       'right': [ [ 'percent' ], [ 'lineinfo' ],
-      \               [ 'fileformat', 'fileencoding' ],
-      \               [ 'gitblame', 'currentfunction',  'cocstatus', 'linter_errors', 'linter_warnings' ]]
-      \   },
-      \ 'enable': {
-      \   'tabline': 0
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
 
 " ================== writing
 "Dictionaries
@@ -538,8 +520,6 @@ call matchadd('ColorColumn', '\%120v',120)
 let g:vimrubocop_config = '/home/grun/.config/rubocop.yml'
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntasti_ruby_rubocop_exec = '/home/grun/.rbenv/shims/rubocop'
-nnoremap <leader>r :RuboCop -a<CR>
-nnoremap <leader>R :RunReek<CR>
 let g:reek_on_loading = 0
 " lua <<EOF
 " require'lspconfig'.solargraph.setup{}
@@ -550,9 +530,6 @@ nnoremap <M-r> :RustFmt<CR>
 nnoremap <leader>sc :lclose<CR>
 " autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
 call deoplete#custom#source('_', 'max_menu_width', 80)
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
@@ -574,3 +551,20 @@ nmap <Leader>n :NERDTreeFocus<cr>R<c-w><c-p>
 nnoremap <M-g> :GBrowse<CR>
 nnoremap <silent> <M-k> :<C-u>exe 'm -' . (v:count1 + 1)<cr>
 nnoremap <silent> <M-j> :<C-u>exe 'm +' . v:count1<cr>
+" copen, lopen cnext lnext, cprev, lprev
+nnoremap <leader>cl :cnext
+nnoremap <leader>ch :cprev
+nnoremap <leader>ll :cnext
+nnoremap <leader>lh :cprev
+
+" Other tree
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+" Lua Plugins
+lua << EOF
+  require("statusline")
+EOF
+
+

@@ -1,11 +1,16 @@
 [core]
-	editor = nvim
+  editor = nvim
 
 [merge]
-	tool = vimdiff
+  tool = vimdiff
 
 [mergetool]
-	keepBackup = false
+  keepBackup = false
 
 [mergetool "vimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[user]
+  email = lucas.c.grunheidt@gmail.com
+  name = grun00
+[init]
+  defaultBranch = main

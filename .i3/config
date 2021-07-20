@@ -10,7 +10,7 @@ set $netrefresh --no-startup-id sudo -A systemctl restart NetworkManager
 set $hibernate sudo -A systemctl suspend
 
 #Startup
-exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+exec --no-startup-id feh  --bg-fill ~/Pictures/1613400891967.jpg
 exec_always --no-startup-id xrdb -load ~/.Xresources
 exec --no-startup-id xmodmap ~/.xmodmap_60
 exec --no-startup-id sh ~/.fehbg
@@ -36,7 +36,7 @@ bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+Shift+w exec --no-startup-id chromium
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Shift+p exec --no-startup-id i3-scrot
-bindsym $mod+p exec gnome-screenshot -i
+bindsym $mod+p exec flameshot launcher
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 bindsym $mod+9 exec --no-startup-id blurlock
 bindsym $mod+m bar mode toggle

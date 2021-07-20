@@ -14,6 +14,8 @@ runtime macros/matchit.vim
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'nvim-lua/completion-nvim'
 Plug 'rainerborene/vim-reek'
 Plug 'tpope/vim-rhubarb'
 Plug 'AndrewRadev/switch.vim'
@@ -42,14 +44,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'pbrisbin/vim-mkdir'
-" Plug 'preservim/nerdtree'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'kyazdani42/nvim-web-devicons' " lua
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-surround'
@@ -59,13 +61,16 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'Shougo/deoplete-lsp'
+Plug 'Shougo/deoplete-lsp'
+Plug 'ervandew/supertab'
+Plug 'Chiel92/vim-autoformat'
 let g:AutoPairsMapCR=0
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion with deoplete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Colors
 "Not Programming
+Plug 'jnurmine/Zenburn'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -76,6 +81,11 @@ call plug#end()
 
 " ================ General Config ====================
 
+command Diary :e /home/grun/vimwiki/TODO.md
+set mouse=a
+set updatetime=300
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 set autoindent
 set autoread
 set backspace=indent,eol,start
@@ -107,7 +117,6 @@ set smartindent
 set smarttab
 set softtabstop=2
 set tabstop=2
-set updatetime=300
 set list listchars=tab:»·,trail:·,nbsp:·
 set undodir=~/.config/nvim/.backups
 set diffopt+=vertical
@@ -134,26 +143,26 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 "System Clipboard Access
 let g:clipboard = {
-  \   'name': 'xclip',
-  \   'copy': {
-  \      '+': 'xclip -selection clipboard',
-  \      '*': 'xclip -selection clipboard',
-  \    },
-  \   'paste': {
-  \      '+': 'xclip -selection clipboard -o',
-  \      '*': 'xclip -selection clipboard -o',
-  \   },
-  \   'cache_enabled': 1,
-  \ }
+      \   'name': 'xclip',
+      \   'copy': {
+      \      '+': 'xclip -selection clipboard',
+      \      '*': 'xclip -selection clipboard',
+      \    },
+      \   'paste': {
+      \      '+': 'xclip -selection clipboard -o',
+      \      '*': 'xclip -selection clipboard -o',
+      \   },
+      \   'cache_enabled': 1,
+      \ }
 
 " change word under cursor
 nnoremap <leader>c :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 " git diff
 if &diff
-    map <leader>1 :diffget LOCAL<CR>
-    map <leader>2 :diffget BASE<CR>
-    map <leader>3 :diffget REMOTE<CR>
+  map <leader>1 :diffget LOCAL<CR>
+  map <leader>2 :diffget BASE<CR>
+  map <leader>3 :diffget REMOTE<CR>
 endif
 
 " Display tagbar with CTAGS
@@ -169,7 +178,7 @@ nnoremap C "_C
 " FZF
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_tags_command = 'ctags -R'
@@ -179,26 +188,26 @@ nnoremap <C-p> :Files<Cr>
 nnoremap <C-s> :Rg<Cr>
 " nnoremap <silent> <Leader><Enter> :Buffers<CR>
 nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '+m',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
+      \   'source':  reverse(<sid>buflist()),
+      \   'sink':    function('<sid>bufopen'),
+      \   'options': '+m',
+      \   'down':    len(<sid>buflist()) + 2
+      \ })<CR>
 nnoremap <M-t> :Tags<CR>
 
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 "Buffers searching
 function! s:buflist()
   redir => ls
@@ -218,7 +227,6 @@ endfunction
 " \ })<CR>
 
 " Signify
-set updatetime=100
 let g:signify_sign_add               = '+'
 let g:signify_sign_delete            = '_'
 let g:signify_sign_delete_first_line = '‾'
@@ -234,23 +242,23 @@ let g:vim_markdown_conceal = 0
 
 "Rainbow settings
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['black',       'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
@@ -261,17 +269,17 @@ au Syntax * RainbowParenthesesLoadBraces
 "Ale configs
 packloadall
 silent! helptags ALL
-let g:ale_fixers = {
-  \    'javascript': ['eslint'],
-  \    'scss': ['prettier'],
-  \    'html': ['prettier'],
-  \    'reason': ['refmt']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 1
-let g:ale_set_highlights = 0
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
+" let g:ale_fixers = {
+"   \    'javascript': ['eslint'],
+"   \    'scss': ['prettier'],
+"   \    'html': ['prettier'],
+"   \    'reason': ['refmt']
+" \}
+" let g:ale_fix_on_save = 1
+" let g:ale_linters_explicit = 1
+" let g:ale_set_highlights = 0
+" let g:ale_sign_error = 'X'
+" let g:ale_sign_warning = '!'
 "comfortable-motion adjustments
 let g:comfortable_motion_friction = 200.0
 let g:comfortable_motion_air_drag = 3.0
@@ -301,7 +309,7 @@ nnoremap <leader>gbl :Git blame<CR>
 nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gps :Git push origin HEAD<CR>
 nnoremap <leader>gpl :Git pull origin HEAD<CR>
 nnoremap <leader>gbr :GBranch<CR>
@@ -326,8 +334,8 @@ endif
 
 " just as it sounds
 augroup highlightYankedText
-    autocmd!
-    autocmd TextYankPost *  silent! lua require'vim.highlight'.on_yank()
+  autocmd!
+  autocmd TextYankPost *  silent! lua require'vim.highlight'.on_yank()
 augroup END
 
 " ================== writing
@@ -338,6 +346,7 @@ map <F8> :set spell spelllang=de
 
 " Wiki
 let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_list = [ { 'syntax': 'markdown', 'ext': '.md', 'auto_diary_index': 1}]
 let g:vimwiki_diary_months = {
       \ 1: 'January', 2: 'February', 3: 'March',
       \ 4: 'April', 5: 'May', 6: 'June',
@@ -510,7 +519,6 @@ nnoremap <silent> <Down>  :call animate#window_delta_height(-5)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(5)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-5)<CR>
 
-let g:vimwiki_list = [ { 'syntax': 'markdown', 'ext': '.md' }]
 
 " when line is over 120 characters, highlight the character
 highlight ColorColumn ctermbg=0 guibg=magenta
@@ -526,9 +534,38 @@ let g:reek_on_loading = 0
 " EOF
 " Rust
 let g:rustfmt_autosave = 1
-nnoremap <M-r> :RustFmt<CR>
+nnoremap <leader>c :!cargo clippy
 nnoremap <leader>sc :lclose<CR>
-" autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+autocmd Filetype rust setlocal omnifunc=v:lua.vim.lsp.omnifunc
+call deoplete#custom#source('_', 'max_menu_width', 80)
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+lua << EOF
+local nvim_lsp = require'lspconfig'
+
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+
+nvim_lsp.rust_analyzer.setup({
+    on_attach=on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importMergeBehavior = "last",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
+EOF
+
 call deoplete#custom#source('_', 'max_menu_width', 80)
 let g:syntastic_rust_checkers = ['cargo']
 let g:syntastic_always_populate_loc_list = 1
@@ -564,7 +601,22 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
 " Lua Plugins
 lua << EOF
-  require("statusline")
+require("statusline")
 EOF
 
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+nnoremap <silent> g[ <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }
+" Code navigation shortcuts
+" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 

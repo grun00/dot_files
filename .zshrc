@@ -78,7 +78,8 @@ zle -N down-line-or-beginning-search
 # [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 # [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
-
+# find workplaces for tmux sessions
+bindkey -s ^f "tmux-session-maker\n"
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line

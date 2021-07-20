@@ -10,6 +10,7 @@ alias rspec="bundle exec rspec"
 alias cmatrix="cmatrix -C magenta"
 alias starwars="telnet towel.blinkenlights.nl"
 alias glog="git log --oneline"
+alias vimdiff="nvim -d"
 
 alias rm="trash"
 alias cp='cp -i'
@@ -42,3 +43,6 @@ alias gitdo='~/Documents/Projects/AutoSeg/scripts/gitdo.rb'
 alias youtube-dl-audio='youtube-dl --ignore-errors --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
 
 alias vimmod='vim $(git status | grep modified: | sed 's/modified://g')'
+alias alacrittyrc='vim ~/.config/alacritty/alacritty.yml'
+
+alias magaluvpn='sudo vpnc /etc/vpnc/vpn-ML --script /etc/vpnc/vpnc-script-custom'

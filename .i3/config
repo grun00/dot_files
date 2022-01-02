@@ -12,7 +12,7 @@ set $hibernate sudo -A systemctl suspend
 #Startup
 exec --no-startup-id feh  --bg-fill ~/Pictures/1613400891967.jpg
 exec_always --no-startup-id xrdb -load ~/.Xresources
-exec --no-startup-id xmodmap ~/.xmodmap_60
+exec --no-startup-id xmodmap ~/.xmodmap_ck62
 exec --no-startup-id sh ~/.fehbg
 #exec --no-startup-id volumeicon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

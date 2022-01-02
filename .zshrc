@@ -1,6 +1,11 @@
 export EDITOR="nvim"
 export KEYTIMEOUT=1
 export THOR_MERGE="nvim -d    -c ' w' -c 'wincmd J'"
+#SQL
+export DYLD_LIBRARY_PATH=/opt/oracle/instantclient_12_2
+export ORACLE_HOME="$DYLD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$ORACLE_HOME"
+export PATH="$PATH:$ORACLE_HOME"
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 autoload -U compinit

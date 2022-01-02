@@ -45,7 +45,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'luukvbaal/stabilize.nvim'
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'hoob3rt/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons' " lua
 " Plug 'dense-analysis/ale'
 Plug 'tpope/vim-dispatch'
@@ -64,6 +70,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete-lsp'
 Plug 'ervandew/supertab'
 Plug 'Chiel92/vim-autoformat'
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+Plug 'mhartington/formatter.nvim'
+Plug 'rebelot/kanagawa.nvim'
 let g:AutoPairsMapCR=0
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion with deoplete
@@ -72,6 +81,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "Not Programming
 Plug 'jnurmine/Zenburn'
 Plug 'morhetz/gruvbox'
+Plug 'f1nwe/neovim-molokai'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
@@ -316,8 +326,7 @@ nnoremap <leader>gbr :GBranch<CR>
 nnoremap <leader>gn :Merginal<CR>
 
 let $FZF_DEFAULT_OPTS='--reverse'
-
-colorscheme gruvbox
+colorscheme kanagawa
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -529,9 +538,58 @@ let g:vimrubocop_config = '/home/grun/.config/rubocop.yml'
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntasti_ruby_rubocop_exec = '/home/grun/.rbenv/shims/rubocop'
 let g:reek_on_loading = 0
-" lua <<EOF
-" require'lspconfig'.solargraph.setup{}
-" EOF
+" solargraph
+lua << EOF
+require'lspconfig'.solargraph.setup{}
+EOF
+lua << EOF
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+end
+
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { "solargraph" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+	on_attach = on_attach,
+	flags = {
+	  debounce_text_changes = 150,
+	}
+  }
+end
+EOF
+
 " Rust
 let g:rustfmt_autosave = 1
 nnoremap <leader>c :!cargo clippy
@@ -595,9 +653,13 @@ nnoremap <leader>ll :cnext
 nnoremap <leader>lh :cprev
 
 " Other tree
+lua << EOF
+  require'nvim-tree'.setup {}
+EOF
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
+let g:nvim_tree_auto_open = 1
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
 " Lua Plugins
 lua << EOF
@@ -620,3 +682,34 @@ nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 " nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 " nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
+" Minimap configs
+let g:minimap_width = 20
+let g:minimap_auto_start = 0
+let g:minimap_auto_start_win_enter = 1
+nnoremap <leader>m :MinimapToggle<CR>
+
+" formatter
+lua << EOF
+require('formatter').setup({
+  logging = false,
+  filetype = {
+    ruby = {
+      -- rubocop run on one file
+      function()
+        return {
+          exe = "rubocop", -- might prepend `bundle exec `
+          args = { '--auto-correct', '--stdin', '%:p', '2>/dev/null', '|', 'sed "1,/^====================$/d"' },
+          stdin = true,
+        }
+      end
+    }
+  }
+})
+EOF
+
+" Provided by setup function
+nnoremap <silent> <leader>f :Format<CR>
+
+lua << EOF
+require("stabilize").setup()
+EOF

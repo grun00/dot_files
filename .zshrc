@@ -115,7 +115,7 @@ zle -N self-insert url-quote-magic
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:~/.cargo/bin:/usr/share/fzf:/home/grun/.emacs.d/bin/:/home/grun/.rbenv/versions/2.6.3/bin/
+export PATH=$PATH:~/.scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.rvm/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.vimpkg/bin:~/.local/lib:~/.rbenv/bin:/usr/share/fzf:/home/grun/.emacs.d/bin/:/home/grun/.rbenv/versions/2.6.3/bin/:~/go/bin
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk/
 
 eval "$(rbenv init -)"

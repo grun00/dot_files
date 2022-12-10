@@ -19,16 +19,12 @@ Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/tComment'
-Plug 'pbrisbin/vim-mkdir' 
-Plug 'janko/vim-test'
+Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rails' 
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
-filetype plugin indent on 
+filetype plugin indent on
 let g:deoplete#enable_at_startup = 1
 " ================ General Config ====================
 
@@ -109,10 +105,6 @@ map sj <C-w>j
 map sl <C-w>l
 
 " Buffer navigation
-" set wildcharm=<Tab>
-" set wildmenu
-" set wildmode=full
-" nnoremap <leader><Tab> :buffer<Space><Tab>
 nnoremap <leader><Tab> :bn<Return>
 nnoremap <leader><S-Tab> :bp<Return>
 noremap <leader>d :bd<CR>
@@ -128,24 +120,6 @@ nmap <Leader>p "*p
 "For copying to/from clipboard
 vmap <Leader>c "+y
 nmap <Leader>V "+p
-
-" ` and ^ are kinda hard on my keyboard
-nnoremap ç `
-
-"Tmux General
-let g:tmux_navigator_no_mappings = 1
-let g:tmux_navigator_disable_when_zoomed = 1
-
-" Substitute for vim-rspec
-nmap <silent> <Leader>rs :TestNearest<CR>
-nmap <silent> <Leader>rf :TestFile<CR>
-nmap <silent> <Leader>ra :TestSuite<CR>
-nmap <silent> <Leader>rl :TestLast<CR>
-nmap <silent> <Leader>rt :TestVisit<CR>
-
-" Scrolling Faster
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
 
 "Persistent Undos
 set undodir=~/.vim/backups
@@ -219,4 +193,7 @@ if &diff
     syntax off
 endif
 
-
+" Go commands
+nnoremap <leader>gt :GoTestFunc<CR>
+nnoremap <leader>ga :GoTest<CR>
+nnoremap <leader>gr :GoRun<CR>

@@ -14,6 +14,7 @@ runtime macros/matchit.vim
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'skanehira/preview-markdown.vim'
 Plug 'bluz71/vim-moonfly-colors'
+Plug 'hachy/eva01.vim'
 Plug 'xavierchow/vim-swagger-preview'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neovim/nvim-lsp'
@@ -137,7 +138,7 @@ set timeout timeoutlen=1500
 set undodir=~/.config/nvim/.backups
 set undofile
 set updatetime=300
-colorscheme PaperColor
+colorscheme eva01
 filetype indent on
 filetype plugin on
 syntax on
@@ -197,3 +198,4 @@ lua << EOF
   require("statusline")
 EOF
 
+nmap <unique> <leader>e <Plug>GenerateDiagram
